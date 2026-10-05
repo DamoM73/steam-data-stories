@@ -1,0 +1,108 @@
+[project]
+site_name = "Steam Data Stories"
+site_description = "Tell data stories about Steam games with Python, Polars, Plotly and marimo, for Year 9/10 students."
+site_author = "Damien Murtagh"
+site_url = "https://damom73.github.io/steam-data-stories/"
+repo_url = "https://github.com/DamoM73/steam-data-stories"
+repo_name = "DamoM73/steam-data-stories"
+copyright = "Content licensed under CC BY-NC-SA 4.0. Code licensed under GPLv3."
+docs_dir = "docs"
+extra_css = ["stylesheets/extra.css"]
+
+nav = [
+  { "Home" = "index.md" },
+  { "Start" = [
+    { "Introduction" = "start/introduction.md" },
+    { "Setting Up" = "start/setup.md" },
+  ] },
+  { "Hook" = [
+    { "1. What is a Data Story?" = "hook/01_data_story.md" },
+    { "2. Exploring Our Data" = "hook/02_exploring_data.md" },
+    { "3. Asking a Question Data Can Answer" = "hook/03_asking_questions.md" },
+    { "4. Data, Privacy and Ethics" = "hook/04_privacy_ethics.md" },
+  ] },
+  { "Behind the Scenes" = [
+    { "5. Selecting and Filtering" = "cleaning/05_select_filter.md" },
+    { "6. Fixing Data Types" = "cleaning/06_data_types.md" },
+    { "7. Missing, Impossible and Duplicate Values" = "cleaning/07_missing_values.md" },
+    { "8. Cleaning Text and Lists" = "cleaning/08_text_lists.md" },
+  ] },
+  { "Rising Insights" = [
+    { "9. Creating New Columns" = "insights/09_new_columns.md" },
+    { "10. Summarising Groups" = "insights/10_summarising_groups.md" },
+    { "11. Charts that Compare" = "insights/11_charts_compare.md" },
+    { "12. Trends and Outliers" = "insights/12_trends_outliers.md" },
+    { "13. Getting Player History from an API" = "insights/13_api.md" },
+    { "14. Combining Datasets" = "insights/14_combining.md" },
+  ] },
+  { "Aha Moment" = [
+    { "15. Finding the Aha Moment" = "aha/15_aha_moment.md" },
+  ] },
+  { "Resolution" = [
+    { "16. Publishing Our Data Story" = "resolution/16_publishing.md" },
+  ] },
+  { "Reference" = [
+    { "The Data Story Arc" = "reference/story_arc.md" },
+    { "Polars" = "reference/polars.md" },
+    { "Plotly Express" = "reference/plotly.md" },
+    { "marimo" = "reference/marimo.md" },
+    { "Common Errors" = "reference/common_errors.md" },
+    { "Index of Topics" = "reference/index_of_topics.md" },
+    { "Licence" = "reference/licence.md" },
+  ] },
+]
+
+[project.theme]
+language = "en"
+logo = "assets/logo_header.png"
+favicon = "assets/favicon.ico"
+features = [
+  "content.code.copy",
+  "content.code.select",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.tabs",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+pymdownx.details = {}
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.snippets.base_path = ["docs"]
+pymdownx.snippets.check_paths = true
+pymdownx.superfences = {}
