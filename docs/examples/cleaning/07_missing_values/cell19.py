@@ -1,0 +1,1 @@
+typed.null_count()

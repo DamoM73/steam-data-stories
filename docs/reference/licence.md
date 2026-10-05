@@ -14,7 +14,7 @@ The code in the [repository](https://github.com/DamoM73/steam-data-stories) is l
 
 ## Data
 
-The Steam games data comes from the [Steam Games Dataset](https://huggingface.co/datasets/FronkonGames/steam-games-dataset) by Fronkon Games (MIT licence), collected from the Steam store and SteamSpy. Live player counts come from the Steam Web API.
+The Steam games data comes from the [Steam Games Dataset](https://huggingface.co/datasets/FronkonGames/steam-games-dataset) by Fronkon Games (MIT licence), collected from the Steam store and SteamSpy. Player history comes from the [Games Popularity](https://games-popularity.com/) API.
 
 ## Libraries
 
