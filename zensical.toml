@@ -59,6 +59,7 @@ favicon = "assets/favicon.ico"
 features = [
   "content.code.copy",
   "content.code.select",
+  "content.tabs.link",
   "navigation.footer",
   "navigation.indexes",
   "navigation.instant",
@@ -106,3 +107,4 @@ pymdownx.keys = {}
 pymdownx.snippets.base_path = ["docs"]
 pymdownx.snippets.check_paths = true
 pymdownx.superfences = {}
+pymdownx.tabbed.alternate_style = true

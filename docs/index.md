@@ -64,4 +64,4 @@ Under each error message, the lesson breaks it down line by line, so we learn ho
 
 ## Tutorial files
 
-The tutorial files hold our classroom copy of the Steam dataset and the finished notebooks for each lesson. If our notebook stops working and we can't find the problem, we can compare it with the finished notebook for that lesson. The download link will appear here once the lessons are written.
+The tutorial files hold our classroom copy of the Steam data: the Steam games dataset and the player history for the games in our example story. Everyone uses the same copy, so our results match the lessons. [Download the tutorial files](https://github.com/DamoM73/steam-data-stories/releases/latest) from the data page, and follow [Setting Up](start/setup.md#download-the-data) to put them in the right place.

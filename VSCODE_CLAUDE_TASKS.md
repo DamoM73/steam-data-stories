@@ -6,7 +6,7 @@ This site was started in Cowork, which can only create and overwrite files in th
 
 - **Site generator:** Zensical 0.0.67 (pinned in `requirements.txt`). Config is `zensical.toml`. Pages are in `docs/`.
 - **Preview:** `zensical serve`. **Build:** `zensical build --clean` (must report "No issues found").
-- **Audience:** Year 9 Digital Technologies students (Year 9/10 writing level) using VS Code on Windows school laptops. Students know procedural Python and OOP basics, but no Polars, Plotly or notebooks.
+- **Audience:** Year 9 Digital Technologies students (Year 9/10 writing level) using VS Code on Windows or macOS laptops (instructions that differ use `=== "Windows"` / `=== "macOS"` content tabs, linked across the site). Students know procedural Python and OOP basics, but no Polars, Plotly or notebooks.
 - **The unit:** 16 lessons built around the data story arc (Hook, Behind the Scenes, Rising Insights, Aha Moment, Resolution). Everyone uses the FronkonGames Steam Games Dataset (MIT); the tutorial works one example question and students investigate their own question on the same data. Lesson 13 adds live player counts from the Steam Web API (`ISteamUserStats/GetNumberOfCurrentPlayers/v1`, no key), joined on app ID in Lesson 14.
 - **Stack:** Polars 2.0 release candidate (currently 2.0.0rc2; update when stable and recheck examples), Plotly Express, marimo, Requests.
 - **Notebooks:** two marimo notebooks. `clean_steam.py` (lessons 2–8: explore, depersonalise, clean, save clean data) and `steam_story.py` (lessons 9–16). Each code block on a page is one marimo cell, titled with its notebook name; `hl_lines` marks new or changed lines in a cell.
@@ -15,6 +15,7 @@ This site was started in Cowork, which can only create and overwrite files in th
 - **Callouts:** five types, the same on all of Damien's tutorial sites: `!!! learn` (amber, directly under the title), `!!! primm "PRIMM"` (green), `??? note "Code explanation"` (purple, collapsed), `!!! tip "Title"` (light blue) and `!!! warning "Title"` (hot pink). No videos.
 - **Writing style:** Australian English, Year 9/10, Damien's inclusive "we" voice (never "students", "they" or "you" for the reader in prose). Code explanations are `- **line n** → full sentence ending in a full stop.`; ranges use an en dash. No Exercises section; PRIMM **Modify** prompts take their place, and each lesson ends with an "Our data story" task. Error messages are real (made by breaking the code) in ```` ``` { .text .error linenums="1" } ```` blocks followed by a line-by-line breakdown.
 - **Dataset currency:** write tutorials against a snapshot taken in October 2026; in May 2027 refresh the snapshot, rerun every example and update outputs; students use the May 2027 snapshot as a fixed classroom copy.
+- **Screenshots:** spots that need a screenshot from Damien are marked with `<!-- SCREENSHOT: assets/<file> — <description> -->` comments and listed in `todo.md`. Add the same kind of comment (and a `todo.md` line) for any new page that needs one.
 - **Plan:** the lesson list is in Damien's Claude project as `claude/Year 9 Data Unit lesson list.md`.
 
 ## 1. Deploy workflow (Confirm first)
