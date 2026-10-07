@@ -33,11 +33,7 @@ In Australia, the **Privacy Act 1988** sets the rules for how organisations and 
 
 ## Finding personal information in our data
 
-Let's look through our 40 columns for anything that could identify a person. Most columns are about games, not people: names of games, prices, genres and review counts. But three columns hold contact details:
-
-- `Website`: the game's web page
-- `Support url`: a web page for getting help
-- `Support email`: an email address for getting help
+Let's look through our 13 columns for anything that could identify a person. Most columns are about games, not people: names of games, prices, genres and review counts. But one column holds contact details: `Support email`, an email address for getting help with the game.
 
 Many Steam games are made by big companies, with support addresses like `support@company.com`. But lots of games are made by one person working alone, and their support address is often their own personal email.
 
@@ -55,7 +51,7 @@ Start marimo with `marimo edit clean_steam.py` and press ++ctrl+shift+r++ (++cmd
 ??? note "Code explanation"
     - **line 1** → counts how many values in the `Support email` column are missing.
 
-The output is **23972**. A missing value is called a **null**. So 23,972 games have no support email, which means 114,298 games do have one.
+The output is **2728**. A missing value is called a **null**. So 2,728 games have no support email, which means 7,522 games do have one.
 
 Now let's find out how many of those addresses are personal email accounts. Add a new cell, type the code below and run it.
 
@@ -72,16 +68,16 @@ Now let's find out how many of those addresses are personal email accounts. Add 
 ??? note "Code explanation"
     - **line 1** → checks each value in the `Support email` column to see whether it contains the text `@gmail.com`, then adds up how many do.
 
-The output is **49130**. Almost half of the games with a support email use a free Gmail address. A company usually has its own email address, so many of these are likely to belong to a person.
+The output is **1270**. That's 1,270 games whose support address is a free Gmail account. A company usually has its own email address, so many of these are likely to belong to a person.
 
-!!! tip "Counting with true and false"
-    `str.contains` gives `true` or `false` for each value. When we `sum` them, each `true` counts as 1 and each `false` counts as 0, so the total is the number of matches. Missing values are skipped.
+!!! tip "Missing values are skipped"
+    Just like in Lesson 3, `sum` counts each `true` as 1. A missing email can't contain anything, so `str.contains` gives a null for it, and `sum` skips it.
 
 ## Removing columns we don't need
 
 These email addresses are already public: anyone can find them on each game's Steam store page. So is it fine to put them in our data story? The APPs give us a useful test: do we **need** them for our purpose?
 
-Our purpose is to tell a story about games and players. No question in our story needs to contact a game's developer, so we don't need `Support email`, `Support url` or `Website` at all. The safest thing to do with personal information we don't need is to remove it.
+Our purpose is to tell a story about games and players. No question in our story needs to contact a game's developer, so we don't need `Support email` at all. The safest thing to do with personal information we don't need is to remove it.
 
 Add a new cell, type the code below and run it.
 
@@ -95,15 +91,15 @@ Add a new cell, type the code below and run it.
     3. Time to **investigate** the code. What does each line do?
 
 ??? note "Code explanation"
-    - **line 1** → makes a copy of `games` without the `Support email`, `Support url` and `Website` columns, and stores it in a new variable called `public_games`.
+    - **line 1** → makes a copy of `games` without the `Support email` column, and stores it in a new variable called `public_games`.
     - **line 2** → shows the shape of `public_games`.
 
-The output shows **138270** rows and **37** columns: the same games, with three fewer columns. From now on we'll build on `public_games`, so the contact details never end up in our charts or our finished story.
+The output shows **10250** rows and **12** columns: the same games, without the email column. From now on we'll build on `public_games`, so the contact details never end up in our charts or our finished story.
 
 Remember from Lesson 2: in marimo, each variable can only be created in one cell. That's why we didn't write `games = games.drop(...)`. We gave the new version a new name instead, and the original `games` is still there unchanged.
 
 !!! tip "Depersonalising instead of deleting"
-    Sometimes we need part of the information without the personal details. For example, if our question were "Do games with a support email get more recommendations?", we could replace each email with just `yes` or `no`. This is called **depersonalising** the data. We'll learn how to make new columns like that in Lesson 9.
+    Sometimes we need part of the information without the personal details. For example, if our question were "Do games with a support email get more recommendations?", we could replace each email with just `yes` or `no`. This is called **depersonalising** the data. We'll learn how to make new columns like that in Lesson 7.
 
 ## Licences and attribution
 
@@ -113,10 +109,10 @@ Our Steam games data uses the **MIT licence**. It lets anyone use, copy, change 
 
 **Attribution** means saying where our data came from. Every good data story includes it, so readers can check our work. For our story, the attribution looks like this:
 
-> Steam games data from the Steam Games Dataset by Fronkon Games (MIT licence), downloaded October 2026. Player history from the Games Popularity API.
+> Steam games data from the Steam Games Dataset by Fronkon Games (MIT licence), downloaded October 2026.
 
 !!! warning "Game names and images belong to their owners"
-    The licence covers the data, not the games. Names like ARC Raiders and images from Steam belong to the companies that made the games, so we can mention them in our story, but we shouldn't copy their logos or artwork.
+    The licence covers the data, not the games. Names like Hollow Knight and images from Steam belong to the companies that made the games, so we can mention them in our story, but we shouldn't copy their logos or artwork.
 
 ## Our data story
 

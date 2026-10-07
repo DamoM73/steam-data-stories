@@ -24,20 +24,20 @@ Let's compare some questions about Steam games:
 | :-- | :-- | :-- |
 | What's the best game on Steam? | no | "best" isn't measurable; best for who? |
 | Are games getting more expensive? | almost | which games, and since when? |
-| Has the median price of Steam games changed between 2015 and 2025? | yes | specific, measurable with `Price` and `Release date`, and the answer isn't obvious |
-| Do people like indie games? | no | "like" isn't measurable as it stands |
-| Do games tagged Indie get a higher share of positive reviews than other games? | yes | uses `Tags`, `Positive` and `Negative` |
+| Has the median price of Steam games changed between 2015 and 2024? | yes | specific, measurable with `Price` and `Release date`, and the answer isn't obvious |
+| Do people like Action games? | no | "like" isn't measurable as it stands |
+| Do Action games get a higher share of positive reviews than other games? | yes | uses `Genres`, `Positive` and `Negative` |
 
 ### Example questions
 
 Here are some investigable questions about the Steam data:
 
-- Has the number of games released on Steam each year kept growing?
-- Do free games get more recommendations than paid games?
-- Do games that support more languages get more recommendations?
-- Which genres have the longest median playtime?
-- Are games released on Mac and Linux as well as Windows becoming more common?
-- Do games with achievements get more recommendations than games without them?
+- Has the share of positive reviews changed for games released each year?
+- Do free games get a higher share of positive reviews than paid games?
+- Do games with more achievements get more recommendations?
+- Which genre has the highest median price?
+- Do games that Metacritic's critics liked also get good reviews from players?
+- Do publishers that release lots of games get better reviews than publishers with only one game?
 
 !!! primm "PRIMM"
     Time to **modify** some questions. Can you write two more investigable questions about the Steam data? For each one, write down which columns would answer it.
@@ -46,26 +46,15 @@ Here are some investigable questions about the Steam data:
 
 Even a specific question can hide a word that means different things to different people. Our example question is:
 
-> **Was ARC Raiders' drop in players unusual?**
+> **Do Indie games review as well as games from big studios?**
 
 To answer it, we need to decide exactly what our words mean:
 
-1. **"drop in players"** → how far the number of people playing at the same time falls from its highest point, month by month after launch
-2. **"unusual"** → different from games like it: other **extraction shooters**, where players fight their way into an area, grab loot and try to get out alive
-3. **"games that let us play without fighting other players"** → games with a **PvE** option. **PvE** means **player versus environment**: we only fight computer-controlled enemies. ARC Raiders is **PvPvE**: we fight computer enemies *and* other players.
+1. **"Indie games"** → games that have `Indie` in their `Genres` column. On Steam, the developers choose their game's genres, so these are games whose makers call them Indie.
+2. **"games from big studios"** → our data doesn't say how big a studio is. So we'll compare Indie games with **every other game**, and call them "not Indie". That's a **limitation**: some "not Indie" games come from small studios too. We'll mention it when we tell our story.
+3. **"review as well"** → the **review score**: the percentage of a game's reviews that are positive. Hollow Knight has 403,641 positive and 12,305 negative reviews, so its review score is about 97%.
 
-Steam doesn't have a column that says whether a game has a PvE option, so we'll record it ourselves, from what each game's makers have said. Writing down our sources means anyone can check our decisions:
-
-| Game | PvE option | Source |
-| :-- | :-- | :-- |
-| ARC Raiders | No | [PC Gamer](https://www.pcgamer.com/games/third-person-shooter/arc-raiders-is-finally-testing-a-pve-only-mode-we-cant-ignore-what-the-data-is-telling-us/) |
-| Marathon | No | [Wikipedia](https://en.wikipedia.org/wiki/Marathon_(2026_video_game)) |
-| Escape from Tarkov | Yes | [Wikipedia](https://en.wikipedia.org/wiki/Escape_from_Tarkov) |
-| Gray Zone Warfare | Yes | [Steam Community](https://steamcommunity.com/app/2479810/discussions/0/4355620303679362648/) |
-| Arena Breakout: Infinite | Added later | [Willy B Gamer](https://www.willybgamer.com/intel/arena-breakout-infinite-permanent-pve-mode/) |
-| Escape from Duckov | Single-player | [Wikipedia](https://en.wikipedia.org/wiki/Escape_from_Duckov) |
-
-Start marimo with `marimo edit clean_steam.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our cells from Lesson 2. Then add a new cell, type the code below and run it.
+Before we go any further, let's check we have enough Indie games to compare. Start marimo with `marimo edit clean_steam.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our cells from Lesson 2. Then add a new cell, type the code below and run it.
 
 ```python linenums="1" title="clean_steam.py"
 --8<-- "examples/hook/03_asking_questions/cell07.py"
@@ -75,19 +64,15 @@ Start marimo with `marimo edit clean_steam.py` and press ++ctrl+shift+r++ (++cmd
     1. **Predict** what you think will happen when we run the cell. Be specific.
     2. **Run** the cell.
     3. Time to **investigate** the code. What does each line do?
+    4. Time to **modify** the code. Change `"Indie"` to another genre, such as `"Strategy"` or `"Simulation"`. How many games have that genre?
 
 ??? note "Code explanation"
-    - **lines 1–2** → start creating a new DataFrame called `story_games` from a dictionary, where each key is a column name and each value is a list holding that column's values.
-    - **line 3** → creates the `AppID` column, holding the Steam AppID of each of our six games.
-    - **lines 4–11** → create the `Name` column, holding the name of each game in the same order as the AppIDs.
-    - **line 12** → creates the `PvE` column, holding the PvE option we decided on for each game.
-    - **lines 13–14** → close the dictionary and finish creating the DataFrame.
-    - **line 15** → shows `story_games` as the cell's output.
+    - **line 1** → checks each value in the `Genres` column to see whether it contains the text `Indie`, then adds up how many do.
 
-<!-- SCREENSHOT: assets/l03_story_games.png — the story_games DataFrame in marimo -->
+The output is **6243**. Out of 10,250 games, 6,243 are Indie games, which leaves 4,007 that aren't. That's plenty of games in each group to compare.
 
-!!! warning "Keep the lists in order"
-    Each list must have the same number of values, in the same order. The fourth AppID belongs with the fourth name and the fourth PvE value. If one list is a different length, Polars stops with an error.
+!!! tip "Counting with true and false"
+    `str.contains` gives `true` or `false` for each value. When we `sum` them, each `true` counts as 1 and each `false` counts as 0, so the total is the number of matches.
 
 ## Checking our question against the data
 
@@ -124,13 +109,13 @@ Each row of the output is one statistic:
 
 Let's think about what the numbers tell us:
 
-1. The median `Price` is 2.72, but the maximum is 999.99. A few very expensive items pull the mean up to about 5.01. When the mean and median are this far apart, the median gives a fairer picture of a "typical" game.
-2. The median, and even the 75% value, of `Peak CCU` is 0. Three-quarters of games had nobody playing at their busiest time? That's very unlikely. It's a clue that this column has values that really mean "missing", which we'll investigate in Lesson 7.
-3. `Metacritic score` has a median of 0 too. Metacritic only reviews some games, so a 0 here probably means "no score", not a terrible score.
+1. The median `Price` is 4.19 and the mean is about 6.65. A few expensive games pull the mean up, so the median gives a fairer picture of a "typical" game.
+2. The median `Metacritic score` is 0. Half of these popular games scored 0 out of 100? That's very unlikely. It's a clue that 0 really means "no score", which we'll fix in Lesson 6.
+3. The smallest `Release date` is `Apr 1, 1999` and the largest is `Sep 9, 2024`. That's not the oldest and newest game: it's the first and last in **alphabetical** order, because the dates are stored as text. Another job for Lesson 6.
 
 ### Counting values
 
-`describe` is great for number columns, but many of our columns hold text. For those, we count how often each value appears. Add a new cell, type the code below and run it.
+To look closer at one column, we count how often each value appears. Add a new cell, type the code below and run it.
 
 ```python linenums="1" title="clean_steam.py"
 --8<-- "examples/hook/03_asking_questions/cell09.py"
@@ -140,45 +125,38 @@ Let's think about what the numbers tell us:
     1. **Predict** what you think will happen when we run the cell. Be specific.
     2. **Run** the cell.
     3. Time to **investigate** the code. What does each line do?
-    4. Time to **modify** the code. Change `"Estimated owners"` to `"Required age"` and run it again. What do you notice?
+    4. Time to **modify** the code. Change `"Metacritic score"` to `"Achievements"` and run it again. Is 0 a real value for achievements, or does it mean "missing"?
 
 ??? note "Code explanation"
-    - **line 1** → picks the `Estimated owners` column from `games`, counts how many times each different value appears, and sorts the results from most common to least common.
+    - **line 1** → picks the `Metacritic score` column from `games`, counts how many times each different value appears, and sorts the results from most common to least common.
 
-<!-- SCREENSHOT: assets/l03_value_counts.png — the output of value_counts for Estimated owners -->
+<!-- SCREENSHOT: assets/l03_value_counts.png — the output of value_counts for Metacritic score -->
 
-The most common value is `0 - 20000`, with 74,121 games, and the next is `0 - 0`, with 38,991 games. Let's think about this:
-
-1. `Estimated owners` isn't a number at all. It's a range, stored as text.
-2. `0 - 0` means a game with no owners at all, which is very unlikely for a game on sale. Like `Peak CCU`, it suggests missing data.
-3. ARC Raiders is in the `0 - 20000` group, even though hundreds of thousands of people played it at once.
-
-So `Estimated owners` and `Peak CCU` can't tell us how popular recent games are. That's why our example story will need a second source of data: the player history we'll get in Lesson 13.
+The most common score is `0`, with **7,317** games. The next most common is `80`, with only 188. So about seven in ten of our games have no Metacritic score at all. That's fine for our example question, because we're using player reviews, not Metacritic. But if our own question uses `Metacritic score`, we'll only have about three in ten of the games to work with.
 
 !!! tip "Square brackets pick one column"
-    `games["Estimated owners"]` picks a single column from a DataFrame. A single column is called a **Series**. Many methods, like `value_counts`, work on a Series rather than a whole DataFrame.
+    `games["Metacritic score"]` picks a single column from a DataFrame. A single column is called a **Series**. Many methods, like `value_counts`, work on a Series rather than a whole DataFrame.
 
 ## Refining our question
 
 If the data can't answer our question, we don't give up on it: we **refine** it. Common fixes are:
 
-- **narrow it down:** "Are games getting more expensive?" → "Has the median price of Steam games changed between 2015 and 2025?"
-- **swap in a column that works:** if `Peak CCU` is missing for the games we care about, use `Recommendations` or `Positive` and `Negative` instead
-- **define the fuzzy words:** "popular" → "has more than 1,000 recommendations"
-- **add another source:** like our example story, which adds player history
+- **narrow it down:** "Are games getting more expensive?" → "Has the median price of Steam games changed between 2015 and 2024?"
+- **swap in a column that works:** if `Metacritic score` is missing for the games we care about, use `Positive` and `Negative` instead
+- **define the fuzzy words:** "popular" → "has more than 10,000 recommendations"
 
 Our refined example question is:
 
-> **Did ARC Raiders lose a bigger share of its peak players, month by month after launch, than other extraction shooters, and do extraction shooters with a PvE option keep a bigger share of their players?**
+> **Do Indie games get a higher review score than games that aren't Indie, and do they cost less?**
 
-It's longer, but every part of it can be measured.
+It's more precise, and every part of it can be measured.
 
 ## Our data story
 
 Open ***my_data_story.md***, add a new heading `## Lesson 3: Our question` and record our answers under it.
 
 1. Check our own question against the three features of an investigable question. Rewrite it if it isn't specific, measurable and open.
-2. Write down what each fuzzy word in our question means, like we did for "unusual" and "PvE".
-3. Use `describe` and `value_counts` on the columns our question needs. Do they have enough real values to answer it?
+2. Write down what each fuzzy word in our question means, like we did for "Indie" and "review as well".
+3. Use `describe`, `value_counts` or `str.contains` on the columns our question needs. Do they have enough real values to answer it?
 4. If they don't, refine our question using one of the fixes above.
 5. Finish with our final question on its own line, so it's easy to find later.

@@ -48,36 +48,35 @@ Our course follows the same arc. The lessons in each section of this site match 
 
 ## Meet the Steam dataset
 
-**Steam** is the biggest online store for PC games. Our main dataset holds information about almost every game on Steam: about 138,000 of them.
+**Steam** is the biggest online store for PC games. Our dataset holds information about the most-reviewed games on Steam: the 10,250 games that players have reviewed at least 500 times.
 
-It comes from the **Steam Games Dataset** by Fronkon Games, who collected it from the Steam store and from a site called SteamSpy. It's published under the **MIT licence**, which lets anyone use and share it as long as they say where it came from. Our classroom copy has had games with adult content removed.
+It comes from the **Steam Games Dataset** by Fronkon Games, who collected it from the Steam store and from a site called SteamSpy. It's published under the **MIT licence**, which lets anyone use and share it as long as they say where it came from. Our classroom copy keeps only games with at least 500 reviews, and has had games with adult content removed.
 
 ### What one row represents
 
-The data is a table. Each **row** is one game, and each **column** is one fact about that game. For example, here are a few of the columns for one row:
+The data is a table. Each **row** is one game, and each **column** is one fact about that game. Here's the row for Hollow Knight, made by Team Cherry, a small studio in Adelaide:
 
 | Column | Value |
 | :-- | :-- |
-| AppID | 1808500 |
-| Name | ARC Raiders |
-| Release date | Oct 30, 2025 |
-| Price | 31.99 |
-| Genres | Action |
+| AppID | 367520 |
+| Name | Hollow Knight |
+| Release date | Feb 24, 2017 |
+| Price | 7.49 |
+| Positive | 403641 |
+| Negative | 12305 |
+| Genres | Action,Adventure,Indie |
 
 The **AppID** is the number Steam uses to identify each game. Two games can share a name, but they never share an AppID.
 
-There are 40 columns in total. They fall into a few groups:
+There are 13 columns in total. They fall into a few groups:
 
-- **about the game:** name, release date, developers, publishers, genres, tags, supported languages
-- **price:** price and discount (prices are in US dollars, and on-sale games show their sale price)
-- **players:** estimated owners, peak players, average and median playtime
-- **reviews:** positive and negative reviews, recommendations, Metacritic score
-- **links:** website, support email, screenshots
-
-We'll also use a second set of data: **player history**, which records how many people were playing a game every hour since it came out. We have this for the six games in our example story.
+- **about the game:** name, release date, developers, publishers, genres and achievements
+- **price:** the price in US dollars (games on sale show their sale price)
+- **reviews:** positive and negative reviews, recommendations and Metacritic score
+- **contact:** a support email address
 
 !!! warning "Real data is messy"
-    Our data is real, and it hasn't been cleaned. Some numbers are missing, some are impossible, and some columns store numbers as text. We'll find and fix these problems in the Behind the Scenes lessons, so for now, don't trust every number we see.
+    Our data is real, and it hasn't been cleaned. Some numbers really mean "missing", some columns store dates as text, and some games appear more than once. We'll find and fix these problems in the Behind the Scenes lessons, so for now, don't trust every number we see.
 
 ## Brainstorming story angles
 
@@ -89,11 +88,11 @@ A **story angle** is the part of a topic we choose to focus on. The same dataset
 - **surprise:** what's true in the data that most people would guess wrong?
 - **a single game:** what happened to one game, and was it normal?
 
-Our example story uses the last angle. ARC Raiders launched in October 2025, and hundreds of thousands of people played it at once. A few months later most of them had stopped. So our hook is:
+Our example story uses the comparison angle. Hollow Knight, Stardew Valley and Terraria are all **Indie** games: games made by small, independent teams, often without a big publisher paying for them. Big studios spend millions of dollars on their games, so we might expect their games to be better. But are they? So our hook is:
 
-> **Was ARC Raiders' drop in players unusual?**
+> **Do Indie games review as well as games from big studios?**
 
-We'll compare ARC Raiders with other games like it, and find out whether games that let us play without fighting other players keep their players for longer.
+We'll compare Indie games with all the other games in our data, and find out whether they also cost less.
 
 ## Our data story
 

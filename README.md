@@ -15,6 +15,7 @@ Then open <http://localhost:8000>. To build the site: `zensical build --clean` (
 
 ## Scripts
 
+- `python scripts/build_data.py` downloads the Steam Games Dataset and builds the classroom data zip for a GitHub release (needs `rich`).
 - `python scripts/check_explanations.py` checks every Code explanation box against the code it explains (expect `0 issue(s) found`).
 
 ## Layout
@@ -25,14 +26,14 @@ docs/
   index.md                    home page
   start/                      introduction, setting up
   hook/                       lessons 1–4: data stories, exploring, questions, privacy
-  cleaning/                   lessons 5–8: behind the scenes (cleaning)
-  insights/                   lessons 9–14: rising insights, API, joins
-  aha/                        lesson 15: the aha moment
-  resolution/                 lesson 16: publishing
+  cleaning/                   lessons 5–6: behind the scenes (cleaning)
+  insights/                   lessons 7–13: rising insights
+  aha/                        lesson 14: the aha moment
+  resolution/                 lessons 15–16: publishing and presenting
   reference/                  story arc, Polars, Plotly, marimo, errors, licence
   assets/                     images
   stylesheets/extra.css       colours, callouts and code block styles
-scripts/                      check_explanations.py
+scripts/                      build_data.py, check_explanations.py
 ```
 
 ## Licence

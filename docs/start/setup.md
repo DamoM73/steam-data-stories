@@ -70,15 +70,38 @@ A **virtual environment** is a private copy of Python just for this project. The
 !!! warning "No (.venv) in the terminal"
     If the prompt doesn't start with `(.venv)`, close the terminal with the bin icon and open a new one. Libraries installed without `(.venv)` go into the wrong Python, and marimo won't be able to find them.
 
+### Running scripts is disabled (Windows)
+
+On some Windows computers, the new terminal shows an error like this instead of the `(.venv)` prompt:
+
+``` { .text .error linenums="1" }
+Activate.ps1 cannot be loaded because running scripts is disabled
+```
+
+- **line 1** → ***Activate.ps1*** is the script that switches on our virtual environment in **PowerShell**, the terminal VS Code uses on Windows. The computer's settings don't allow PowerShell to run scripts, so the virtual environment stays switched off.
+
+We don't need to change the computer's settings. Instead, we'll tell VS Code to use **Command Prompt**, which switches on the virtual environment without a PowerShell script.
+
+1. Press ++ctrl+shift+p++, type **Terminal: Select Default Profile** and press ++enter++. Choose **Command Prompt**.
+    - **Why:** every new terminal in VS Code will now open as Command Prompt instead of PowerShell.
+    - **Expected result:** the list closes. Nothing else changes yet, because the terminal that's already open is still PowerShell.
+
+    <!-- SCREENSHOT: assets/setup_default_profile.png — Command Palette list of terminal profiles with Command Prompt highlighted -->
+2. Close the terminal with the bin icon, then choose **Terminal** → **New Terminal**.
+    - **Why:** the new terminal opens as Command Prompt and switches on the virtual environment.
+    - **Expected result:** the prompt starts with `(.venv)` and ends with the path to our ***steam_data_stories*** folder and a `>`.
+
+    <!-- SCREENSHOT: assets/setup_cmd_venv.png — VS Code terminal showing Command Prompt with the (.venv) prompt -->
+
 ## Install the libraries
 
 1. In the terminal, type the command below and press ++enter++.
 
     ```text
-    pip install marimo polars==2.0.0rc2 plotly numpy requests
+    pip install marimo polars==2.0.0rc2 plotly numpy
     ```
 
-    - **Why:** this installs marimo (our notebook), Polars (for working with tables of data), Plotly (for charts), NumPy (which Plotly needs to draw charts from Polars data) and Requests (for getting data from the internet in Lesson 13).
+    - **Why:** this installs marimo (our notebook), Polars (for working with tables of data), Plotly (for charts) and NumPy (which Plotly needs to draw charts from Polars data).
     - **Expected result:** lots of downloading messages, ending with a line starting `Successfully installed`.
 
     <!-- SCREENSHOT: assets/setup_pip_install.png — terminal after pip install, showing the "Successfully installed" line -->
@@ -97,7 +120,7 @@ A **virtual environment** is a private copy of Python just for this project. The
 
 1. Go to the [Steam Data Stories data page](https://github.com/DamoM73/steam-data-stories/releases/latest) and click the file that starts with ***steam_data_stories_data*** and ends in ***.zip*** to download it.
     - **Why:** this zip holds our classroom copy of the Steam data. Everyone in the class uses the same copy, so our results match the lessons.
-    - **Expected result:** the zip file appears in our ***Downloads*** folder. It's large, so it might take a minute.
+    - **Expected result:** the zip file appears in our ***Downloads*** folder.
 
     <!-- SCREENSHOT: assets/setup_release_download.png — GitHub release page with the steam_data_stories_data zip highlighted -->
 2. Unzip the data into a folder called ***data*** inside our project.
@@ -115,7 +138,7 @@ A **virtual environment** is a private copy of Python just for this project. The
 
         <!-- SCREENSHOT: assets/setup_extract_macos.png — Finder showing the unzipped folder renamed to data inside steam_data_stories -->
 
-    - **Expected result:** VS Code's Explorer panel shows a ***data*** folder holding ***README.txt***, ***steam_games.csv*** and a ***player_history*** folder.
+    - **Expected result:** VS Code's Explorer panel shows a ***data*** folder holding ***README.txt*** and ***steam_games.csv***.
 
     <!-- SCREENSHOT: assets/setup_data_folder.png — VS Code Explorer with the data folder expanded -->
 
@@ -125,13 +148,12 @@ Our project folder should now look like this:
 steam_data_stories/
     .venv/
     data/
-        player_history/
         README.txt
         steam_games.csv
 ```
 
-!!! warning "Don't open steam_games.csv"
-    ***steam_games.csv*** is about 400 MB. Opening it in VS Code, Excel or Numbers will be very slow and might freeze the program. We'll look at it with code instead, starting in Lesson 2.
+!!! warning "Don't change steam_games.csv"
+    ***steam_games.csv*** is our original data. If we open it in Excel or Numbers and save it, the program can quietly change values, such as turning dates into a different format. We'll only ever read it with code, starting in Lesson 2, and save our cleaned data as a new file.
 
 ## Open our first notebook
 

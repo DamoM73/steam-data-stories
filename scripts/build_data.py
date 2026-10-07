@@ -4,32 +4,24 @@ Run this once, just before the unit starts. It runs these steps in order:
 
 1. download  Download the latest games.json from the FronkonGames Steam
              Games Dataset on Hugging Face into data/raw/ (about 1 GB).
-2. players   Download the hourly player history for the story games from
-             the Games Popularity API into data/player_history/.
-3. games     Build the classroom games CSV, data/raw/steam_games.csv, from
-             games.json, with adult content filtered out.
-4. audit     Count the data cleaning issues left in steam_games.csv, and
-             show how much data is missing for each release year.
-5. package   Zip steam_games.csv, the player history and a README into
+2. games     Build the classroom games CSV, data/raw/steam_games.csv, from
+             games.json: only games with at least MIN_REVIEWS reviews,
+             only the CLASSROOM_COLUMNS, and no adult content.
+3. audit     Count the data cleaning issues left in steam_games.csv.
+4. package   Zip steam_games.csv and a README into
              data/raw/steam_data_stories_data_<date>.zip, ready to attach
              to a GitHub release for students to download.
 
-Player history
-    The API returns up to 1,000 hourly records per request, newest first,
-    with a nextCursor for the next (older) page. Records are saved raw
-    (repeats, gaps and times without a time zone kept) for the cleaning
-    lessons. Without an API key the limit is 100 requests per day per IP
-    address; with a free key it's 1 request per second. Set the key as an
-    environment variable before running (it's never saved in the repo):
-        PowerShell:  $env:GAMES_POPULARITY_KEY = "your-key"
-
 Games CSV
-    The published games.csv is missing games (for example Marathon) and
-    merges "Discount" and "DLC count" into one header, which shifts every
-    later column, so the CSV is rebuilt from games.json with the published
-    CSV's columns and formatting. All other mess is kept. If a published
-    games.csv is in data/raw/, the first COMPARE rows are compared with the
-    rebuilt rows to check the formatting.
+    The published games.csv merges "Discount" and "DLC count" into one
+    header and is missing some games, so the CSV is built from games.json,
+    written the way the published CSV writes each value.
+
+    The classroom copy is kept small for Year 9: only games with at least
+    MIN_REVIEWS reviews (positive + negative), the columns in
+    CLASSROOM_COLUMNS, and no games without genres. Three kinds of mess are
+    kept on purpose for the cleaning lessons: release dates stored as text,
+    Metacritic scores of 0 meaning "no score", and repeated names.
 
     Adult content is filtered out (students are aged 13 to 15). A game is
     excluded when it has an "NSFW" tag, notes describing explicit sexual
@@ -40,13 +32,13 @@ Games CSV
     data/adult_overrides.csv (AppID,Decision with "keep" or "exclude")
     win over the rules.
 
-Everything in data/raw/ is git-ignored (too big for GitHub). The zip goes
-on a GitHub release instead (see the message the package step prints).
+Everything in data/raw/ is git-ignored. The zip goes on a GitHub release
+instead (see the message the package step prints).
 
 Needs the rich library for progress bars:  pip install rich
 
 Run from the repo root:
-    python scripts/build_data.py                     all five steps
+    python scripts/build_data.py                     all four steps
     python scripts/build_data.py games audit         only the steps named
     python scripts/build_data.py --show 3065800      print one game's raw record
 """
@@ -54,20 +46,17 @@ Run from the repo root:
 import argparse
 import csv
 import json
-import os
 import re
 import sys
-import time
-import urllib.parse
 import urllib.request
 import zipfile
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import date
 from pathlib import Path
 
 try:
     from rich.console import Console
-    from rich.progress import (BarColumn, DownloadColumn, MofNCompleteColumn, Progress,
+    from rich.progress import (BarColumn, DownloadColumn, Progress,
                                SpinnerColumn, TaskProgressColumn, TextColumn,
                                TimeElapsedColumn, TimeRemainingColumn, TransferSpeedColumn)
 except ImportError:
@@ -93,31 +82,14 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RAW = DATA / "raw"
 JSON_PATH = RAW / "games.json"
-CSV_PATH = RAW / "games.csv"
 OUT = RAW / "steam_games.csv"
 EXCLUDED = RAW / "excluded_adult.csv"
 OVERRIDES = DATA / "adult_overrides.csv"
-HISTORY = DATA / "player_history"
-COMPARE = 2000
 TODAY = date.today().isoformat()
 PACKAGE = RAW / f"steam_data_stories_data_{TODAY}.zip"
 DATASET_URL = "https://huggingface.co/datasets/FronkonGames/steam-games-dataset/resolve/main/games.json"
-STEPS = ["download", "players", "games", "audit", "package"]
-
-# the games in the tutorial's example data story
-STORY_GAMES = {
-    "1808500": "ARC Raiders",
-    "3065800": "Marathon",
-    "3932890": "Escape from Tarkov",
-    "2479810": "Gray Zone Warfare",
-    "2073620": "Arena Breakout: Infinite",
-    "3167020": "Escape from Duckov",
-}
-
-API_URL = "https://games-popularity.com/swagger/api/game/players/{app_id}"
-API_KEY = os.environ.get("GAMES_POPULARITY_KEY", "").strip()
-WAIT_SECONDS = 1.2 if API_KEY else 2
-MAX_REQUESTS = 500 if API_KEY else 60
+STEPS = ["download", "games", "audit", "package"]
+MIN_REVIEWS = 500
 
 EXPLICIT_NAME = re.compile(
     r"hentai|porn|erotic|eroge|nsfw|netorare|\bntr\b|xxx|\bsex\b|\bsexy\b|\bnude|nudity|naked|"
@@ -179,6 +151,12 @@ COLUMNS = {
     "Screenshots": "screenshots",
     "Movies": "movies",
 }
+# the columns in the classroom copy, in this order
+CLASSROOM_COLUMNS = [
+    "AppID", "Name", "Release date", "Price", "Positive", "Negative",
+    "Recommendations", "Metacritic score", "Achievements", "Developers",
+    "Publishers", "Genres", "Support email",
+]
 # list fields the published CSV writes as Python lists: ['English', 'French']
 AS_PYTHON_LIST = {"supported_languages", "full_audio_languages"}
 
@@ -210,65 +188,6 @@ def step_download():
         sys.exit(1)
     part.replace(JSON_PATH)
     console.print(f"Saved {done // 2**20} MB to {JSON_PATH.relative_to(ROOT)}")
-
-
-# ---------------------------------------------------------------- players
-
-def fetch_page(app_id, cursor=None):
-    """Return one page of player history as a dict."""
-    url = API_URL.format(app_id=app_id)
-    params = {}
-    if cursor:
-        params["cursor"] = cursor
-    if API_KEY:
-        params["apiKey"] = API_KEY
-    if params:
-        url += "?" + urllib.parse.urlencode(params)
-    request = urllib.request.Request(url, headers={"User-Agent": "steam-data-stories (classroom project)"})
-    with urllib.request.urlopen(request, timeout=30) as response:
-        return json.load(response)
-
-
-def fetch_history(app_id, budget, progress, task):
-    """Fetch every page for one game. Returns (records, requests used)."""
-    history_records = []
-    cursor = None
-    used = 0
-    while used < budget:
-        page = fetch_page(app_id, cursor)
-        used += 1
-        history = page.get("history", [])
-        history_records.extend(history)
-        oldest = history[-1]["added"][:10] if history else "none"
-        progress.update(task, advance=len(history), oldest=oldest)
-        cursor = page.get("nextCursor")
-        if not history or not cursor:
-            break
-        time.sleep(WAIT_SECONDS)
-    else:
-        progress.console.print(f"[yellow]  stopped at the request limit ({budget}); history may be incomplete")
-    return history_records, used
-
-
-def step_players():
-    console.rule("players: downloading player history")
-    console.print("Using API key" if API_KEY else "[yellow]No API key: limited to 100 requests per day")
-    HISTORY.mkdir(parents=True, exist_ok=True)
-    remaining = MAX_REQUESTS
-    columns = (SpinnerColumn(), TextColumn("{task.description:<26}"), TextColumn("{task.completed:>6,} records"),
-               TextColumn("back to {task.fields[oldest]}"), TimeElapsedColumn())
-    with Progress(*columns, console=console) as progress:
-        for app_id, name in STORY_GAMES.items():
-            task = progress.add_task(name, total=None, oldest="...")
-            history, used = fetch_history(app_id, remaining, progress, task)
-            remaining -= used
-            path = HISTORY / f"{app_id}.json"
-            path.write_text(json.dumps({"steamId": app_id, "history": history}, indent=1), encoding="utf-8")
-            progress.update(task, total=len(history), completed=len(history))
-            if remaining <= 0:
-                progress.console.print("[yellow]Request limit reached; run again tomorrow for the remaining games.")
-                break
-    console.print(f"Saved player history to {HISTORY.relative_to(ROOT)}")
 
 
 # ------------------------------------------------------------------ games
@@ -354,22 +273,8 @@ def load_overrides():
 
 
 def build_row(app_id, game):
-    return [app_id if field is None else to_text(field, game.get(field)) for field in COLUMNS.values()]
-
-
-def published_sample():
-    """Read the first COMPARE rows of the published games.csv, if it's there."""
-    sample = {}
-    if not CSV_PATH.exists():
-        return sample
-    with CSV_PATH.open(encoding="utf-8", newline="") as file:
-        reader = csv.reader(file)
-        next(reader)
-        for number, row in enumerate(reader):
-            if number >= COMPARE:
-                break
-            sample[row[0]] = row
-    return sample
+    return [app_id if COLUMNS[name] is None else to_text(COLUMNS[name], game.get(COLUMNS[name]))
+            for name in CLASSROOM_COLUMNS]
 
 
 def step_games():
@@ -377,22 +282,25 @@ def step_games():
     if not JSON_PATH.exists():
         console.print(f"[red]Missing {JSON_PATH.relative_to(ROOT)}: run the download step first")
         sys.exit(1)
-    sample = published_sample()
     overrides = load_overrides()
     excluded = []
-    names = list(COLUMNS)
-    differences = Counter()
-    examples = {}
-    compared = 0
+    skipped = Counter()
     count = 0
     with console.status("Reading games.json"):
         text = JSON_PATH.read_text(encoding="utf-8")
     with OUT.open("w", encoding="utf-8", newline="") as file, bar_progress() as progress:
         task = progress.add_task("Building steam_games.csv", total=len(text))
         writer = csv.writer(file)
-        writer.writerow(names)
+        writer.writerow(CLASSROOM_COLUMNS)
         for app_id, game, position in records(text):
             progress.update(task, completed=position)
+            reviews = (game.get("positive") or 0) + (game.get("negative") or 0)
+            if reviews < MIN_REVIEWS:
+                skipped[f"fewer than {MIN_REVIEWS} reviews"] += 1
+                continue
+            if not game.get("genres"):
+                skipped["no genres"] += 1
+                continue
             reasons = adult_reasons(game)
             decision = "exclude" if reasons else "keep"
             if app_id in overrides:
@@ -400,36 +308,20 @@ def step_games():
                 reasons = reasons + ["override"]
             if decision == "exclude":
                 excluded.append([app_id, game.get("name") or "", game.get("recommendations") or 0, "; ".join(reasons)])
-                if app_id in STORY_GAMES:
-                    progress.console.print(f"[red]WARNING: story game {app_id} was excluded ({'; '.join(reasons)})")
                 continue
-            row = build_row(app_id, game)
-            writer.writerow(row)
+            writer.writerow(build_row(app_id, game))
             count += 1
-            if app_id in sample:
-                compared += 1
-                old = sample[app_id]
-                for index, name in enumerate(names):
-                    old_value = old[index] if index < len(old) else "<missing>"
-                    if row[index] != old_value:
-                        differences[name] += 1
-                        examples.setdefault(name, (app_id, old_value[:80], row[index][:80]))
         progress.update(task, completed=len(text))
     with EXCLUDED.open("w", encoding="utf-8", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(["AppID", "Name", "Recommendations", "Reasons"])
         writer.writerows(sorted(excluded, key=lambda entry: -int(entry[2])))
     print(f"Wrote {count} games to {OUT.relative_to(ROOT)}")
+    for reason, number in skipped.items():
+        print(f"Skipped {number} games with {reason}")
     print(f"Excluded {len(excluded)} adult games (list in {EXCLUDED.relative_to(ROOT)})")
     if overrides:
         print(f"Applied {len(overrides)} decisions from {OVERRIDES.relative_to(ROOT)}")
-    if sample:
-        print(f"Compared {compared} games with the published games.csv")
-        if not differences:
-            print("  no differences in any column")
-        for name, number in differences.most_common():
-            app_id, old_value, new_value = examples[name]
-            print(f"  {name}: {number} differ, e.g. {app_id}: CSV {old_value!r} vs new {new_value!r}")
 
 
 # ------------------------------------------------------------------ audit
@@ -448,7 +340,6 @@ def step_audit():
     date_shapes = Counter()
     names = Counter()
     years = Counter()
-    missing = defaultdict(Counter)
     rows = 0
     with OUT.open(encoding="utf-8", newline="") as file, count_progress() as progress:
         task = progress.add_task("Checking steam_games.csv", total=None, unit="games")
@@ -458,57 +349,35 @@ def step_audit():
             names[row["Name"].strip().lower()] += 1
             date = row["Release date"]
             match = YEAR.search(date)
-            year = match.group(1) if match else "none"
-            years[year] += 1
+            years[match.group(1) if match else "none"] += 1
             if not date:
                 issues["release date empty"] += 1
             elif not FULL_DATE.match(date):
                 issues["release date not 'Mon D, YYYY'"] += 1
                 date_shapes[re.sub(r"\d", "9", re.sub(r"[A-Za-z]+", "Aaa", date))] += 1
-            no_tags = not row["Tags"]
-            bad_owners = row["Estimated owners"] in ("0 - 0", "0 - 20000")
-            no_peak = row["Peak CCU"] == "0"
-            no_reviews = row["Positive"] == "0" and row["Negative"] == "0"
-            for label, flag in (("no tags", no_tags), ("owners 0-20000 or 0-0", bad_owners),
-                                ("peak CCU 0", no_peak), ("no reviews", no_reviews)):
-                if flag:
-                    issues[label] += 1
-                    missing[year][label] += 1
-            if row["Price"] in ("0", "0.0"):
-                issues["price 0"] += 1
-            if row["Discount"] not in ("", "0"):
-                issues["on sale (price is a sale price)"] += 1
             if row["Metacritic score"] == "0":
                 issues["Metacritic score 0 (means none)"] += 1
-            if row["User score"] == "0":
-                issues["user score 0 (means none)"] += 1
+            if row["Price"] in ("0", "0.0"):
+                issues["price 0 (free)"] += 1
+            if "Indie" in row["Genres"].split(","):
+                issues["Indie games"] += 1
             if not row["Genres"]:
                 issues["genres empty"] += 1
-            if row["Supported languages"].startswith("["):
-                issues["languages stored as Python list text"] += 1
             if EMAIL.search(row["Support email"]):
                 issues["support email present (personal information)"] += 1
-            if any(char in row["About the game"] for char in ("\u2028", "\u2029")):
-                issues["About text has LS/PS characters"] += 1
-            if row["Name"] != row["Name"].strip():
-                issues["name has extra spaces"] += 1
             if not row["Name"]:
                 issues["name empty"] += 1
-    issues["repeated names (extra rows)"] = sum(count - 1 for count in names.values() if count > 1)
+    issues["games sharing a name with another game"] = sum(count for count in names.values() if count > 1)
 
-    print(f"{OUT.name}: {rows} rows")
+    print(f"{OUT.name}: {rows} rows, {len(CLASSROOM_COLUMNS)} columns, {OUT.stat().st_size // 1024} KB")
     for label, count in sorted(issues.items(), key=lambda item: -item[1]):
         print(f"  {count:>7}  {label}")
     if date_shapes:
         print("Release date shapes other than 'Mon D, YYYY':")
         for shape, count in date_shapes.most_common(8):
             print(f"  {count:>7}  {shape!r}")
-    print("Missing data by release year (2015 on):")
-    print("  year    games  no tags  bad owners  peak 0  no reviews")
-    for year in sorted(y for y in years if y.isdigit() and int(y) >= 2015):
-        m = missing[year]
-        print(f"  {year}  {years[year]:>7}  {m['no tags']:>7}  {m['owners 0-20000 or 0-0']:>10}  "
-              f"{m['peak CCU 0']:>6}  {m['no reviews']:>10}")
+    print("Games per release year:")
+    print("  " + "  ".join(f"{year}: {years[year]}" for year in sorted(years)))
 
 
 # ---------------------------------------------------------------- package
@@ -516,26 +385,21 @@ def step_audit():
 README = """Steam Data Stories: classroom data ({today})
 
 Files
-  steam_games.csv              one row per Steam game ({games} games)
-  player_history/<app_id>.json hourly player counts for the story games
+  steam_games.csv   one row per Steam game ({games} games with at least
+                    {min_reviews:,} reviews)
 
 The data is real and has NOT been cleaned. Cleaning it is part of the
 course: https://damom73.github.io/steam-data-stories/
-
-Story games in player_history/
-{story}
 
 Sources
   steam_games.csv is built from the Steam Games Dataset by Fronkon Games
   (https://huggingface.co/datasets/FronkonGames/steam-games-dataset),
   downloaded {today}, which collects data from the Steam store and SteamSpy.
   Changes made for the classroom copy:
-    - the merged "DiscountDLC count" header is split into "Discount" and
-      "DLC count"
-    - games missing from the published CSV are included
+    - only games with at least {min_reviews:,} reviews are included
+    - only {columns} columns are kept
+    - games with no genres are removed
     - games with adult content are removed
-  Player history comes from the Games Popularity API
-  (https://games-popularity.com), downloaded {today}.
 
 Licences
   The Steam Games Dataset is published under the MIT licence:
@@ -571,31 +435,20 @@ def step_package():
     if not OUT.exists():
         console.print(f"[red]Missing {OUT.relative_to(ROOT)}: run the games step first")
         sys.exit(1)
-    with console.status("Counting games"), OUT.open(encoding="utf-8", newline="") as file:
+    with OUT.open(encoding="utf-8", newline="") as file:
         games = sum(1 for _ in csv.reader(file)) - 1
-    story = "\n".join(f"  {app_id}.json  {name}" for app_id, name in STORY_GAMES.items())
-    files = [(OUT, "steam_games.csv")] + [(HISTORY / f"{app_id}.json", f"player_history/{app_id}.json")
-                                           for app_id in STORY_GAMES]
-    with zipfile.ZipFile(PACKAGE, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as archive, \
-            bar_progress() as progress:
-        task = progress.add_task("Zipping", total=len(files) + 1)
-        archive.writestr("README.txt", README.format(today=TODAY, games=games, story=story))
-        progress.advance(task)
-        for path, name in files:
-            progress.update(task, description=f"Zipping {name}")
-            if path.exists():
-                archive.write(path, name)
-            else:
-                progress.console.print(f"[yellow]WARNING: no {name}; run the players step")
-            progress.advance(task)
-    size = PACKAGE.stat().st_size // 2**20
-    print(f"Wrote {PACKAGE.relative_to(ROOT)} ({size} MB)")
+    readme = README.format(today=TODAY, games=games, min_reviews=MIN_REVIEWS,
+                           columns=len(CLASSROOM_COLUMNS))
+    with zipfile.ZipFile(PACKAGE, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+        archive.writestr("README.txt", readme)
+        archive.write(OUT, "steam_games.csv")
+    size = PACKAGE.stat().st_size // 1024
+    print(f"Wrote {PACKAGE.relative_to(ROOT)} ({size} KB)")
     print()
     print("To publish it:")
     print("  1. On GitHub, open DamoM73/steam-data-stories > Releases > Draft a new release.")
     print(f"  2. Tag: data-{TODAY}   Title: Classroom data {TODAY}")
     print(f"  3. Drag {PACKAGE.name} into the release, then Publish release.")
-    print("  4. Update the download link on the site's Tutorial files section.")
 
 
 # ------------------------------------------------------------------- show
@@ -621,14 +474,14 @@ def show(app_ids):
 def main():
     parser = argparse.ArgumentParser(description="Collect and build the Steam Data Stories data.")
     parser.add_argument("steps", nargs="*", choices=STEPS,
-                        help="steps to run (default: all five, in order)")
+                        help="steps to run (default: all four, in order)")
     parser.add_argument("--show", nargs="+", metavar="APP_ID", help="print raw games.json records and stop")
     args = parser.parse_args()
     if args.show:
         show(args.show)
         return
     steps = args.steps or STEPS
-    actions = {"download": step_download, "players": step_players, "games": step_games,
+    actions = {"download": step_download, "games": step_games,
                "audit": step_audit, "package": step_package}
     for step in STEPS:
         if step in steps:

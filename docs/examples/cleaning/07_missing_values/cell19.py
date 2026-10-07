@@ -1,1 +1,0 @@
-typed.null_count()

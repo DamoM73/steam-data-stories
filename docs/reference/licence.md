@@ -14,8 +14,8 @@ The code in the [repository](https://github.com/DamoM73/steam-data-stories) is l
 
 ## Data
 
-The Steam games data comes from the [Steam Games Dataset](https://huggingface.co/datasets/FronkonGames/steam-games-dataset) by Fronkon Games (MIT licence), collected from the Steam store and SteamSpy. Player history comes from the [Games Popularity](https://games-popularity.com/) API.
+The Steam games data comes from the [Steam Games Dataset](https://huggingface.co/datasets/FronkonGames/steam-games-dataset) by Fronkon Games (MIT licence), collected from the Steam store and SteamSpy. Our classroom copy keeps only games with at least 500 reviews and removes games with adult content.
 
 ## Libraries
 
-Our notebooks use these libraries, each under its own licence: [Polars](https://pola.rs/) (MIT), [Plotly](https://plotly.com/python/) (MIT), [marimo](https://marimo.io/) (Apache 2.0) and [Requests](https://requests.readthedocs.io/) (Apache 2.0).
+Our notebooks use these libraries, each under its own licence: [Polars](https://pola.rs/) (MIT), [Plotly](https://plotly.com/python/) (MIT), [marimo](https://marimo.io/) (Apache 2.0) and [NumPy](https://numpy.org/) (BSD).

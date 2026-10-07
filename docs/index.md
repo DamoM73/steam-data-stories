@@ -64,4 +64,4 @@ Under each error message, the lesson breaks it down line by line, so we learn ho
 
 ## Tutorial files
 
-The tutorial files hold our classroom copy of the Steam data: the Steam games dataset and the player history for the games in our example story. Everyone uses the same copy, so our results match the lessons. [Download the tutorial files](https://github.com/DamoM73/steam-data-stories/releases/latest) from the data page, and follow [Setting Up](start/setup.md#download-the-data) to put them in the right place.
+The tutorial files hold our classroom copy of the Steam data: the 10,250 Steam games with at least 500 reviews. Everyone uses the same copy, so our results match the lessons. [Download the tutorial files](https://github.com/DamoM73/steam-data-stories/releases/latest){ target="_blank" rel="noopener" } from the data page, and follow [Setting Up](start/setup.md#download-the-data) to put them in the right place.

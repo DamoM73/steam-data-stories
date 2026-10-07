@@ -24,6 +24,8 @@ Setting Up (`docs/start/setup.md`):
 11. `setup_data_folder.png` — Explorer with the data folder expanded
 12. `setup_marimo_empty.png` — empty clean_steam.py notebook in the browser
 13. `setup_marimo_quit.png` — marimo's "Are you sure you want to quit?" prompt
+13a. `setup_default_profile.png` — Command Palette list of terminal profiles with Command Prompt highlighted (Windows)
+13b. `setup_cmd_venv.png` — VS Code terminal showing Command Prompt with the (.venv) prompt (Windows)
 
 Hook lessons:
 
@@ -32,42 +34,26 @@ Hook lessons:
 16. `l02_games_table.png` — the games DataFrame in marimo's table viewer — Lesson 2
 17. `l02_schema.png` — output of games.schema — Lesson 2
 18. `l02_table_viewer.png` — table viewer sort, search and column summaries labelled — Lesson 2
-19. `l03_story_games.png` — the story_games DataFrame — Lesson 3
-20. `l03_describe.png` — output of games.describe() — Lesson 3
-21. `l03_value_counts.png` — value_counts for Estimated owners — Lesson 3
+19. `l03_describe.png` — output of games.describe() — Lesson 3
+20. `l03_value_counts.png` — value_counts for Metacritic score — Lesson 3
 
-Behind the Scenes lessons:
-
-22. `l05_story_rows.png` — the six story_rows in marimo's table viewer — Lesson 5
-23. `l06_dates.png` — typed table with Release date shown as dates — Lesson 6
-24. `l06_owners.png` — Release date, Estimated owners, Owners min and Owners max — Lesson 6
-25. `l07_null_count.png` — null_count output for typed — Lesson 7
-26. `l07_duplicates.png` — duplicated names sorted, showing the two 2048 rows — Lesson 7
-27. `l07_checks.png` — output of the checks dictionary — Lesson 7
-28. `l08_lists.png` — Name, Genres and Tags shown as lists — Lesson 8
-
-Rising Insights, Aha Moment and Resolution lessons:
-
-29. `l09_nan.png` — Review score showing NaN for a game with no reviews — Lesson 9
-30. `l09_scored.png` — scored with Review score, Release year and Price band — Lesson 9
-31. `l10_per_year.png` — per_year table scrolled to 2020–2026 — Lesson 10
-32. `l10_per_genre.png` — per_genre top 10 table — Lesson 10
-33. `l13_two_pages.png` — first_page and second_page joined, 2,000 rows — Lesson 13
-34. `l13_history.png` — history with players, added and AppID columns — Lesson 13
-35. `l14_clean_history.png` — clean_history with the Time column in AEST — Lesson 14
-36. `l14_gaps.png` — the gaps table — Lesson 14
-37. `l14_monthly.png` — the monthly table for ARC Raiders — Lesson 14
-38. `l15_controls.png` — the multiselect and slider side by side — Lesson 15
-39. `l16_md_hook.png` — rendered Markdown hook — Lesson 16
-40. `l16_app_view.png` — finished story in app view, code hidden — Lesson 16
-
-Chart images for Lessons 11, 12 and 15 (`l11_*.png`, `l12_*.png`, `l15_*.png`) are already in `docs/assets/`, rendered from the real data. Replace them if the data is refreshed.
+Screenshots for Lessons 5–16 will be listed here as those lessons are rewritten.
 
 ## Data
 
-- Download a snapshot of the FronkonGames Steam Games Dataset now (October 2026) for writing the tutorials.
-- May 2027: run `scripts/build_data.py` for a fresh snapshot, have Claude rerun every example and update the numbers, chart images and the Lesson 15 and 16 findings, then publish it as the classroom copy.
-- Check the school network allows `games-popularity.com` (Lesson 13), and that a class of students can share the 100 requests a day the API allows without a key.
+- Publish the classroom data release built on 7 Oct 2026 (`steam_data_stories_data_2026-10-07.zip`: 10,250 games with 500+ reviews, 13 columns, from the 5 Oct 2026 games.json).
+- May 2027: run `scripts/build_data.py` for a fresh snapshot, have Claude rerun every example and update the numbers and chart images, then publish it as the classroom copy.
+
+## Old files to delete (simplified unit, Oct 2026)
+
+Cowork can't delete files. Delete these in VS Code or File Explorer now. They're no longer in the navigation, and the new lessons reuse some of the same folder names:
+
+- `data/player_history/` (whole folder)
+- `docs/cleaning/06_data_types.md`, `07_missing_values.md`, `08_text_lists.md`
+- `docs/insights/09_new_columns.md`, `10_summarising_groups.md`, `11_charts_compare.md`, `12_trends_outliers.md`, `13_api.md`, `14_combining.md`
+- `docs/aha/15_aha_moment.md`, `docs/resolution/16_publishing.md`
+- `docs/examples/cleaning/`, `docs/examples/insights/`, `docs/examples/aha/`, `docs/examples/resolution/`
+- `docs/assets/l11_*.png`, `docs/assets/l12_*.png`, `docs/assets/l15_*.png`
 
 ## Testing
 

@@ -9,7 +9,7 @@
 
 ## Introduction
 
-In Lesson 1 we met the Steam dataset on paper. Now it's time to open it. The file is far too big for a spreadsheet, so we'll use code: **Polars** to load the data, and **marimo** to run our code and show the results.
+In Lesson 1 we met the Steam dataset on paper. Now it's time to open it. We could open a small part of it in a spreadsheet, but code lets us check every row in seconds and repeat every step exactly. We'll use **Polars** to load the data, and **marimo** to run our code and show the results.
 
 ## Notebooks and cells
 
@@ -77,7 +77,7 @@ Add a new cell, type the code below and run it.
     - **line 1** → reads every row of ***steam_games.csv*** from our ***data*** folder into a Polars DataFrame and stores it in a variable called `games`.
     - **line 2** → shows `games` as the cell's output, because marimo displays the value of the last line of a cell.
 
-Above the cell, marimo shows the DataFrame as an interactive table. It might take a few seconds to load: there's a lot of data.
+Above the cell, marimo shows the DataFrame as an interactive table.
 
 <!-- SCREENSHOT: assets/l02_games_table.png — the games DataFrame shown in marimo's table viewer -->
 
@@ -100,7 +100,7 @@ Before we explore, let's find out how much data we have. Add a new cell, type th
 ??? note "Code explanation"
     - **line 1** → shows the **shape** of `games`: the number of rows, then the number of columns.
 
-The output shows two numbers: **138270** rows and **40** columns. Each row is one game, so our classroom copy holds 138,270 Steam games, with 40 facts about each one.
+The output shows two numbers: **10250** rows and **13** columns. Each row is one game, so our classroom copy holds 10,250 Steam games, with 13 facts about each one.
 
 Notice that this cell uses `games`, which we made in a different cell. Once a cell creates a variable, every other cell in the notebook can use it.
 
@@ -122,16 +122,15 @@ Every column in a DataFrame has a **data type**, which tells Polars what kind of
 
 <!-- SCREENSHOT: assets/l02_schema.png — marimo output of games.schema -->
 
-The schema lists all 40 columns. We'll meet four data types again and again:
+The schema lists all 13 columns. We'll meet three data types again and again:
 
 | Data type | What it holds | Example column |
 | :-- | :-- | :-- |
-| **Int64** | whole numbers | `Peak CCU` |
+| **Int64** | whole numbers | `Positive` |
 | **Float64** | numbers with a decimal point | `Price` |
 | **String** | text | `Name` |
-| **Boolean** | `true` or `false` | `Windows` |
 
-Let's think about this: `Release date` is a **String**, not a date, and `Estimated owners` is a String too. Polars couldn't work out that they hold dates and numbers, so it stored them as text. We can't sort text dates into the right order or do maths with text numbers, so we'll need to fix these columns in Behind the Scenes.
+Let's think about this: `Release date` is a **String**, not a date. Polars couldn't work out that it holds dates, so it stored them as text. We can't sort text dates into the right order or work out which year a game came out, so we'll need to fix this column in Behind the Scenes.
 
 ## Reactive cells
 
@@ -193,7 +192,7 @@ To fix it, delete the cell we just added: hover over it and click the delete (bi
 
 The table marimo shows for `games` isn't just a picture: it's a tool for exploring. We can:
 
-- **scroll** across to see all 40 columns, and use the page buttons at the bottom to move through the rows
+- **scroll** across to see all 13 columns, and use the page buttons at the bottom to move through the rows
 - **sort** by a column, by clicking the column's heading
 - **search** for a value, using the search box above the table
 - **see a summary** of a column, such as its smallest and largest values, at the top of each column
@@ -203,9 +202,9 @@ The table marimo shows for `games` isn't just a picture: it's a tool for explori
 !!! primm "PRIMM"
     Time to **modify** how we look at the data, using the table viewer on the `games` cell:
 
-    1. Sort the games by `Price` from highest to lowest. What's the most expensive game? Do you think it's a real game, or something else?
-    2. Search for `ARC Raiders`. Which row is our example game, and what do its `Estimated owners` and `Peak CCU` say? Do they look believable for a game that hundreds of thousands of people played?
-    3. Find a column where lots of rows look empty. Why do you think that might be?
+    1. Sort the games by `Price` from highest to lowest. What are the most expensive games? Then sort from lowest to highest. What do the games that cost 0 have in common?
+    2. Search for `Hollow Knight`. What do its `Positive` and `Negative` columns say? How would we work out what share of its reviews are positive?
+    3. Sort by `Metacritic score`. Lots of games have a score of 0. Do you think those games are really that bad, or is something else going on?
 
 ## Our data story
 

@@ -17,29 +17,24 @@ Data stories follow the same shape as any good story. There's a hook that makes 
 | Stage | What happens | Lessons |
 | :-- | :-- | :-- |
 | **Hook** | we meet our data and ask a question worth answering | 1–4 |
-| **Behind the Scenes** | we clean the data so we can trust it | 5–8 |
-| **Rising Insights** | we explore, summarise and chart the data, and bring in more data | 9–14 |
-| **Aha Moment** | we find the key insight and make it stand out | 15 |
-| **Resolution** | we publish our finished data story | 16 |
+| **Behind the Scenes** | we clean the data so we can trust it | 5–6 |
+| **Rising Insights** | we explore, summarise and chart the data, then work on our own question | 7–13 |
+| **Aha Moment** | we find the key insight and make it stand out | 14 |
+| **Resolution** | we publish and present our finished data story | 15–16 |
 
 ## The data
 
-We're going to explore **Steam**, the biggest online store for PC games. We'll use two sets of real data:
+We're going to explore **Steam**, the biggest online store for PC games. We'll use the **Steam games dataset**: details of the 10,250 games on Steam with at least 500 player reviews, including their names, release dates, prices, genres and reviews.
 
-- the **Steam games dataset**, with details of about 138,000 games: names, release dates, prices, genres, playtime and more
-- **player history**, with the number of people playing a game every hour since it was released
-
-Real data is messy. Dates are stored as text, numbers are missing, some values are impossible and some rows appear twice. Part of telling a data story is fixing these problems before anyone else sees our charts, and that's what the Behind the Scenes lessons are for.
-
-The data file is too big to open in a spreadsheet program like Excel. That's one of the reasons we use code.
+Real data is messy. In our data, dates are stored as text, some numbers really mean "missing" and some games appear more than once. Part of telling a data story is fixing these problems before anyone else sees our charts, and that's what the Behind the Scenes lessons are for.
 
 ## Our example story
 
 Each lesson works through one example question:
 
-> **Was ARC Raiders' drop in players unusual?**
+> **Do Indie games review as well as games from big studios?**
 
-ARC Raiders is an extraction shooter that launched in October 2025. Hundreds of thousands of people played it in its first few months, and then most of them stopped. Was that normal for this kind of game? Do games that let us play without fighting other players keep their players for longer? We'll find out together.
+Indie games, like Hollow Knight and Stardew Valley, are made by small, independent teams. Big studios spend far more money on their games, so we might expect players to like them more. Do they? And do Indie games cost less? We'll find out together.
 
 At the end of each lesson there's an **Our data story** task. That's where we use what we've just learnt to work on our own question about the same Steam data, so by the end of the course we'll each have our own data story.
 
