@@ -18,6 +18,9 @@ Coloured boxes called **callouts** highlight different kinds of information. Eac
 !!! learn "Learning intentions"
     This callout is at the top of every lesson page. It lists what we will learn on that page.
 
+!!! terms "Terminology"
+    This callout comes straight after the learning intentions. It lists the new technical terms on the page, with a short definition of each. Every term is also on the [Glossary](reference/glossary.md) page.
+
 !!! primm "PRIMM"
     This callout comes after each example. It asks us to **predict** what the code will do, **run** it, and **investigate** how it works. Sometimes it asks us to **modify** the code.
 

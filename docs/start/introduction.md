@@ -6,6 +6,17 @@
     - which tools we'll use
     - what we need to know before we start
 
+!!! terms "Terminology"
+    - **data story** – a way of using data, charts and words together to explain something and convince people it's true.
+    - **hook** – the first stage of a data story, which grabs attention with a question worth answering.
+    - **behind the scenes** – the stage of a data story where we collect and clean the data so it can be trusted.
+    - **rising insights** – the stage of a data story that builds up the evidence, one finding at a time.
+    - **aha moment** – the stage of a data story that shows the key insight so clearly no one can miss it.
+    - **resolution** – the final stage of a data story, which explains what the finding means and what should happen next.
+    - **Polars** – a Python library for loading, cleaning and analysing tables of data.
+    - **Plotly Express** – a Python library for making interactive charts.
+    - **marimo** – a notebook program where we write Python code in cells and see the results straight away.
+
 In this course we're going to learn how to turn a big pile of real-world data into a story that people understand. We'll load the data, clean it, explore it, find the interesting parts and then present what we found as a **data story**.
 
 ## What is a data story?

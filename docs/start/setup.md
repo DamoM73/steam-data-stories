@@ -7,6 +7,11 @@
     - how to download the Steam data
     - how to open our first marimo notebook
 
+!!! terms "Terminology"
+    - **release candidate** – a version of a program that's almost finished and being tested before its official release.
+    - **PowerShell** – the program VS Code uses for its terminal on Windows unless we choose another one.
+    - **Command Prompt** – an older Windows terminal program that can switch on a virtual environment without running a PowerShell script.
+
 We'll do all our work in a project folder on our own computer, using **VS Code** to manage our files and **marimo** to write our code. Before we start, we need to install the tools, download the data and check everything works. Follow each step in order.
 
 Most steps are the same on Windows and macOS. Where they're different, the page has a tab for each, so click the tab for our computer.
@@ -118,7 +123,7 @@ We don't need to change the computer's settings. Instead, we'll tell VS Code to 
 
 ## Download the data
 
-1. Go to the [Steam Data Stories data page](https://github.com/DamoM73/steam-data-stories/releases/latest) and click the file that starts with ***steam_data_stories_data*** and ends in ***.zip*** to download it.
+1. Go to the [Steam Data Stories data page](https://github.com/DamoM73/steam-data-stories/releases/latest){ target="_blank" rel="noopener" } and click the file that starts with ***steam_data_stories_data*** and ends in ***.zip*** to download it.
     - **Why:** this zip holds our classroom copy of the Steam data. Everyone in the class uses the same copy, so our results match the lessons.
     - **Expected result:** the zip file appears in our ***Downloads*** folder.
 
@@ -163,7 +168,7 @@ steam_data_stories/
     marimo edit clean_steam.py
     ```
 
-    - **Why:** this starts marimo and creates a new notebook called ***clean_steam.py***. We'll use this notebook to explore and clean our data in Lessons 2–8.
+    - **Why:** this starts marimo and creates a new notebook called ***clean_steam.py***. We'll use this notebook to explore and clean our data in Lessons 2–6.
     - **Expected result:** the terminal shows "Edit clean_steam.py in your browser" with a URL, a new tab opens in our web browser showing an empty marimo notebook, and ***clean_steam.py*** appears in VS Code's Explorer panel.
 
     <!-- SCREENSHOT: assets/setup_marimo_empty.png — browser tab with the new, empty clean_steam.py marimo notebook (plus the terminal message if useful) -->

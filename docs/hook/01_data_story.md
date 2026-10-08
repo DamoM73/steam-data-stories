@@ -6,6 +6,14 @@
     - where the Steam dataset comes from and what one row represents
     - how to brainstorm story angles
 
+!!! terms "Terminology"
+    - **data story arc** – the five stages of a data story: Hook, Behind the Scenes, Rising Insights, Aha Moment and Resolution.
+    - **AppID** – the number Steam uses to identify each game; no two games share an AppID.
+    - **MIT licence** – a licence that lets anyone use, copy, change and share a work, as long as they include the original copyright notice.
+    - **Indie** – a game made by a small, independent team, often without a big publisher paying for it.
+    - **story angle** – the part of a topic we choose to focus on when we tell a data story.
+    - **Markdown** – plain text with a few symbols for formatting, such as # for a heading and - for a dot point.
+
 ## Introduction
 
 Every day we see charts in the news, in games and in apps. Most of them show us numbers and leave us to work out what they mean. A **data story** does that work for us: it uses data, charts and words together to explain something and convince us it's true.

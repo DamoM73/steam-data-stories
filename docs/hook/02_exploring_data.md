@@ -7,6 +7,15 @@
     - how marimo's reactive cells update automatically
     - how to explore data with marimo's table viewer
 
+!!! terms "Terminology"
+    - **notebook** – a file where we write code in small blocks called cells and see each cell's result straight away.
+    - **cell** – one block of code in a notebook, which we can run on its own.
+    - **DataFrame** – a table of data with rows and columns, stored in our code.
+    - **CSV** – comma-separated values: a plain text file where each line is one row and the values are separated by commas.
+    - **shape** – the number of rows and the number of columns in a DataFrame.
+    - **schema** – the name and data type of every column in a DataFrame.
+    - **reactive** – describes a notebook where changing a cell automatically re-runs every cell that uses its variables.
+
 ## Introduction
 
 In Lesson 1 we met the Steam dataset on paper. Now it's time to open it. We could open a small part of it in a spreadsheet, but code lets us check every row in seconds and repeat every step exactly. We'll use **Polars** to load the data, and **marimo** to run our code and show the results.
@@ -15,7 +24,7 @@ In Lesson 1 we met the Steam dataset on paper. Now it's time to open it. We coul
 
 A **notebook** is a file where we write code in small blocks called **cells**. When we run a cell, its result appears straight away, right next to the code. That makes notebooks great for exploring data: we try something, look at the result, then decide what to try next.
 
-marimo notebooks are saved as ordinary Python files. Our first notebook, ***clean_steam.py***, is the one we made in [Setting Up](../start/setup.md#open-our-first-notebook). We'll use it to explore and clean our data in Lessons 2–8.
+marimo notebooks are saved as ordinary Python files. Our first notebook, ***clean_steam.py***, is the one we made in [Setting Up](../start/setup.md#open-our-first-notebook). We'll use it to explore and clean our data in Lessons 2–6.
 
 1. Open our ***steam_data_stories*** folder in VS Code and open a new terminal. Check the prompt starts with `(.venv)`.
 2. Start marimo with:

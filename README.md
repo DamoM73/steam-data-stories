@@ -16,6 +16,7 @@ Then open <http://localhost:8000>. To build the site: `zensical build --clean` (
 ## Scripts
 
 - `python scripts/build_data.py` downloads the Steam Games Dataset and builds the classroom data zip for a GitHub release (needs `rich`).
+- `python scripts/build_glossary.py` adds the Terminology callouts from `scripts/terms.json` to each page and rebuilds the Glossary page.
 - `python scripts/check_explanations.py` checks every Code explanation box against the code it explains (expect `0 issue(s) found`).
 
 ## Layout

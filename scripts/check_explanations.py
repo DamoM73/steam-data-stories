@@ -82,7 +82,14 @@ def check_page(page):
             index = look
             continue
         shown = shown_lines(source, start, end, first)
-        code = {n for n, t in shown.items() if t.strip() and not t.strip().startswith("#")}
+        code = set()
+        in_string = False  # inside a triple-quoted string, # starts Markdown, not a comment
+        for n, t in sorted(shown.items()):
+            text = t.strip()
+            if text and (in_string or not text.startswith("#")):
+                code.add(n)
+            if t.count('"""') % 2 == 1:
+                in_string = not in_string
         required = code & parse_hl(highlight.group(1), first) if highlight else code
         covered = set()
         body = box_start + 1

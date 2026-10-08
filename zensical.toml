@@ -8,6 +8,7 @@ repo_name = "DamoM73/steam-data-stories"
 copyright = "Content licensed under CC BY-NC-SA 4.0. Code licensed under GPLv3."
 docs_dir = "docs"
 extra_css = ["stylesheets/extra.css"]
+extra_javascript = ["javascripts/scroll_top.js"]
 
 nav = [
   { "Home" = "index.md" },
@@ -47,7 +48,9 @@ nav = [
     { "Plotly Express" = "reference/plotly.md" },
     { "marimo" = "reference/marimo.md" },
     { "Common Errors" = "reference/common_errors.md" },
+    { "Hosting on a Class Server" = "reference/class_server.md" },
     { "Index of Topics" = "reference/index_of_topics.md" },
+    { "Glossary" = "reference/glossary.md" },
     { "Licence" = "reference/licence.md" },
   ] },
 ]

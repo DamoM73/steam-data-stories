@@ -4,6 +4,9 @@
 
 - Replace the placeholder logo (`docs/assets/logo.png`, `logo_header.png`, `favicon.ico`) if you'd like a designed one.
 - Where the three-week SQL introduction lives (this site or another) and which tool it uses.
+- Which computer hosts the class server (laptop or Raspberry Pi), and check with IT that it can run on the school network. See Reference → Hosting on a Class Server.
+- How students hand in `steam_story.py` and `data/clean_games.parquet` for the class server (Lesson 15 says "our teacher will tell us how to hand them in"). Update Lesson 15 and the Hosting page once decided.
+- Test the class server on the chosen computer (it was tested in a Linux sandbox, not yet on Windows or a Pi), including a whole class opening stories at once.
 
 ## Screenshots
 
@@ -37,7 +40,27 @@ Hook lessons:
 19. `l03_describe.png` — output of games.describe() — Lesson 3
 20. `l03_value_counts.png` — value_counts for Metacritic score — Lesson 3
 
-Screenshots for Lessons 5–16 will be listed here as those lessons are rewritten.
+Behind the Scenes lessons:
+
+21. `l05_indie_games.png` — the indie_games table in marimo, 6,243 rows — Lesson 5
+22. `l06_dates.png` — the dated table with Release date shown as dates — Lesson 6
+23. `l06_null_count.png` — null_count output showing 7317 in Metacritic score — Lesson 6
+24. `l06_repeated_names.png` — repeated names sorted, showing the two Alpha Protocol rows — Lesson 6
+
+Rising Insights lessons:
+
+25. `l07_review_score.png` — Name, Positive, Negative and Review score columns — Lesson 7
+26. `l07_scored.png` — scored with Review score, Release year, Genres and Group columns — Lesson 7
+27. `l08_per_year.png` — per_year table scrolled to show 2018 to 2025 — Lesson 8
+
+Chart images for Lessons 9–11 (`l09_*.png`, `l10_*.png`, `l11_*.png`) are already in `docs/assets/`, rendered from the real data. Replace them if the data is refreshed.
+
+Aha Moment and Resolution lessons:
+
+28. `l14_controls.png` — the Years slider and Measure dropdown above the explore chart in marimo — Lesson 14
+29. `l15_drag_cell.png` — a marimo cell with the drag handle (dots) on its left edge highlighted — Lesson 15
+
+The Lesson 14 chart images (`l14_*.png`), the Lesson 15 app view (`l15_app_view.png`) and the class server home page (`class_server_home.png`) are already in `docs/assets/`, made from the real data. The home page image uses made-up student folder names.
 
 ## Data
 

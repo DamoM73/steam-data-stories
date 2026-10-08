@@ -7,6 +7,15 @@
     - how to remove columns we shouldn't share
     - why licences and attribution matter
 
+!!! terms "Terminology"
+    - **personal information** – any information or opinion that could identify a person, such as a name, email address or photo.
+    - **Privacy Act 1988** – the Australian law that sets the rules for how organisations and government agencies handle personal information.
+    - **Australian Privacy Principles** – the 13 rules in the Privacy Act about collecting, using, sharing and protecting personal information.
+    - **null** – Polars' way of saying a value is missing.
+    - **depersonalising** – removing or replacing the personal details in data, while keeping the part we need.
+    - **licence** – a set of rules from a work's owner that says how other people can use it.
+    - **attribution** – saying where our data came from, so readers can check our work.
+
 ## Introduction
 
 Our data story will end up on screens in front of other people. Before we share anything built from data, we need to check two things: that we aren't sharing information about people that we shouldn't, and that we're allowed to use the data at all. Let's look at both.

@@ -6,6 +6,17 @@
     - how to use `describe` and `value_counts` to check a question against the data
     - how to refine a question that's too broad or can't be answered
 
+!!! terms "Terminology"
+    - **investigable question** – a question we can answer by collecting and analysing data, because it's specific, measurable and open.
+    - **limitation** – something our data or our decisions can't tell us, which we should mention when we tell our story.
+    - **review score** – the percentage of a game's reviews that are positive.
+    - **summary statistics** – numbers that describe a whole column at once, such as its mean, median, smallest and largest values.
+    - **mean** – the average: the total of all the values divided by how many values there are.
+    - **median** – the middle value when all the values are sorted in order.
+    - **standard deviation** – a number that shows how spread out the values are from the mean.
+    - **Series** – a single column of a DataFrame.
+    - **refine** – to change a question so the data can answer it, for example by narrowing it down or defining its words.
+
 ## Introduction
 
 In Lesson 1 we wrote a question for our own data story, and in Lesson 2 we explored the columns that might answer it. Now we need to check that our question is one the data can actually answer. A great question that the data can't answer leads to a story with no evidence, and a story with no evidence isn't a data story.
@@ -103,7 +114,7 @@ Each row of the output is one statistic:
 | **count** | how many values the column has |
 | **null_count** | how many values are missing |
 | **mean** | the average |
-| **std** | the standard deviation: how spread out the values are |
+| **std** | the **standard deviation**: how spread out the values are |
 | **min** and **max** | the smallest and largest values |
 | **25%**, **50%**, **75%** | the values a quarter, half and three-quarters of the way through, when the values are sorted. The **50%** value is the **median**: the middle value. |
 
