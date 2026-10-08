@@ -14,49 +14,37 @@ Each spot is marked in the page source with an HTML comment starting `<!-- SCREE
 
 Setting Up (`docs/start/setup.md`):
 
-1. `setup_python_windows.png` — Windows Python installer with "Add python.exe to PATH" ticked
-2. `setup_python_macos.png` — macOS Python installer success screen
-3. `setup_python_extension.png` — VS Code Python extension installed
-4. `setup_open_folder.png` — Explorer showing the empty STEAM_DATA_STORIES folder
-5. `setup_create_environment.png` — Command Palette, Python: Create Environment → Venv
-6. `setup_venv_terminal.png` — terminal with the (.venv) prompt
-7. `setup_pip_install.png` — "Successfully installed" after pip install
-8. `setup_new_folder.png` — VS Code Explorer with the New Folder icon highlighted and the new data folder
-9. `setup_data_folder.png` — Explorer with the data folder expanded
-10. `setup_marimo_empty.png` — empty clean_steam.py notebook in the browser
-11. `setup_marimo_quit.png` — marimo's "Are you sure you want to quit?" prompt
-11a. `setup_default_profile.png` — Command Palette list of terminal profiles with Command Prompt highlighted (Windows)
-11b. `setup_cmd_venv.png` — VS Code terminal showing Command Prompt with the (.venv) prompt (Windows)
+1. `setup_marimo_empty.png` — empty clean_steam.py notebook in the browser
 
 Hook lessons:
 
-12. `l01_my_data_story.png` — VS Code with my_data_story.md open, editor and Markdown preview side by side — Lesson 1
-13. `l02_marimo_cell.png` — empty marimo cell with run and + buttons labelled — Lesson 2
-14. `l02_games_table.png` — the games DataFrame in marimo's table viewer — Lesson 2
-15. `l02_schema.png` — output of games.schema — Lesson 2
-16. `l02_table_viewer.png` — table viewer sort, search and column summaries labelled — Lesson 2
-17. `l03_describe.png` — output of games.describe() — Lesson 3
-18. `l03_value_counts.png` — value_counts for Metacritic score — Lesson 3
+2. `l01_my_data_story.png` — VS Code with my_data_story.md open, editor and Markdown preview side by side — Lesson 1
+3. `l02_marimo_cell.png` — empty marimo cell with run and + buttons labelled — Lesson 2
+4. `l02_games_table.png` — the games DataFrame in marimo's table viewer — Lesson 2
+5. `l02_schema.png` — output of games.schema — Lesson 2
+6. `l02_table_viewer.png` — table viewer sort, search and column summaries labelled — Lesson 2
+7. `l03_describe.png` — output of games.describe() — Lesson 3
+8. `l03_value_counts.png` — value_counts for Metacritic score — Lesson 3
 
 Behind the Scenes lessons:
 
-19. `l05_indie_games.png` — the indie_games table in marimo, 6,243 rows — Lesson 5
-20. `l06_dates.png` — the dated table with Release date shown as dates — Lesson 6
-21. `l06_null_count.png` — null_count output showing 7317 in Metacritic score — Lesson 6
-22. `l06_repeated_names.png` — repeated names sorted, showing the two Alpha Protocol rows — Lesson 6
+9. `l05_indie_games.png` — the indie_games table in marimo, 6,243 rows — Lesson 5
+10. `l06_dates.png` — the dated table with Release date shown as dates — Lesson 6
+11. `l06_null_count.png` — null_count output showing 7317 in Metacritic score — Lesson 6
+12. `l06_repeated_names.png` — repeated names sorted, showing the two Alpha Protocol rows — Lesson 6
 
 Rising Insights lessons:
 
-23. `l07_review_score.png` — Name, Positive, Negative and Review score columns — Lesson 7
-24. `l07_scored.png` — scored with Review score, Release year, Genres and Group columns — Lesson 7
-25. `l08_per_year.png` — per_year table scrolled to show 2018 to 2025 — Lesson 8
+13. `l07_review_score.png` — Name, Positive, Negative and Review score columns — Lesson 7
+14. `l07_scored.png` — scored with Review score, Release year, Genres and Group columns — Lesson 7
+15. `l08_per_year.png` — per_year table scrolled to show 2018 to 2025 — Lesson 8
 
 Chart images for Lessons 9–11 (`l09_*.png`, `l10_*.png`, `l11_*.png`) are already in `docs/assets/`, rendered from the real data. Replace them if the data is refreshed.
 
 Aha Moment and Resolution lessons:
 
-26. `l14_controls.png` — the Years slider and Measure dropdown above the explore chart in marimo — Lesson 14
-27. `l15_drag_cell.png` — a marimo cell with the drag handle (dots) on its left edge highlighted — Lesson 15
+16. `l14_controls.png` — the Years slider and Measure dropdown above the explore chart in marimo — Lesson 14
+17. `l15_drag_cell.png` — a marimo cell with the drag handle (dots) on its left edge highlighted — Lesson 15
 
 The Lesson 14 chart images (`l14_*.png`), the Lesson 15 app view (`l15_app_view.png`) and the class server home page (`class_server_home.png`) are already in `docs/assets/`, made from the real data. The home page image uses made-up student folder names.
 

@@ -25,26 +25,24 @@ If Python and VS Code are already on our computer, skip to [Create the project f
 
     === "Windows"
 
+        - **Important:** choose the installer that matches our computer's processor. Open **Settings** → **System** → **About** and look at **System type**:
+            - **x64-based processor** → download **Windows installer (64-bit)**
+            - **ARM-based processor** → download **Windows installer (ARM64)**
         - **Important:** on the first screen of the installer, tick **Add python.exe to PATH**.
         - **Expected result:** the installer finishes with "Setup was successful".
-
-        <!-- SCREENSHOT: assets/setup_python_windows.png — Windows Python installer first screen, "Add python.exe to PATH" ticked -->
 
     === "macOS"
 
         - **Important:** download the **macOS 64-bit universal2 installer**, open the ***.pkg*** file and click **Continue** through each screen.
         - **Expected result:** the installer finishes with "The installation was successful" and a ***Python*** folder opens in Finder. We can close it.
 
-        <!-- SCREENSHOT: assets/setup_python_macos.png — macOS Python installer, "The installation was successful" screen -->
-
 2. Download and install VS Code from [code.visualstudio.com](https://code.visualstudio.com/).
     - **Why:** VS Code is where we'll manage our files and type commands.
+    - **Windows:** if our **System type** says **ARM-based processor**, choose the **Arm64** download.
     - **Expected result:** VS Code opens with a Welcome tab. On a Mac, drag **Visual Studio Code** into the ***Applications*** folder first, so it's easy to find.
 3. In VS Code, click the **Extensions** icon in the left bar, search for **Python** and install the extension by Microsoft.
     - **Why:** the extension lets VS Code use virtual environments.
     - **Expected result:** the Python extension shows as installed.
-
-    <!-- SCREENSHOT: assets/setup_python_extension.png — VS Code Extensions panel with the Microsoft Python extension installed -->
 
 ## Create the project folder
 
@@ -55,8 +53,6 @@ If Python and VS Code are already on our computer, skip to [Create the project f
     - **Why:** VS Code works with everything in the open folder, and the terminal will start in this folder.
     - **Expected result:** the Explorer panel on the left shows **STEAM_DATA_STORIES** with no files.
 
-    <!-- SCREENSHOT: assets/setup_open_folder.png — VS Code Explorer showing the empty STEAM_DATA_STORIES folder -->
-
 ## Create a virtual environment
 
 A **virtual environment** is a private copy of Python just for this project. The libraries we install go into the virtual environment rather than into the computer's main Python, so different projects can't interfere with each other.
@@ -65,12 +61,9 @@ A **virtual environment** is a private copy of Python just for this project. The
     - **Why:** this creates the virtual environment in a folder called ***.venv*** inside our project.
     - **Expected result:** after a few seconds a ***.venv*** folder appears in the Explorer panel.
 
-    <!-- SCREENSHOT: assets/setup_create_environment.png — Command Palette with "Python: Create Environment" typed, then Venv chosen -->
 2. Choose **Terminal** → **New Terminal**.
     - **Why:** we'll type commands to install libraries and start marimo in the terminal.
     - **Expected result:** a terminal opens at the bottom of VS Code. The prompt starts with `(.venv)`, which means the virtual environment is active.
-
-    <!-- SCREENSHOT: assets/setup_venv_terminal.png — VS Code terminal with the (.venv) prompt (one each for Windows and macOS if they look different) -->
 
 !!! warning "No (.venv) in the terminal"
     If the prompt doesn't start with `(.venv)`, close the terminal with the bin icon and open a new one. Libraries installed without `(.venv)` go into the wrong Python, and marimo won't be able to find them.
@@ -91,12 +84,9 @@ We don't need to change the computer's settings. Instead, we'll tell VS Code to 
     - **Why:** every new terminal in VS Code will now open as Command Prompt instead of PowerShell.
     - **Expected result:** the list closes. Nothing else changes yet, because the terminal that's already open is still PowerShell.
 
-    <!-- SCREENSHOT: assets/setup_default_profile.png — Command Palette list of terminal profiles with Command Prompt highlighted -->
 2. Close the terminal with the bin icon, then choose **Terminal** → **New Terminal**.
     - **Why:** the new terminal opens as Command Prompt and switches on the virtual environment.
     - **Expected result:** the prompt starts with `(.venv)` and ends with the path to our ***steam_data_stories*** folder and a `>`.
-
-    <!-- SCREENSHOT: assets/setup_cmd_venv.png — VS Code terminal showing Command Prompt with the (.venv) prompt -->
 
 ## Install the libraries
 
@@ -109,7 +99,6 @@ We don't need to change the computer's settings. Instead, we'll tell VS Code to 
     - **Why:** this installs marimo (our notebook), Polars (for working with tables of data), Plotly (for charts) and NumPy (which Plotly needs to draw charts from Polars data).
     - **Expected result:** lots of downloading messages, ending with a line starting `Successfully installed`.
 
-    <!-- SCREENSHOT: assets/setup_pip_install.png — terminal after pip install, showing the "Successfully installed" line -->
 2. Check marimo installed correctly by typing:
 
     ```text
@@ -127,15 +116,12 @@ We don't need to change the computer's settings. Instead, we'll tell VS Code to 
     - **Why:** our notebooks will look for the data in the ***data*** folder.
     - **Expected result:** an empty ***data*** folder appears in the Explorer panel, under ***.venv***.
 
-    <!-- SCREENSHOT: assets/setup_new_folder.png — VS Code Explorer with the New Folder icon highlighted and the new data folder -->
 2. Download both data files: [steam_games.csv](../downloads/steam_games.csv){ download="steam_games.csv" } and [README.txt](../downloads/README.txt){ download="README.txt" }.
     - **Why:** ***steam_games.csv*** is our classroom copy of the Steam data. Everyone in the class uses the same copy, so our results match the lessons. ***README.txt*** explains where the data came from and includes its licence.
     - **Expected result:** both files appear in our ***Downloads*** folder.
 3. Open our ***Downloads*** folder in File Explorer (Finder on a Mac), then drag both files onto the ***data*** folder in VS Code's Explorer panel. If VS Code asks whether to copy or move them, choose **Copy**.
     - **Why:** the files need to be inside our project's ***data*** folder, not in ***Downloads***.
     - **Expected result:** VS Code's Explorer panel shows a ***data*** folder holding ***README.txt*** and ***steam_games.csv***.
-
-    <!-- SCREENSHOT: assets/setup_data_folder.png — VS Code Explorer with the data folder expanded -->
 
 !!! warning "Check the file names"
     If we download a file more than once, the browser may rename it, such as ***steam_games (1).csv***. Our code looks for ***steam_games.csv*** exactly, so rename the file or delete the extra copy.
@@ -168,8 +154,6 @@ steam_data_stories/
 2. Back in VS Code, click in the terminal and press ++ctrl+c++ (also ++ctrl+c++ on a Mac, not ++cmd+c++). When marimo asks "Are you sure you want to quit? (y/N)", type `y` and press ++enter++.
     - **Why:** marimo keeps running in the terminal until we stop it. It asks first so we don't stop it by accident.
     - **Expected result:** the terminal shows the `(.venv)` prompt again, and the browser tab says it has lost its connection.
-
-    <!-- SCREENSHOT: assets/setup_marimo_quit.png — terminal showing marimo's "Are you sure you want to quit? (y/N)" prompt -->
 
 !!! warning "Keep the terminal open"
     The marimo notebook in our browser only works while marimo is running in the VS Code terminal. If we close the terminal or press ++ctrl+c++ (on Windows and macOS), the notebook stops working. On a Mac, closing the VS Code window or quitting VS Code with ++cmd+q++ also closes the terminal and stops marimo. Our code is saved in ***clean_steam.py***, so we can start marimo again with the same command and carry on.
