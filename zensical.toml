@@ -44,6 +44,7 @@ nav = [
   ] },
   { "Reference" = [
     { "The Data Story Arc" = "reference/story_arc.md" },
+    { "Finding Data" = "reference/data_sources.md" },
     { "Polars" = "reference/polars.md" },
     { "Plotly Express" = "reference/plotly.md" },
     { "marimo" = "reference/marimo.md" },

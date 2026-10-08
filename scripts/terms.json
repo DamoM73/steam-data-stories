@@ -280,5 +280,11 @@
       "peer review",
       "checking a classmate's work against agreed criteria and giving them feedback to improve it."
     ]
+  ],
+  "reference/data_sources.md": [
+    [
+      "open data",
+      "data that anyone can download, use and share for free, as long as we follow its licence."
+    ]
   ]
 }

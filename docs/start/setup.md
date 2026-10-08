@@ -123,29 +123,22 @@ We don't need to change the computer's settings. Instead, we'll tell VS Code to 
 
 ## Download the data
 
-1. Go to the [Steam Data Stories data page](https://github.com/DamoM73/steam-data-stories/releases/latest){ target="_blank" rel="noopener" } and click the file that starts with ***steam_data_stories_data*** and ends in ***.zip*** to download it.
-    - **Why:** this zip holds our classroom copy of the Steam data. Everyone in the class uses the same copy, so our results match the lessons.
-    - **Expected result:** the zip file appears in our ***Downloads*** folder.
-
-    <!-- SCREENSHOT: assets/setup_release_download.png — GitHub release page with the steam_data_stories_data zip highlighted -->
-2. Unzip the data into a folder called ***data*** inside our project.
+1. In VS Code's Explorer panel, hover over **STEAM_DATA_STORIES**, click the **New Folder** icon and name the folder `data`.
     - **Why:** our notebooks will look for the data in the ***data*** folder.
+    - **Expected result:** an empty ***data*** folder appears in the Explorer panel, under ***.venv***.
 
-    === "Windows"
-
-        Right-click the zip file and choose **Extract All…**. Click **Browse…**, choose our ***steam_data_stories*** folder, then add `\data` to the end of the folder path and click **Extract**.
-
-        <!-- SCREENSHOT: assets/setup_extract_windows.png — Windows "Extract Compressed (Zipped) Folders" dialog with the path ending in \data -->
-
-    === "macOS"
-
-        Double-click the zip file in Finder. macOS unzips it into a new folder with the same name as the zip. Rename that folder to `data`, then drag it into our ***steam_data_stories*** folder.
-
-        <!-- SCREENSHOT: assets/setup_extract_macos.png — Finder showing the unzipped folder renamed to data inside steam_data_stories -->
-
+    <!-- SCREENSHOT: assets/setup_new_folder.png — VS Code Explorer with the New Folder icon highlighted and the new data folder -->
+2. Download both data files: [steam_games.csv](../downloads/steam_games.csv){ download="steam_games.csv" } and [README.txt](../downloads/README.txt){ download="README.txt" }.
+    - **Why:** ***steam_games.csv*** is our classroom copy of the Steam data. Everyone in the class uses the same copy, so our results match the lessons. ***README.txt*** explains where the data came from and includes its licence.
+    - **Expected result:** both files appear in our ***Downloads*** folder.
+3. Open our ***Downloads*** folder in File Explorer (Finder on a Mac), then drag both files onto the ***data*** folder in VS Code's Explorer panel. If VS Code asks whether to copy or move them, choose **Copy**.
+    - **Why:** the files need to be inside our project's ***data*** folder, not in ***Downloads***.
     - **Expected result:** VS Code's Explorer panel shows a ***data*** folder holding ***README.txt*** and ***steam_games.csv***.
 
     <!-- SCREENSHOT: assets/setup_data_folder.png — VS Code Explorer with the data folder expanded -->
+
+!!! warning "Check the file names"
+    If we download a file more than once, the browser may rename it, such as ***steam_games (1).csv***. Our code looks for ***steam_games.csv*** exactly, so rename the file or delete the extra copy.
 
 Our project folder should now look like this:
 

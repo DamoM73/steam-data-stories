@@ -75,6 +75,7 @@ This glossary lists every technical term introduced on this site, in alphabetica
 
 ## O
 
+- **open data** – data that anyone can download, use and share for free, as long as we follow its licence. ([Finding Data](../reference/data_sources.md))
 - **outlier** – a value much further away from the rest of the values than most. ([10. Box Plots and Better Charts](../insights/10_better_charts.md))
 
 ## P

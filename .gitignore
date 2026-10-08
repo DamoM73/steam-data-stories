@@ -184,3 +184,6 @@ __marimo__/
 
 # raw dataset downloads (too big for GitHub)
 data/raw/
+
+# classroom data served by the site (overrides the downloads/ rule above)
+!docs/downloads/

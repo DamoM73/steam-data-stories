@@ -38,6 +38,7 @@
 | expression | [Lesson 5](../cleaning/05_select_filter.md#choosing-rows) |
 | f-string | [Lesson 15](../resolution/15_publishing.md#putting-numbers-in-our-text) |
 | feedback | [Lesson 13](../insights/13_own_insights.md#checking-with-a-partner), [Lesson 16](../resolution/16_presenting.md#giving-feedback) |
+| finding data | [Finding Data](data_sources.md) |
 | filter | [Lesson 5](../cleaning/05_select_filter.md#choosing-rows) |
 | group_by | [Lesson 8](../insights/08_summarising_groups.md#comparing-our-two-groups) |
 | grouping by two columns | [Lesson 11](../insights/11_trends_relationships.md#summarising-by-two-columns) |
@@ -61,6 +62,7 @@
 | my_data_story.md | [Lesson 1](../hook/01_data_story.md#create-our-data-story-file) |
 | null | [Lesson 4](../hook/04_privacy_ethics.md#finding-personal-information-in-our-data), [Lesson 6](../cleaning/06_fixing_data.md#values-that-mean-missing) |
 | one variable, one cell | [Lesson 2](../hook/02_exploring_data.md#one-variable-one-cell) |
+| open data | [Finding Data](data_sources.md) |
 | outliers | [Lesson 10](../insights/10_better_charts.md#box-plots), [Lesson 12](../insights/12_outliers_predictions.md#finding-outliers) |
 | Parquet | [Lesson 6](../cleaning/06_fixing_data.md#saving-our-clean-data), [Lesson 7](../insights/07_new_columns.md#a-new-notebook) |
 | percentages for fair comparisons | [Lesson 9](../insights/09_bar_histogram.md#comparing-two-groups) |

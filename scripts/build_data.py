@@ -8,9 +8,9 @@ Run this once, just before the unit starts. It runs these steps in order:
              games.json: only games with at least MIN_REVIEWS reviews,
              only the CLASSROOM_COLUMNS, and no adult content.
 3. audit     Count the data cleaning issues left in steam_games.csv.
-4. package   Zip steam_games.csv and a README into
-             data/raw/steam_data_stories_data_<date>.zip, ready to attach
-             to a GitHub release for students to download.
+4. package   Copy steam_games.csv and write README.txt into
+             docs/downloads/, where the site serves them for students to
+             download.
 
 Games CSV
     The published games.csv merges "Discount" and "DLC count" into one
@@ -32,8 +32,8 @@ Games CSV
     data/adult_overrides.csv (AppID,Decision with "keep" or "exclude")
     win over the rules.
 
-Everything in data/raw/ is git-ignored. The zip goes on a GitHub release
-instead (see the message the package step prints).
+Everything in data/raw/ is git-ignored. The package step puts the
+classroom copy in docs/downloads/, which is published with the site.
 
 Needs the rich library for progress bars:  pip install rich
 
@@ -49,7 +49,7 @@ import json
 import re
 import sys
 import urllib.request
-import zipfile
+import shutil
 from collections import Counter
 from datetime import date
 from pathlib import Path
@@ -86,7 +86,7 @@ OUT = RAW / "steam_games.csv"
 EXCLUDED = RAW / "excluded_adult.csv"
 OVERRIDES = DATA / "adult_overrides.csv"
 TODAY = date.today().isoformat()
-PACKAGE = RAW / f"steam_data_stories_data_{TODAY}.zip"
+DOWNLOADS = ROOT / "docs" / "downloads"
 DATASET_URL = "https://huggingface.co/datasets/FronkonGames/steam-games-dataset/resolve/main/games.json"
 STEPS = ["download", "games", "audit", "package"]
 MIN_REVIEWS = 500
@@ -431,7 +431,7 @@ Licences
 
 
 def step_package():
-    console.rule("package: zipping the classroom data")
+    console.rule("package: copying the classroom data to docs/downloads")
     if not OUT.exists():
         console.print(f"[red]Missing {OUT.relative_to(ROOT)}: run the games step first")
         sys.exit(1)
@@ -439,16 +439,13 @@ def step_package():
         games = sum(1 for _ in csv.reader(file)) - 1
     readme = README.format(today=TODAY, games=games, min_reviews=MIN_REVIEWS,
                            columns=len(CLASSROOM_COLUMNS))
-    with zipfile.ZipFile(PACKAGE, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
-        archive.writestr("README.txt", readme)
-        archive.write(OUT, "steam_games.csv")
-    size = PACKAGE.stat().st_size // 1024
-    print(f"Wrote {PACKAGE.relative_to(ROOT)} ({size} KB)")
+    DOWNLOADS.mkdir(parents=True, exist_ok=True)
+    (DOWNLOADS / "README.txt").write_text(readme, encoding="utf-8")
+    shutil.copyfile(OUT, DOWNLOADS / "steam_games.csv")
+    size = (DOWNLOADS / "steam_games.csv").stat().st_size // 1024
+    print(f"Wrote docs/downloads/steam_games.csv ({size} KB) and docs/downloads/README.txt")
     print()
-    print("To publish it:")
-    print("  1. On GitHub, open DamoM73/steam-data-stories > Releases > Draft a new release.")
-    print(f"  2. Tag: data-{TODAY}   Title: Classroom data {TODAY}")
-    print(f"  3. Drag {PACKAGE.name} into the release, then Publish release.")
+    print("To publish them: commit and push. The site serves both files from /downloads/.")
 
 
 # ------------------------------------------------------------------- show

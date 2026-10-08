@@ -67,4 +67,4 @@ Under each error message, the lesson breaks it down line by line, so we learn ho
 
 ## Tutorial files
 
-The tutorial files hold our classroom copy of the Steam data: the 10,250 Steam games with at least 500 reviews. Everyone uses the same copy, so our results match the lessons. [Download the tutorial files](https://github.com/DamoM73/steam-data-stories/releases/latest){ target="_blank" rel="noopener" } from the data page, and follow [Setting Up](start/setup.md#download-the-data) to put them in the right place.
+The tutorial files are our classroom copy of the Steam data: the 10,250 Steam games with at least 500 reviews. Everyone uses the same copy, so our results match the lessons. Download [steam_games.csv](downloads/steam_games.csv){ download="steam_games.csv" } and [README.txt](downloads/README.txt){ download="README.txt" }, and follow [Setting Up](start/setup.md#download-the-data) to put them in the right place.
