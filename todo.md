@@ -18,33 +18,32 @@ Setting Up (`docs/start/setup.md`):
 
 Hook lessons:
 
-2. `l01_my_data_story.png` — VS Code with my_data_story.md open, editor and Markdown preview side by side — Lesson 1
-3. `l02_marimo_cell.png` — empty marimo cell with run and + buttons labelled — Lesson 2
-4. `l02_games_table.png` — the games DataFrame in marimo's table viewer — Lesson 2
-5. `l02_schema.png` — output of games.schema — Lesson 2
-6. `l02_table_viewer.png` — table viewer sort, search and column summaries labelled — Lesson 2
-7. `l03_describe.png` — output of games.describe() — Lesson 3
-8. `l03_value_counts.png` — value_counts for Metacritic score — Lesson 3
+2. `l02_marimo_cell.png` — empty marimo cell with run and + buttons labelled — Lesson 2
+3. `l02_games_table.png` — the games DataFrame in marimo's table viewer — Lesson 2
+4. `l02_schema.png` — output of games.schema — Lesson 2
+5. `l02_table_viewer.png` — table viewer sort, search and column summaries labelled — Lesson 2
+6. `l03_describe.png` — output of games.describe() — Lesson 3
+7. `l03_value_counts.png` — value_counts for Metacritic score — Lesson 3
 
 Behind the Scenes lessons:
 
-9. `l05_indie_games.png` — the indie_games table in marimo, 6,243 rows — Lesson 5
-10. `l06_dates.png` — the dated table with Release date shown as dates — Lesson 6
-11. `l06_null_count.png` — null_count output showing 7317 in Metacritic score — Lesson 6
-12. `l06_repeated_names.png` — repeated names sorted, showing the two Alpha Protocol rows — Lesson 6
+8. `l05_indie_games.png` — the indie_games table in marimo, 6,243 rows — Lesson 5
+9. `l06_dates.png` — the dated table with Release date shown as dates — Lesson 6
+10. `l06_null_count.png` — null_count output showing 7317 in Metacritic score — Lesson 6
+11. `l06_repeated_names.png` — repeated names sorted, showing the two Alpha Protocol rows — Lesson 6
 
 Rising Insights lessons:
 
-13. `l07_review_score.png` — Name, Positive, Negative and Review score columns — Lesson 7
-14. `l07_scored.png` — scored with Review score, Release year, Genres and Group columns — Lesson 7
-15. `l08_per_year.png` — per_year table scrolled to show 2018 to 2025 — Lesson 8
+12. `l07_review_score.png` — Name, Positive, Negative and Review score columns — Lesson 7
+13. `l07_scored.png` — scored with Review score, Release year, Genres and Group columns — Lesson 7
+14. `l08_per_year.png` — per_year table scrolled to show 2018 to 2025 — Lesson 8
 
 Chart images for Lessons 9–11 (`l09_*.png`, `l10_*.png`, `l11_*.png`) are already in `docs/assets/`, rendered from the real data. Replace them if the data is refreshed.
 
 Aha Moment and Resolution lessons:
 
-16. `l14_controls.png` — the Years slider and Measure dropdown above the explore chart in marimo — Lesson 14
-17. `l15_drag_cell.png` — a marimo cell with the drag handle (dots) on its left edge highlighted — Lesson 15
+15. `l14_controls.png` — the Years slider and Measure dropdown above the explore chart in marimo — Lesson 14
+16. `l15_drag_cell.png` — a marimo cell with the drag handle (dots) on its left edge highlighted — Lesson 15
 
 The Lesson 14 chart images (`l14_*.png`), the Lesson 15 app view (`l15_app_view.png`) and the class server home page (`class_server_home.png`) are already in `docs/assets/`, made from the real data. The home page image uses made-up student folder names.
 

@@ -120,8 +120,6 @@ Now it's our turn to start our own data story about Steam games. We'll record ou
 ## Lesson 1: Story angles
 ```
 
-<!-- SCREENSHOT: assets/l01_my_data_story.png — VS Code with my_data_story.md open in the steam_data_stories folder, editor and preview side by side -->
-
 !!! tip "Markdown files"
     A file ending in ***.md*** is a **Markdown** file: plain text with a few symbols for formatting. A line starting with `#` is a heading, `##` is a smaller heading, and a line starting with `-` is a dot point. To see the formatted version, press ++ctrl+shift+v++ (++cmd+shift+v++ on a Mac) in VS Code. Our tutorial pages are written in Markdown too.
 
