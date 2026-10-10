@@ -62,26 +62,28 @@ It comes from the **Steam Games Dataset** by Fronkon Games, who collected it fro
 
 ### What one row represents
 
-The data is a table. Each **row** is one game, and each **column** is one fact about that game. Here's the row for Hollow Knight, made by Team Cherry, a small studio in Adelaide:
+The data is a table. Each **row** is one game, and each **column** is one fact about that game. There are 13 columns. Here's the whole row for Hollow Knight, made by Team Cherry, a small studio in Adelaide:
 
-| Column | Value |
-| :-- | :-- |
-| AppID | 367520 |
-| Name | Hollow Knight |
-| Release date | Feb 24, 2017 |
-| Price | 7.49 |
-| Positive | 403641 |
-| Negative | 12305 |
-| Genres | Action,Adventure,Indie |
+| Column | Hollow Knight | What it means |
+| :-- | :-- | :-- |
+| AppID | 367520 | the number Steam uses to identify the game |
+| Name | Hollow Knight | the game's name |
+| Release date | Feb 24, 2017 | the day the game came out on Steam |
+| Price | 7.49 | the price in US dollars when the data was collected (games on sale show their sale price) |
+| Positive | 403641 | how many players reviewed the game positively |
+| Negative | 12305 | how many players reviewed the game negatively |
+| Recommendations | 455843 | the number of player recommendations Steam lists for the game |
+| Metacritic score | 87 | the score from professional critics on Metacritic, out of 100 |
+| Achievements | 63 | how many achievements players can unlock in the game |
+| Developers | Team Cherry | who made the game |
+| Publishers | Team Cherry | who released and sold the game (often a bigger company than the developer) |
+| Genres | Action,Adventure,Indie | the kinds of game it is, separated by commas |
+| Support email | info@teamcherry.com.au | the email address players can use to get help |
 
 The **AppID** is the number Steam uses to identify each game. Two games can share a name, but they never share an AppID.
 
-There are 13 columns in total. They fall into a few groups:
-
-- **about the game:** name, release date, developers, publishers, genres and achievements
-- **price:** the price in US dollars (games on sale show their sale price)
-- **reviews:** positive and negative reviews, recommendations and Metacritic score
-- **contact:** a support email address
+!!! tip "What our data can't tell us"
+    Our data doesn't include how many people play each game, how long they play for, how many copies were sold, or how much money a game made. It also has no age ratings or player ages. A question that needs any of these can't be answered with our data, so we'll choose questions that use the 13 columns above.
 
 !!! warning "Real data is messy"
     Our data is real, and it hasn't been cleaned. Some numbers really mean "missing", some columns store dates as text, and some games appear more than once. We'll find and fix these problems in the Behind the Scenes lessons, so for now, don't trust every number we see.
@@ -128,7 +130,7 @@ Now it's our turn to start our own data story about Steam games. We'll record ou
 Under the **Lesson 1: Story angles** heading in ***my_data_story.md***:
 
 1. Pick two story angles from the list above, and make up a third angle of our own.
-2. For each of the three angles, write one question about Steam games that we'd really like to know the answer to.
+2. For each of the three angles, write one question about Steam games that we'd really like to know the answer to. Under each question, list the columns from the table above that we'd need to answer it.
 3. Choose the question that interests us most. Don't worry if it isn't perfect yet: in Lesson 3 we'll check whether the data can answer it, and sharpen it.
 
 Save ***my_data_story.md***. We'll come back to these questions in the next two lessons.
