@@ -19,7 +19,7 @@
 
 ## Introduction
 
-In Lesson 1 we wrote a question for our own data story, and in Lesson 2 we explored the columns that might answer it. Now we need to check that our question is one the data can actually answer. A great question that the data can't answer leads to a story with no evidence, and a story with no evidence isn't a data story.
+When we brainstormed story angles, we wrote three questions for our own data story, and when we explored our data we looked at the columns that might answer them. Now we need to check which of those questions the data can actually answer. A great question that the data can't answer leads to a story with no evidence, and a story with no evidence isn't a data story.
 
 ## Investigable questions
 
@@ -65,9 +65,11 @@ To answer it, we need to decide exactly what our words mean:
 2. **"games from big studios"** → our data doesn't say how big a studio is. So we'll compare Indie games with **every other game**, and call them "not Indie". That's a **limitation**: some "not Indie" games come from small studios too. We'll mention it when we tell our story.
 3. **"review as well"** → the **review score**: the percentage of a game's reviews that are positive. Hollow Knight has 403,641 positive and 12,305 negative reviews, so its review score is about 97%.
 
-Before we go any further, let's check we have enough Indie games to compare. Start marimo with `marimo edit clean_steam.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our cells from Lesson 2. Then add a new cell, type the code below and run it.
+Before we go any further, let's check we have enough Indie games to compare. If only a handful of games were Indie, any difference we found could just be luck. Our definition says a game is Indie if its `Genres` text contains `Indie`, so we'll check each game's `Genres` for that word and count the matches.
 
-```python linenums="1" title="clean_steam.py"
+Start marimo with `marimo edit clean_steam.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our earlier cells. Then add a new cell, type the code below and run it.
+
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/03_asking_questions/cell07.py"
 ```
 
@@ -91,9 +93,11 @@ Now let's check that the columns we need hold useful values. Polars gives us two
 
 ### Summary statistics
 
+We want a quick overview of every column at once: how many values are missing, and what the typical, smallest and largest values are. Strange numbers in this overview are often the first sign of a problem. Polars' `describe` method calculates all of these for us.
+
 Add a new cell, type the code below and run it.
 
-```python linenums="1" title="clean_steam.py"
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/03_asking_questions/cell08.py"
 ```
 
@@ -105,7 +109,7 @@ Add a new cell, type the code below and run it.
 ??? note "Code explanation"
     - **line 1** → calculates **summary statistics** for every column of `games` and shows them as a table.
 
-<!-- SCREENSHOT: assets/l03_describe.png — the output of games.describe() -->
+![The output of games.describe(), a table with one row for each statistic such as count, null_count, mean, std, min, 25%, 50%, 75% and max, and one column for each column of games](../assets/103_describe.png)
 
 Each row of the output is one statistic:
 
@@ -121,14 +125,19 @@ Each row of the output is one statistic:
 Let's think about what the numbers tell us:
 
 1. The median `Price` is 4.19 and the mean is about 6.65. A few expensive games pull the mean up, so the median gives a fairer picture of a "typical" game.
-2. The median `Metacritic score` is 0. Half of these popular games scored 0 out of 100? That's very unlikely. It's a clue that 0 really means "no score", which we'll fix in Lesson 6.
-3. The smallest `Release date` is `Apr 1, 1999` and the largest is `Sep 9, 2024`. That's not the oldest and newest game: it's the first and last in **alphabetical** order, because the dates are stored as text. Another job for Lesson 6.
+2. The median `Metacritic score` is 0. Half of these popular games scored 0 out of 100? That's very unlikely. It's a clue that 0 really means "no score", which we'll fix when we fix our data.
+3. The smallest `Release date` is `Apr 1, 1999` and the largest is `Sep 9, 2024`. That's not the oldest and newest game: it's the first and last in **alphabetical** order, because the dates are stored as text. Another job for fixing our data.
+
+!!! tip "What is a price of 4.19?"
+    `Price` has no currency symbol, so we need to check where it came from. Our data was collected from the US Steam store, so every price is in **US dollars**. A median of 4.19 means about US$4.19, which is more in Australian dollars, and Steam sets Australian prices separately anyway. The prices were also collected on one day, so a game that was on sale that day shows its sale price, and a price of 0 means the game is free to play. When we talk about prices in our story, we always say they're in US dollars.
 
 ### Counting values
 
-To look closer at one column, we count how often each value appears. Add a new cell, type the code below and run it.
+The Metacritic scores looked strange, so let's look closer at that one column. Counting how often each value appears will show us whether 0 is common or rare. We'll sort the counts so the most common value comes first.
 
-```python linenums="1" title="clean_steam.py"
+Add a new cell, type the code below and run it.
+
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/03_asking_questions/cell09.py"
 ```
 
@@ -141,7 +150,7 @@ To look closer at one column, we count how often each value appears. Add a new c
 ??? note "Code explanation"
     - **line 1** → picks the `Metacritic score` column from `games`, counts how many times each different value appears, and sorts the results from most common to least common.
 
-<!-- SCREENSHOT: assets/l03_value_counts.png — the output of value_counts for Metacritic score -->
+![The output of value_counts for Metacritic score, with 0 at the top appearing 7,317 times, followed by scores such as 80 with much smaller counts](../assets/103_value_counts.png)
 
 The most common score is `0`, with **7,317** games. The next most common is `80`, with only 188. So about seven in ten of our games have no Metacritic score at all. That's fine for our example question, because we're using player reviews, not Metacritic. But if our own question uses `Metacritic score`, we'll only have about three in ten of the games to work with.
 
@@ -162,12 +171,12 @@ Our refined example question is:
 
 It's more precise, and every part of it can be measured.
 
-## Our data story
+## Your data story
 
-Open ***my_data_story.md***, add a new heading `## Lesson 3: Our question` and record our answers under it.
+Open ***my_data_story.md***, add a new heading `## Choosing a question` and record your answers under it. Work through all three of your questions from your story angles.
 
-1. Check our own question against the three features of an investigable question. Rewrite it if it isn't specific, measurable and open.
-2. Write down what each fuzzy word in our question means, like we did for "Indie" and "review as well".
-3. Use `describe`, `value_counts` or `str.contains` on the columns our question needs. Do they have enough real values to answer it?
-4. If they don't, refine our question using one of the fixes above.
-5. Finish with our final question on its own line, so it's easy to find later.
+1. Check each question against the three features of an investigable question: specific, measurable and open. Rewrite any that aren't.
+2. For each question, write down what each fuzzy word means, like we did for "Indie" and "review as well".
+3. Use `describe`, `value_counts` or `str.contains` on the columns each question needs. Do they have enough real values to answer it?
+4. Refine any question the data can't answer, using one of the fixes above.
+5. Choose the **one** question you'll use for the rest of your data story, and write down why you chose it over the other two. Put your final question on its own line, so it's easy to find later.

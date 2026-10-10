@@ -22,9 +22,11 @@ Every summary in this lesson follows the same three steps, often called **split,
 
 ## Comparing our two groups
 
+Our question compares Indie games with all the others, so we'll split the games by our `Group` column. For each group we want two numbers: how many games are in it, so we know whether the group is big enough to trust, and its median review score, which tells us how well a typical game in that group is reviewed. We use the median rather than the mean for now, and we'll see why further down this page.
+
 Start marimo with `marimo edit steam_story.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our earlier cells. Add a new cell at the bottom, type the code below and run it.
 
-```python linenums="1" title="steam_story.py"
+```python linenums="1" title="steam_story.py — new cell"
 --8<-- "examples/insights/08_summarising_groups/story04.py"
 ```
 
@@ -54,9 +56,9 @@ That's our first piece of evidence. The typical Indie game gets **86.5%** positi
 
 ## Mean or median?
 
-Our question also asks whether Indie games cost less. Let's work out both kinds of average for the price. Add a new cell, type the code below and run it.
+Our question also asks whether Indie games cost less. There are two common kinds of average, the mean and the median, and they don't always agree. To see whether that matters for prices, we'll work out both for each group, side by side in the same table. We round the mean to 2 decimal places because prices are in dollars and cents. Add a new cell, type the code below and run it.
 
-```python linenums="1" title="steam_story.py"
+```python linenums="1" title="steam_story.py — new cell"
 --8<-- "examples/insights/08_summarising_groups/story05.py"
 ```
 
@@ -81,6 +83,9 @@ Our question also asks whether Indie games cost less. Let's work out both kinds 
 | Indie | 3.84 | 5.57 |
 | Not Indie | 4.99 | 8.32 |
 
+!!! tip "What currency are these prices in?"
+    These prices are in **US dollars**, because the data was collected from the US Steam store. They're also the prices on the one day the data was collected, so a game on sale that day shows its sale price. When we write about prices in our story, say they're in US dollars, so our audience doesn't read them as Australian dollars.
+
 Indie games cost less by either measure, but look at the gap. The median prices are only $1.15 apart, while the mean prices are $2.75 apart. Why?
 
 Most games are cheap, but a few cost $60 or $70. Those few expensive games pull the mean up, and most of them aren't Indie games. When the data is **skewed** like this, with a few values much bigger than the rest, the mean and the median tell different stories:
@@ -95,9 +100,9 @@ Neither is wrong, but we need to choose the one that matches what we want to say
 
 ## Games per year
 
-We can group by any column, not just `Group`. Let's see how many games in our data came out each year. Add a new cell, type the code below and run it.
+We can group by any column, not just `Group`. Our story is about how Indie games have done over time, so before we compare years, we need to know how many games each year has. A year with only a few games can't tell us much. We'll group by `Release year`, count the games and find the median review score for each year, then sort by year so the table reads in time order. Add a new cell, type the code below and run it.
 
-```python linenums="1" title="steam_story.py"
+```python linenums="1" title="steam_story.py — new cell"
 --8<-- "examples/insights/08_summarising_groups/story06.py"
 ```
 
@@ -118,7 +123,7 @@ We can group by any column, not just `Group`. Let's see how many games in our da
     - **line 8** → closes the bracket we opened on line 1.
     - **line 9** → shows `per_year` as the cell's output.
 
-<!-- SCREENSHOT: assets/l08_per_year.png — per_year table, scrolled to show 2018 to 2025 -->
+![The per_year table in marimo with the Release year, Games and Median review score columns, scrolled to show 2018 to 2025, with 929 games in 2024 and 424 in 2025](../assets/108_per_year.png)
 
 There's one row per year: 29 rows, from 1997 to 2025. Scroll down to the end:
 
@@ -129,10 +134,10 @@ There's one row per year: 29 rows, from 1997 to 2025. Scroll down to the end:
 !!! warning "Watch out for small groups"
     1998 has a median review score of 96.5, but that's from just **1** game. A summary of one or two games isn't evidence of anything. When we compare groups, we check the `Games` column first, and leave out groups that are too small.
 
-## Our data story
+## Your data story
 
-Open ***my_data_story.md***, add a new heading `## Lesson 8: Summaries` and record our answers under it.
+Open ***my_data_story.md***, add a new heading `## Summaries` and record your answers under it.
 
-1. Write a `group_by` that summarises the groups our question is about. Record the table it makes.
-2. Decide whether the mean or the median suits our question better, and write down why.
-3. Write one sentence that states a finding, using a number from our summary. For example: "The typical Indie game gets 86.5% positive reviews, compared with 83.2% for other games."
+1. Write a `group_by` that summarises the groups your question is about. Record the table it makes.
+2. Decide whether the mean or the median suits your question better, and write down why.
+3. Write one sentence that states a finding, using a number from your summary. For example: "The typical Indie game gets 86.5% positive reviews, compared with 83.2% for other games."

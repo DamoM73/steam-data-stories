@@ -19,11 +19,13 @@ So far our notebook is full of code, tables and charts that only make sense to u
 
 ## Writing with mo.md
 
-In Lesson 1 we started writing ***my_data_story.md*** in **Markdown**, using `#` for headings, `**` for bold text and `-` for lists. marimo can turn Markdown into formatted text in our notebook, using `mo.md`.
+When we started our data story, we began writing ***my_data_story.md*** in **Markdown**, using `#` for headings, `**` for bold text and `-` for lists. marimo can turn Markdown into formatted text in our notebook, using `mo.md`.
+
+We'll start with the **Hook**, because it's the first thing our audience reads. It needs a title that asks our question, a short paragraph that explains why the question is interesting, and one sentence that says what data we used. That sentence is our whole Behind the Scenes stage: our audience needs to know where the evidence came from, but not every cleaning step. We use three quotation marks so the text can go over several lines, which keeps it readable in our code.
 
 Start marimo with `marimo edit steam_story.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our earlier cells. Add a new cell at the bottom, type the code below and run it.
 
-```python linenums="1" title="steam_story.py"
+```python linenums="1" title="steam_story.py — new cell"
 --8<-- "examples/resolution/15_publishing/story23.py"
 ```
 
@@ -51,9 +53,11 @@ The cell shows a large title and two paragraphs, with no code in sight. This is 
 
 ## Putting numbers in our text
 
-Our story should use the numbers we found, such as the median review scores from Lesson 8. We could type them into our text, but if we fixed a mistake in our data or got a newer copy of it, the numbers in our text would be wrong. Instead, we'll take them straight from our data using an **f-string**. Add a new cell, type the code below and run it.
+Our story should use the numbers we found, such as the median review scores in our `per_group` table. We could type them into our text, but if we fixed a mistake in our data or got a newer copy of it, the numbers in our text would be wrong. Instead, we'll take them straight from our data using an **f-string**.
 
-```python linenums="1" title="steam_story.py"
+First we take each number out of `per_group` and give it a clear name, `indie_score` and `other_score`, so our text is easy to read. Then we put an `f` in front of the string, which lets us put those variables inside `{ }`. Add a new cell, type the code below and run it.
+
+```python linenums="1" title="steam_story.py — new cell"
 --8<-- "examples/resolution/15_publishing/story24.py"
 ```
 
@@ -61,7 +65,7 @@ Our story should use the numbers we found, such as the median review scores from
     1. **Predict** what you think will happen when we run the cell. Be specific.
     2. **Run** the cell.
     3. Time to **investigate** the code. What does each line do?
-    4. Time to **modify** the code. Add a sentence that uses the median prices from the `prices` table in Lesson 8.
+    4. Time to **modify** the code. Add a sentence that uses the median prices from the `prices` table, and say that they're in US dollars.
 
 ??? note "Code explanation"
     - **line 1** → gets the first value in the `Median review score` column of `per_group`, which is the Indie group's score, and stores it in `indie_score`.
@@ -78,13 +82,15 @@ The text says **86.5%** and **83.2%**, the same numbers as our `per_group` table
 Drag this cell so it sits just above the chart that shows the same finding. Each insight in our story gets its own `mo.md` cell like this one: a heading that states the insight, then a sentence or two with the numbers, then the chart.
 
 !!! tip "Why [0] and [1]?"
-    In Lesson 8 we sorted `per_group` by `Group`, so Indie is always the first row, `[0]`, and Not Indie is always the second, `[1]`. If we didn't sort it, the rows could come out in a different order each time, and our text could swap the two numbers.
+    When we made `per_group`, we sorted it by `Group`, so Indie is always the first row, `[0]`, and Not Indie is always the second, `[1]`. If we didn't sort it, the rows could come out in a different order each time, and our text could swap the two numbers.
 
 ## Being honest about limitations
 
-A good Resolution answers our question, then tells our audience what our data **can't** tell them. These are the **limitations** we've been recording in ***my_data_story.md*** since Lesson 3. Being honest about them makes our story more trustworthy, not less. Add a new cell, type the code below and run it.
+A good Resolution answers our question, then tells our audience what our data **can't** tell them. These are the **limitations** we've been recording in ***my_data_story.md*** since we chose our question. Being honest about them makes our story more trustworthy, not less.
 
-```python linenums="1" title="steam_story.py"
+We'll put our answer and our limitations in the same cell, because they belong together: the answer says what we found, and the limitations say how far our audience should trust it. We write the answer in plain words, without new numbers, because our audience has already seen the evidence. Then each limitation gets its own dot point, so it's easy to read. Add a new cell, type the code below and run it.
+
+```python linenums="1" title="steam_story.py — new cell"
 --8<-- "examples/resolution/15_publishing/story25.py"
 ```
 
@@ -106,14 +112,14 @@ A good Resolution answers our question, then tells our audience what our data **
     - **line 18** → ends the string.
     - **line 19** → closes the brackets.
 
-Each limitation came from an earlier lesson: our groups from Lesson 7, the 500-review rule from Lesson 12, and relationship versus cause from Lesson 11. This cell is the end of our story, so leave it at the bottom of our notebook.
+Each limitation came from earlier in our story: our groups from when we made new columns, the 500-review rule from checking our prediction, and relationship versus cause from our scatter plot. This cell is the end of our story, so leave it at the bottom of our notebook.
 
 !!! warning "Limitations aren't excuses"
     A limitation explains what our audience should keep in mind, not why our story might be wrong. Write it as a fact ("we only used games with at least 500 reviews"), then say what it means ("which leaves out most small games").
 
 ## Tidying for our audience
 
-In the app view, every cell that shows an output appears on the page. Right now that includes every working table we made along the way, like the `scored.select(...)` table from Lesson 7. Our audience doesn't need those.
+In the app view, every cell that shows an output appears on the page. Right now that includes every working table we made along the way, like the `scored.select(...)` table we used to check our new columns. Our audience doesn't need those.
 
 Work through our notebook from top to bottom, and put our cells in story order:
 
@@ -134,29 +140,26 @@ For every other cell, ask: **does our audience need to see this?** If not, delet
 
 Let's see our story the way our audience will.
 
-1. Click in the VS Code terminal, press ++ctrl+c++, type `y` and press ++enter++.
-    - **Why:** we need to stop editing before we run the notebook as an app.
-    - **Expected result:** the terminal shows the `(.venv)` prompt again.
-2. In the terminal, type the command below and press ++enter++.
+1. Click in the VS Code terminal, press ++ctrl+c++, type `y` and press ++enter++ to stop editing. The terminal shows the `(.venv)` prompt again.
+2. In the terminal, type the command below and press ++enter++ to open our notebook in app view, with the code hidden.
 
     ```text
     marimo run steam_story.py
     ```
 
-    - **Why:** `marimo run` opens our notebook in app view, with the code hidden.
-    - **Expected result:** a new browser tab opens with our story: our title, text, charts and controls, and no code.
+    A new browser tab opens with our story: our title, text, charts and controls, and no code.
 
-![marimo app view showing the title "Do Indie games review better?", two paragraphs, the heading "Players like Indie games more" with the sentence "The typical Indie game gets 86.5% positive reviews, compared with 83.2% for other games.", and the box plot from Lesson 10 below it](../assets/l15_app_view.png)
+![marimo app view showing the title "Do Indie games review better?", two paragraphs, the heading "Players like Indie games more" with the sentence "The typical Indie game gets 86.5% positive reviews, compared with 83.2% for other games.", and the box plot of review scores below it](../assets/l15_app_view.png)
 
 Read our story from top to bottom as if we've never seen it before. Try the slider and the dropdown. If anything is out of order, confusing or still showing a working table, stop `marimo run` with ++ctrl+c++, go back to `marimo edit steam_story.py`, fix it, and check again.
 
 ## Getting ready for the class server
 
-There's one more change to make before our notebook can run on the class server. In Lesson 7 we loaded our data with the path `"data/clean_games.parquet"`. Python looks for that path starting from the folder marimo was **started** in. On our computer, that's our project folder, so it works. But the class server starts marimo in a different folder, so it can't find our data, and our story would show a blank page.
+There's one more change to make before our notebook can run on the class server. When we started our story notebook, we loaded our data with the path `"data/clean_games.parquet"`. Python looks for that path starting from the folder marimo was **started** in. On our computer, that's our project folder, so it works. But the class server starts marimo in a different folder, so it can't find our data, and our story would show a blank page.
 
 `mo.notebook_dir()` gives the folder our notebook is saved in, wherever that is. Go to the cell that loads `clean_games.parquet` and change it to match the code below. Then run it.
 
-```python linenums="1" title="steam_story.py" hl_lines="1"
+```python linenums="1" title="steam_story.py — change existing cell" hl_lines="1"
 --8<-- "examples/resolution/15_publishing/story02.py"
 ```
 
@@ -184,10 +187,10 @@ Our teacher will tell us how to hand them in. Once our story is on the class ser
 !!! warning "Check before handing in"
     Before we hand in, check that our story opens with `marimo run steam_story.py` and shows no errors, that the notebook is still called ***steam_story.py***, and that ***clean_games.parquet*** is inside the ***data*** folder. If the class server can't find our data, our story shows an empty page.
 
-## Our data story
+## Your data story
 
-Open ***my_data_story.md***, add a new heading `## Lesson 15: Publishing` and record our answers under it.
+Open ***my_data_story.md***, add a new heading `## Publishing` and record your answers under it.
 
-1. Write the `mo.md` cells for our story: a Hook, a heading and sentence for each insight, and a Resolution with our limitations. Use an f-string for at least two numbers.
-2. Check our story with `marimo run`, then ask someone else to read it in app view. Could they follow our story without us explaining it? Record what they said, and what we changed.
-3. Change the cell that loads our data to use `mo.notebook_dir()`, then hand in our story. Record the address of our story on the class server.
+1. Write the `mo.md` cells for your story: a Hook, a heading and sentence for each insight, and a Resolution with your limitations. Use an f-string for at least two numbers.
+2. Check your story with `marimo run`, then ask someone else to read it in app view. Could they follow your story without you explaining it? Record what they said, and what you changed.
+3. Change the cell that loads your data to use `mo.notebook_dir()`, then hand in your story. Record the address of your story on the class server.

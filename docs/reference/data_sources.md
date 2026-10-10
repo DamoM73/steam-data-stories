@@ -15,13 +15,13 @@ After the tutorials, we'll tell a new data story with data we find ourselves. Lo
 
 Before we spend time on a dataset, check it against this list. Each check comes from something we did in the tutorials.
 
-1. **We can download it as a CSV file**, without writing code or using an API. Then we can load it with `pl.read_csv`, just like in [Lesson 2](../hook/02_exploring_data.md#load-the-data).
-2. **It has enough rows.** A few hundred rows or more gives us groups big enough to compare. Remember the warning about small groups in [Lesson 8](../insights/08_summarising_groups.md#games-per-year).
+1. **We can download it as a CSV file**, without writing code or using an API. Then we can load it with `pl.read_csv`, just like in [Exploring Our Data](../hook/02_exploring_data.md#load-the-data).
+2. **It has enough rows.** A few hundred rows or more gives us groups big enough to compare. Remember the warning about small groups in [Summarising Groups](../insights/08_summarising_groups.md#games-per-year).
 3. **It has columns we can compare**, such as a group column (like suburb, sport or genre) and a number column (like visitors, rainfall or price). A date column lets us look for trends.
 4. **We know what every column means.** Look for a page that describes the columns, often called a data dictionary.
-5. **It has no personal information**, or we can remove it, just like the support emails in [Lesson 4](../hook/04_privacy_ethics.md#removing-columns-we-dont-need).
-6. **Its licence lets us reuse it**, and we know how to give attribution. See [Lesson 4](../hook/04_privacy_ethics.md#licences-and-attribution).
-7. **It can answer an investigable question** that's specific, measurable and open. See [Lesson 3](../hook/03_asking_questions.md#investigable-questions).
+5. **It has no personal information**, or we can remove it, just like the support emails in [Data, Privacy and Ethics](../hook/04_privacy_ethics.md#removing-columns-we-dont-need).
+6. **Its licence lets us reuse it**, and we know how to give attribution. See [Data, Privacy and Ethics](../hook/04_privacy_ethics.md#licences-and-attribution).
+7. **It can answer an investigable question** that's specific, measurable and open. See [Asking a Question Data Can Answer](../hook/03_asking_questions.md#investigable-questions).
 
 !!! tip "Question first, or data first?"
     We can start with a question and look for data that answers it, or browse a portal until a dataset makes us curious. Either way works, but check the dataset against the list above before we commit to it.
@@ -76,6 +76,6 @@ As soon as we choose a dataset, add a heading `## Our data source` to ***my_data
 2. its web address
 3. the date we downloaded it
 4. its licence, and the attribution it asks for
-5. what one row represents, just like we worked out for the Steam data in [Lesson 1](../hook/01_data_story.md#what-one-row-represents)
+5. what one row represents, just like we worked out for the Steam data in [What is a Data Story?](../hook/01_data_story.md#what-one-row-represents)
 
 We'll need all of these for the attribution in our finished story.

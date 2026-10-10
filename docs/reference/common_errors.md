@@ -63,21 +63,21 @@ Check that:
 1. the path includes the folder, like `"data/steam_games.csv"`, not `"steam_games.csv"`
 2. the data was unzipped into a folder called ***data*** inside our project folder
 3. the terminal was in our ***steam_data_stories*** folder when we started marimo
-4. in ***steam_story.py***, ***clean_games.parquet*** exists. If it doesn't, run the saving cell in ***clean_steam.py*** from [Lesson 6](../cleaning/06_fixing_data.md#saving-our-clean-data)
+4. in ***steam_story.py***, ***clean_games.parquet*** exists. If it doesn't, run the saving cell in ***clean_steam.py*** from [Fixing Our Data](../cleaning/06_fixing_data.md#saving-our-clean-data)
 
-On the class server, this error means our notebook still uses `"data/clean_games.parquet"` instead of `mo.notebook_dir()`. See [Lesson 15](../resolution/15_publishing.md#getting-ready-for-the-class-server).
+On the class server, this error means our notebook still uses `"data/clean_games.parquet"` instead of `mo.notebook_dir()`. See [Publishing Our Data Story](../resolution/15_publishing.md#getting-ready-for-the-class-server).
 
 ## marimo
 
 ### MultipleDefinitionError
 
-``` { .text .error linenums="1" }
-MultipleDefinitionError: The variable 'sample_size' was defined by another cell
-```
+![marimo showing CELL NOT RUN under the cell sample_size = 10, with the message This cell redefines variables from other cells, 'sample_size' was also defined by cell-4, and a Fix: Wrap in a function button](../assets/102_multiple_definition_error.png)
 
-- **line 1** → the same variable, here `sample_size`, is created in two cells, so marimo won't run either of them.
+- **CELL NOT RUN** → marimo has refused to run this cell.
+- **This cell redefines variables from other cells.** → the same variable, here `sample_size`, is created in two cells.
+- **'sample_size' was also defined by: cell-4** → names the variable, and the cell that created it first. Click the cell's name to jump to it.
 
-To fix it, give the new version a new name, like `dated` instead of `selected`, or delete one of the cells. This often happens when we copy a pattern from a lesson for our own story. See [Lesson 2](../hook/02_exploring_data.md#one-variable-one-cell).
+Don't use the **Fix: Wrap in a function** button: it hides the problem rather than fixing it. To fix it, give the new version a new name, like `dated` instead of `selected`, or delete one of the cells. This often happens when we copy a pattern from a lesson for our own story. See [Exploring Our Data](../hook/02_exploring_data.md#one-variable-one-cell).
 
 ### NameError
 
@@ -90,7 +90,7 @@ NameError: name 'mo' is not defined
 Check that:
 
 1. the name is spelt correctly, including capital letters
-2. for `mo`, the first cell has `import marimo as mo`. See [Lesson 14](../aha/14_aha_moment.md#letting-our-audience-explore)
+2. for `mo`, the first cell has `import marimo as mo`. See [The Aha Moment](../aha/14_aha_moment.md#letting-our-audience-explore)
 3. for `pl` or `px`, the first cell imports Polars and Plotly Express
 4. for a variable, the cell that creates it doesn't have an error of its own
 5. the variable was made in **this** notebook: ***clean_steam.py*** and ***steam_story.py*** have separate variables
@@ -103,7 +103,7 @@ RuntimeError: Accessing the value of a UIElement in the cell that created it is 
 
 - **line 1** → we created a UI element and used its `value` in the same cell.
 
-To fix it, create and show the UI element in one cell, then use its `value` in a different cell, just like `years` and `explore` in [Lesson 14](../aha/14_aha_moment.md#connecting-the-controls).
+To fix it, create and show the UI element in one cell, then use its `value` in a different cell, just like `years` and `explore` in [The Aha Moment](../aha/14_aha_moment.md#connecting-the-controls).
 
 ## Polars
 
@@ -128,7 +128,7 @@ TypeError: the truth value of an Expr is ambiguous
 
 - **line 1** → Python tried to treat a Polars expression as a single `True` or `False`.
 
-This usually means we used `and` or `or` instead of `&` or `|`, or left out the brackets around each condition. Write each condition in its own brackets: `(pl.col("Price") > 0) & (pl.col("Recommendations") > 10000)`. See [Lesson 5](../cleaning/05_select_filter.md#combining-conditions).
+This usually means we used `and` or `or` instead of `&` or `|`, or left out the brackets around each condition. Write each condition in its own brackets: `(pl.col("Price") > 0) & (pl.col("Recommendations") > 10000)`. See [Choosing Columns and Rows](../cleaning/05_select_filter.md#combining-conditions).
 
 ### ComputeError: could not find an appropriate format
 
@@ -138,7 +138,7 @@ ComputeError: could not find an appropriate format to parse dates, please define
 
 - **line 1** → Polars can't work out how our dates are written.
 
-To fix it, give `str.to_date` a format code, like `str.to_date("%b %d, %Y")`. See [Lesson 6](../cleaning/06_fixing_data.md#text-into-dates) and the [date format codes](polars.md#text-and-dates).
+To fix it, give `str.to_date` a format code, like `str.to_date("%b %d, %Y")`. See [Fixing Our Data](../cleaning/06_fixing_data.md#text-into-dates) and the [date format codes](polars.md#text-and-dates).
 
 ### ComputeError: cannot compare string with numeric type
 
@@ -166,7 +166,7 @@ This error occurred in the following expression:
 - **line 1** → we used a date method, `year`, on a column of text (`str`).
 - **line 4** → the expression that caused it.
 
-The release dates are only real dates after we convert them in [Lesson 6](../cleaning/06_fixing_data.md#text-into-dates). In ***steam_story.py***, check that we loaded ***clean_games.parquet***, not ***steam_games.csv***.
+The release dates are only real dates after we convert them in [Fixing Our Data](../cleaning/06_fixing_data.md#text-into-dates). In ***steam_story.py***, check that we loaded ***clean_games.parquet***, not ***steam_games.csv***.
 
 ### InvalidOperationError: expected String type
 
@@ -186,7 +186,7 @@ DuplicateError: column with name 'Price' has more than one occurrence
 
 - **line 1** → our result would have two columns with the same name, here `Price`.
 
-This usually happens inside `agg`, when we summarise the same column twice, like `pl.col("Price").median()` and `pl.col("Price").mean()`. To fix it, give each summary its own name with `alias`, like `.alias("Median price")`. See [Lesson 8](../insights/08_summarising_groups.md#mean-or-median).
+This usually happens inside `agg`, when we summarise the same column twice, like `pl.col("Price").median()` and `pl.col("Price").mean()`. To fix it, give each summary its own name with `alias`, like `.alias("Median price")`. See [Summarising Groups](../insights/08_summarising_groups.md#mean-or-median).
 
 ## Plotly Express
 
@@ -207,10 +207,10 @@ Some problems don't cause an error, but give us the wrong result.
 | What we see | Likely cause | Fix |
 | :-- | :-- | :-- |
 | a notebook shows no outputs | it hasn't run since we opened it | press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) |
-| a mean that seems far too small | 0s that really mean "missing" | `replace(0, None)` ([Lesson 6](../cleaning/06_fixing_data.md#values-that-mean-missing)) |
-| groups in a different order each time | `group_by` doesn't keep any order | add `sort`, or `category_orders` in a chart ([Lesson 8](../insights/08_summarising_groups.md#comparing-our-two-groups)) |
-| a group's bars look taller just because it's bigger | comparing counts of groups with different sizes | use `histnorm="percent"` ([Lesson 9](../insights/09_bar_histogram.md#comparing-two-groups)) |
-| `{indie_score}` appears in our text instead of a number | the `f` before the quotes is missing | write `f"""` ([Lesson 15](../resolution/15_publishing.md#putting-numbers-in-our-text)) |
-| a working table appears in app view | the cell still ends with a line that shows it | delete that last line ([Lesson 15](../resolution/15_publishing.md#tidying-for-our-audience)) |
-| a slider or dropdown does nothing | no other cell uses its `value` yet | use `.value` in another cell ([Lesson 14](../aha/14_aha_moment.md#connecting-the-controls)) |
-| our story is an empty page on the class server | the notebook can't find its data | use `mo.notebook_dir()` ([Lesson 15](../resolution/15_publishing.md#getting-ready-for-the-class-server)) |
+| a mean that seems far too small | 0s that really mean "missing" | `replace(0, None)` ([Fixing Our Data](../cleaning/06_fixing_data.md#values-that-mean-missing)) |
+| groups in a different order each time | `group_by` doesn't keep any order | add `sort`, or `category_orders` in a chart ([Summarising Groups](../insights/08_summarising_groups.md#comparing-our-two-groups)) |
+| a group's bars look taller just because it's bigger | comparing counts of groups with different sizes | use `histnorm="percent"` ([Bar Charts and Histograms](../insights/09_bar_histogram.md#comparing-two-groups)) |
+| `{indie_score}` appears in our text instead of a number | the `f` before the quotes is missing | write `f"""` ([Publishing Our Data Story](../resolution/15_publishing.md#putting-numbers-in-our-text)) |
+| a working table appears in app view | the cell still ends with a line that shows it | delete that last line ([Publishing Our Data Story](../resolution/15_publishing.md#tidying-for-our-audience)) |
+| a slider or dropdown does nothing | no other cell uses its `value` yet | use `.value` in another cell ([The Aha Moment](../aha/14_aha_moment.md#connecting-the-controls)) |
+| our story is an empty page on the class server | the notebook can't find its data | use `mo.notebook_dir()` ([Publishing Our Data Story](../resolution/15_publishing.md#getting-ready-for-the-class-server)) |

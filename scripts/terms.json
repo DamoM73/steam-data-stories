@@ -247,12 +247,16 @@
   ],
   "insights/12_outliers_predictions.md": [
     [
+      "quartile",
+      "one of the three values that split sorted data into four equal parts: Q1 (25%), the median (50%) and Q3 (75%)."
+    ],
+    [
       "interquartile range",
-      "the distance between the 25% value and the 75% value, also called the IQR."
+      "the distance between the first quartile (Q1) and the third quartile (Q3), also called the IQR."
     ],
     [
       "upper fence",
-      "the 75% value plus 1.5 times the interquartile range; values above it count as outliers."
+      "Q3 plus 1.5 times the interquartile range; values above it count as outliers."
     ]
   ],
   "aha/14_aha_moment.md": [

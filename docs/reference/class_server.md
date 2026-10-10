@@ -6,13 +6,13 @@
     - how to add each student's story and check that it works
     - how to keep the class server safe
 
-This page is for teachers. In [Lesson 15](../resolution/15_publishing.md), students hand in ***steam_story.py*** and ***data/clean_games.parquet***. The class server runs every student's notebook in app view, so anyone on the school network can open any story in a web browser, with the code hidden and the sliders and dropdowns working.
+This page is for teachers. In [Publishing Our Data Story](../resolution/15_publishing.md), students hand in ***steam_story.py*** and ***data/clean_games.parquet***. The class server runs every student's notebook in app view, so anyone on the school network can open any story in a web browser, with the code hidden and the sliders and dropdowns working.
 
 ## Why a class server?
 
 marimo notebooks need Python running somewhere. We looked at two other ways of publishing them:
 
-- **a plain HTML export** works on any website, such as GitHub Pages, but the UI elements from Lesson 14 stop working
+- **a plain HTML export** works on any website, such as GitHub Pages, but the UI elements from [The Aha Moment](../aha/14_aha_moment.md) stop working
 - **a WebAssembly export** runs Python inside the visitor's browser, so the UI elements work, but in testing it took more than four minutes to show anything, because each visitor's browser has to download Python, Polars and Plotly first
 
 On a class server, Python runs on one computer at school, so each story opens in a few seconds and everything works. It's also light: in testing, the server used about 190 MB of memory, plus about 20 MB for each extra person viewing a story, so a laptop or a Raspberry Pi 4 or 5 can host a whole class.
@@ -115,7 +115,7 @@ If a story shows an empty page, look at the terminal running the class server. T
 FileNotFoundError: No such file or directory (os error 2): data/clean_games.parquet
 ```
 
-- **line 1** → the notebook still loads its data with the path `"data/clean_games.parquet"`, which only works when marimo starts in the student's own folder. The student needs to make the `mo.notebook_dir()` change from [Lesson 15](../resolution/15_publishing.md#getting-ready-for-the-class-server), or their ***clean_games.parquet*** isn't inside a ***data*** folder.
+- **line 1** → the notebook still loads its data with the path `"data/clean_games.parquet"`, which only works when marimo starts in the student's own folder. The student needs to make the `mo.notebook_dir()` change from [Publishing Our Data Story](../resolution/15_publishing.md#getting-ready-for-the-class-server), or their ***clean_games.parquet*** isn't inside a ***data*** folder.
 
 ## Update the stories
 

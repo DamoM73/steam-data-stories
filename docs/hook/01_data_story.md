@@ -30,7 +30,7 @@ Back in England, Nightingale wanted the army to change for good. Working with th
 
 ![Florence Nightingale's Diagram of the causes of mortality in the army in the East, two rose-shaped charts made of coloured wedges, one wedge for each month from April 1854 to March 1856](../assets/nightingale_rose.jpg)
 
-*Diagram of the causes of mortality in the army in the East, Florence Nightingale, 1858. Public domain, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Nightingale-mortality.jpg).*
+*Diagram of the causes of mortality in the army in the East, Florence Nightingale, 1858. Public domain, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Nightingale-mortality.jpg){ target="_blank" rel="noopener" }.*
 
 Each wedge is one month. The blue part of each wedge shows deaths from preventable diseases, and the red part shows deaths from wounds. The blue is so much bigger that nobody looking at the chart could miss the point. Her charts were shown to Parliament and the Queen, and they helped bring in reforms that made army hospitals and barracks cleaner and safer.
 
@@ -104,31 +104,31 @@ Our example story uses the comparison angle. Hollow Knight, Stardew Valley and T
 
 We'll compare Indie games with all the other games in our data, and find out whether they also cost less.
 
-## Our data story
+## Your data story
 
-Now it's our turn to start our own data story about Steam games. We'll record our ideas and decisions in a file called ***my_data_story.md***, and add to it at the end of every lesson.
+Now it's your turn to start your own data story about Steam games. You'll record your ideas and decisions in a file called ***my_data_story.md***, and add to it at the end of every lesson.
 
-### Create our data story file
+### Create your data story file
 
-1. Open our ***steam_data_stories*** folder in VS Code.
-2. Choose **File** → **New File…**, type `my_data_story.md` and press ++enter++. When VS Code asks where to save it, choose our ***steam_data_stories*** folder.
+1. Open your ***steam_data_stories*** folder in VS Code.
+2. Choose **File** → **New File…**, type `my_data_story.md` and press ++enter++. When VS Code asks where to save it, choose your ***steam_data_stories*** folder.
 3. Add the text below and save the file.
 
 ```text title="my_data_story.md"
 # My Data Story
 
-## Lesson 1: Story angles
+## Story angles
 ```
 
 !!! tip "Markdown files"
-    A file ending in ***.md*** is a **Markdown** file: plain text with a few symbols for formatting. A line starting with `#` is a heading, `##` is a smaller heading, and a line starting with `-` is a dot point. To see the formatted version, press ++ctrl+shift+v++ (++cmd+shift+v++ on a Mac) in VS Code. Our tutorial pages are written in Markdown too.
+    A file ending in ***.md*** is a **Markdown** file: plain text with a few symbols for formatting. A line starting with `#` is a heading, `##` is a smaller heading, and a line starting with `-` is a dot point. To see the formatted version, press ++ctrl+shift+v++ (++cmd+shift+v++ on a Mac) in VS Code. These tutorial pages are written in Markdown too.
 
-### Brainstorm our angles
+### Brainstorm your angles
 
-Under the **Lesson 1: Story angles** heading in ***my_data_story.md***:
+Under the **Story angles** heading in ***my_data_story.md***:
 
-1. Pick two story angles from the list above, and make up a third angle of our own.
-2. For each of the three angles, write one question about Steam games that we'd really like to know the answer to. Under each question, list the columns from the table above that we'd need to answer it.
-3. Choose the question that interests us most. Don't worry if it isn't perfect yet: in Lesson 3 we'll check whether the data can answer it, and sharpen it.
+1. Pick two story angles from the list above, and make up a third angle of your own.
+2. For each of your three angles, write one question about Steam games that you'd really like to know the answer to. Under each question, list the columns from the table above that you'd need to answer it.
+3. Keep all three questions. When you learn to ask a question data can answer, you'll check each one against the data and choose the best.
 
-Save ***my_data_story.md***. We'll come back to these questions in the next two lessons.
+Save ***my_data_story.md***. You'll come back to these questions as you explore the data.

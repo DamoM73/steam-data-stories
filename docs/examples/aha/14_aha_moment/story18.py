@@ -6,7 +6,7 @@ aha_chart = px.line(
     color_discrete_map={"Indie": "royalblue", "Not Indie": "lightgrey"},
     markers=True,
     labels={"Release year": "", "Median review score": "Positive reviews (%)"},
-    title="Since 2018, Indie games have reviewed better every year",
+    title="Since 2017, Indie games have reviewed better every year",
 )
 aha_chart.add_annotation(
     x=2018,

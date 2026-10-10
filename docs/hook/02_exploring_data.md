@@ -18,13 +18,13 @@
 
 ## Introduction
 
-In Lesson 1 we met the Steam dataset on paper. Now it's time to open it. We could open a small part of it in a spreadsheet, but code lets us check every row in seconds and repeat every step exactly. We'll use **Polars** to load the data, and **marimo** to run our code and show the results.
+When we met the data story arc, we also met the Steam dataset on paper. Now it's time to open it. We could open a small part of it in a spreadsheet, but code lets us check every row in seconds and repeat every step exactly. We'll use **Polars** to load the data, and **marimo** to run our code and show the results.
 
 ## Notebooks and cells
 
 A **notebook** is a file where we write code in small blocks called **cells**. When we run a cell, its result appears straight away, right next to the code. That makes notebooks great for exploring data: we try something, look at the result, then decide what to try next.
 
-marimo notebooks are saved as ordinary Python files. Our first notebook, ***clean_steam.py***, is the one we made in [Setting Up](../start/setup.md#open-our-first-notebook). We'll use it to explore and clean our data in Lessons 2–6.
+marimo notebooks are saved as ordinary Python files. Our first notebook, ***clean_steam.py***, is the one we made in [Setting Up](../start/setup.md#open-our-first-notebook). We'll use it to explore our data and clean it, until it's ready for our story.
 
 1. Open our ***steam_data_stories*** folder in VS Code and open a new terminal. Check the prompt starts with `(.venv)`.
 2. Start marimo with:
@@ -44,16 +44,18 @@ Here's how we work with cells in marimo:
 - the **output** of a cell appears **above** its code
 - marimo **saves** our notebook automatically
 
-<!-- SCREENSHOT: assets/l02_marimo_cell.png — an empty marimo cell with the run button and + (add cell) buttons labelled -->
+![A marimo cell with labels pointing to the Add cell before and Add cell after buttons on its left, and the Run button on its right](../assets/102_marimo_cell.png)
 
 !!! tip "Reopening a notebook"
     When we reopen a notebook, marimo shows our code but doesn't run it, so none of the outputs appear. Press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to **run all stale cells**: every cell that hasn't been run yet.
 
 ## Import Polars
 
+Before we can use Polars, we have to **import** it, which loads the library so our notebook can use its commands. We always put our imports in the first cell, so anyone reading our notebook can see which libraries it needs.
+
 In the empty cell, type the code below and run it.
 
-```python linenums="1" title="clean_steam.py"
+```python linenums="1" title="clean_steam.py — first cell"
 --8<-- "examples/hook/02_exploring_data/cell01.py"
 ```
 
@@ -69,11 +71,11 @@ Nothing appears above the cell, and that's what we want. Importing a library doe
 
 ## Load the data
 
-Polars stores a table of data in a **DataFrame**: rows and columns, just like a spreadsheet, but in our code. Let's load our data into one.
+Polars stores a table of data in a **DataFrame**: rows and columns, just like a spreadsheet, but in our code. Our data is in ***steam_games.csv***, inside our ***data*** folder, so we'll use Polars' `read_csv` to read that file into a DataFrame. We'll call the DataFrame `games`, because each row is one game.
 
 Add a new cell, type the code below and run it.
 
-```python linenums="1" title="clean_steam.py"
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/02_exploring_data/cell02.py"
 ```
 
@@ -88,16 +90,18 @@ Add a new cell, type the code below and run it.
 
 Above the cell, marimo shows the DataFrame as an interactive table.
 
-<!-- SCREENSHOT: assets/l02_games_table.png — the games DataFrame shown in marimo's table viewer -->
+![marimo's table viewer showing the games DataFrame, with columns AppID, Name, Release date, Price and more, and a summary chart at the top of each column](../assets/102_games_table.png)
 
 !!! tip "CSV files"
     **CSV** stands for **comma-separated values**. A CSV file is plain text: each line is one row, and the values in a row are separated by commas. It's one of the most common ways to share data, because almost any program can read it.
 
 ## How big is our data?
 
-Before we explore, let's find out how much data we have. Add a new cell, type the code below and run it.
+Before we explore, let's find out how much data we have. The number of rows tells us how many games we can compare, and the number of columns tells us how many facts we have about each one. A DataFrame's **shape** gives us both at once.
 
-```python linenums="1" title="clean_steam.py"
+Add a new cell, type the code below and run it.
+
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/02_exploring_data/cell03.py"
 ```
 
@@ -115,9 +119,11 @@ Notice that this cell uses `games`, which we made in a different cell. Once a ce
 
 ## What kind of data is in each column?
 
-Every column in a DataFrame has a **data type**, which tells Polars what kind of values it holds. Add a new cell, type the code below and run it.
+Every column in a DataFrame has a **data type**, which tells Polars what kind of values it holds. The data type decides what we can do with a column: we can add up numbers, but not text. Before we use any column, we check its data type with the DataFrame's **schema**.
 
-```python linenums="1" title="clean_steam.py"
+Add a new cell, type the code below and run it.
+
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/02_exploring_data/cell04.py"
 ```
 
@@ -129,7 +135,7 @@ Every column in a DataFrame has a **data type**, which tells Polars what kind of
 ??? note "Code explanation"
     - **line 1** → shows the **schema** of `games`: the name and data type of every column.
 
-<!-- SCREENSHOT: assets/l02_schema.png — marimo output of games.schema -->
+![The output of games.schema, listing each column name with its data type, such as Int64, String and Float64](../assets/102_scehma.png)
 
 The schema lists all 13 columns. We'll meet three data types again and again:
 
@@ -143,20 +149,20 @@ Let's think about this: `Release date` is a **String**, not a date. Polars could
 
 ## Reactive cells
 
-marimo notebooks are **reactive**: when we change a cell, marimo automatically re-runs every cell that uses its variables. Let's see it in action.
+marimo notebooks are **reactive**: when we change a cell, marimo automatically re-runs every cell that uses its variables. Let's see it in action. We'll store a number in one cell, then use that number in another cell to decide how many rows to show.
 
 Add a new cell, type the code below and run it.
 
-```python linenums="1" title="clean_steam.py"
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/02_exploring_data/cell05.py"
 ```
 
 ??? note "Code explanation"
     - **line 1** → creates a variable called `sample_size` that holds the number `5`.
 
-Now add another new cell, type the code below and run it.
+Now we'll use `sample_size` with the `head` method, which shows the first few rows of a DataFrame. Add another new cell, type the code below and run it.
 
-```python linenums="1" title="clean_steam.py"
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/02_exploring_data/cell06.py"
 ```
 
@@ -175,24 +181,27 @@ When we changed `sample_size` and ran its cell, the `head` cell re-ran by itself
 
 Reactivity only works if marimo knows exactly which cell creates each variable. So marimo has one important rule: **each variable can only be created in one cell**.
 
-Let's see what happens if we break the rule. Add a new cell, type the code below and run it.
+Let's see what happens if we break the rule, by creating `sample_size` again in a second cell. Add a new cell, type the code below and run it.
 
-```python linenums="1" title="clean_steam.py"
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/02_exploring_data/cell05b.py"
 ```
 
 ??? note "Code explanation"
     - **line 1** → tries to create `sample_size` again, in a second cell.
 
-Both `sample_size` cells now show an error:
+marimo doesn't run the new cell. Instead, it shows this message:
 
-``` { .text .error linenums="1" }
-MultipleDefinitionError: The variable 'sample_size' was defined by another cell
-```
+![marimo showing CELL NOT RUN under the cell sample_size = 10, with the message This cell redefines variables from other cells, 'sample_size' was also defined by cell-4, and a Fix: Wrap in a function button](../assets/102_multiple_definition_error.png)
 
-- **line 1** → `MultipleDefinitionError` is the type of error, and the message tells us that `sample_size` is created in more than one cell. marimo won't run either cell until we fix it, because it can't tell which value `sample_size` should have.
+- **CELL NOT RUN** → marimo has refused to run this cell.
+- **This cell redefines variables from other cells.** → the cell creates a variable that another cell already creates.
+- **'sample_size' was also defined by: cell-4** → names the variable, and the cell that created it first. Click the cell's name to jump to it.
 
-To fix it, delete the cell we just added: hover over it and click the delete (bin) button in its toolbar. When we want a different value, we change the original cell instead.
+marimo can't tell which value `sample_size` should have, so it won't run the new cell. To fix it, delete the cell we just added: hover over it and click the delete (bin) button in its toolbar. When we want a different value, we change the original cell instead.
+
+!!! tip "Fix: Wrap in a function"
+    marimo offers a **Fix: Wrap in a function** button. Don't use it for this: it hides the problem rather than fixing it. Deleting the extra cell, or giving the new variable a different name, is the right fix.
 
 !!! warning "Changing a variable in another cell"
     In a normal Python program, we often change a variable later on, like `games = games.head()`. In marimo that would create `games` in a second cell, which breaks the rule. Instead, we give the new version a new name, such as `first_games = games.head()`. We'll use this pattern a lot when we clean our data.
@@ -215,10 +224,10 @@ The table marimo shows for `games` isn't just a picture: it's a tool for explori
     2. Search for `Hollow Knight`. What do its `Positive` and `Negative` columns say? How would we work out what share of its reviews are positive?
     3. Sort by `Metacritic score`. Lots of games have a score of 0. Do you think those games are really that bad, or is something else going on?
 
-## Our data story
+## Your data story
 
-Use the table viewer to explore the columns our own question needs. Open ***my_data_story.md***, add a new heading `## Lesson 2: Exploring our data` and record our answers under it.
+Use the table viewer to explore the columns your three questions need. Open ***my_data_story.md***, add a new heading `## Exploring the data` and record your answers under it.
 
-1. Write down which columns could help answer our question from Lesson 1.
+1. For each of your three questions from your story angles, write down which columns could help answer it.
 2. For each of those columns, write down its data type and two or three example values.
 3. Note anything that looks strange: empty values, impossible numbers, or numbers stored as text. These are clues for Behind the Scenes.

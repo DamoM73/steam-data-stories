@@ -6,4 +6,13 @@ explore = (
     .agg(pl.col(measure.value).median().alias("Median"))
     .sort("Release year", "Group")
 )
-explore
+explore_chart = px.line(
+    explore,
+    x="Release year",
+    y="Median",
+    color="Group",
+    color_discrete_map={"Indie": "royalblue", "Not Indie": "lightgrey"},
+    markers=True,
+    title=f"Median {measure.value.lower()} of Indie and other games",
+)
+mo.vstack([mo.hstack([years, measure]), explore_chart, explore])

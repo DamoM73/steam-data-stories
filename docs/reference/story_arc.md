@@ -5,15 +5,15 @@
     - what each stage does in our notebook
     - questions to check each stage
 
-Every data story in this course follows the same five stages. We met them in [Lesson 1](../hook/01_data_story.md#the-data-story-arc), and each section of the course matches one stage.
+Every data story in this course follows the same five stages. We met them in [What is a Data Story?](../hook/01_data_story.md#the-data-story-arc), and each section of the course matches one stage.
 
-| Stage | What it does | Lessons | Does our audience see it? |
+| Stage | What it does | Where it starts | Does our audience see it? |
 | :-- | :-- | :-- | :-- |
-| Hook | grabs attention with a question worth answering | [1–4](../hook/01_data_story.md) | yes |
-| Behind the Scenes | gets the data ready so it can be trusted | [5–6](../cleaning/05_select_filter.md) | a short summary |
-| Rising Insights | builds up the evidence, one finding at a time | [7–13](../insights/07_new_columns.md) | yes |
-| Aha Moment | the key insight, shown so clearly no one can miss it | [14](../aha/14_aha_moment.md) | yes |
-| Resolution | answers the question, and says how sure we are | [15–16](../resolution/15_publishing.md) | yes |
+| Hook | grabs attention with a question worth answering | [What is a Data Story?](../hook/01_data_story.md) | yes |
+| Behind the Scenes | gets the data ready so it can be trusted | [Choosing Columns and Rows](../cleaning/05_select_filter.md) | a short summary |
+| Rising Insights | builds up the evidence, one finding at a time | [Making New Columns](../insights/07_new_columns.md) | yes |
+| Aha Moment | the key insight, shown so clearly no one can miss it | [The Aha Moment](../aha/14_aha_moment.md) | yes |
+| Resolution | answers the question, and says how sure we are | [Publishing Our Data Story](../resolution/15_publishing.md) | yes |
 
 ## Hook
 
@@ -24,8 +24,8 @@ The Hook gives our audience a reason to keep reading.
 
 Check the Hook:
 
-1. Is our question **specific**, **measurable** and **open**? See [Lesson 3](../hook/03_asking_questions.md#investigable-questions).
-2. Have we defined every word in the question that could mean different things, like "Indie"? See [Lesson 3](../hook/03_asking_questions.md#defining-our-terms).
+1. Is our question **specific**, **measurable** and **open**? See [Asking a Question Data Can Answer](../hook/03_asking_questions.md#investigable-questions).
+2. Have we defined every word in the question that could mean different things, like "Indie"? See [Asking a Question Data Can Answer](../hook/03_asking_questions.md#defining-our-terms).
 3. Would someone who doesn't play games still want to know the answer?
 
 ## Behind the Scenes
@@ -37,9 +37,9 @@ Behind the Scenes is where we earn our audience's trust. Most of the work happen
 
 Check Behind the Scenes:
 
-1. Did we remove personal information we don't need? See [Lesson 4](../hook/04_privacy_ethics.md#removing-columns-we-dont-need).
+1. Did we remove personal information we don't need? See [Data, Privacy and Ethics](../hook/04_privacy_ethics.md#removing-columns-we-dont-need).
 2. Is every column the right data type?
-3. Have we found values that really mean "missing"? See [Lesson 6](../cleaning/06_fixing_data.md#values-that-mean-missing).
+3. Have we found values that really mean "missing"? See [Fixing Our Data](../cleaning/06_fixing_data.md#values-that-mean-missing).
 4. Have we written down every cleaning decision, and why, in ***my_data_story.md***?
 
 ## Rising Insights
@@ -49,7 +49,7 @@ Rising Insights builds the evidence, one step at a time. Each insight is a findi
 - **In our notebook:** for each insight, a `mo.md` cell with a heading and the numbers, then its chart.
 - **In our example:** the typical Indie game gets more positive reviews and costs less, the whole spread of Indie scores sits higher, and price isn't related to review score.
 
-Check each Rising Insight, using the list from [Lesson 13](../insights/13_own_insights.md#checking-each-insight):
+Check each Rising Insight, using the list from [Our Own Insights](../insights/13_own_insights.md#checking-each-insight):
 
 1. Does every group have enough rows?
 2. Did we choose the mean or the median on purpose?
@@ -81,5 +81,5 @@ The Resolution answers our question, and tells our audience how sure we can be.
 Check the Resolution:
 
 1. Does it answer the question in plain words?
-2. Does it list our limitations honestly? See [Lesson 15](../resolution/15_publishing.md#being-honest-about-limitations).
+2. Does it list our limitations honestly? See [Publishing Our Data Story](../resolution/15_publishing.md#being-honest-about-limitations).
 3. Can our audience follow the whole story in app view, without us explaining it?

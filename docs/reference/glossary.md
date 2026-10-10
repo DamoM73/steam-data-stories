@@ -2,7 +2,7 @@
 
 This glossary lists every technical term introduced on this site, in alphabetical order. Each term links to the page where it is first explained, and each page lists its new terms in a Terminology callout at the top.
 
-[A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [H](#h) · [I](#i) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [R](#r) · [S](#s) · [T](#t) · [U](#u)
+[A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [H](#h) · [I](#i) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [U](#u)
 
 ## A
 
@@ -51,7 +51,7 @@ This glossary lists every technical term introduced on this site, in alphabetica
 ## I
 
 - **Indie** – a game made by a small, independent team, often without a big publisher paying for it. ([1. What is a Data Story?](../hook/01_data_story.md))
-- **interquartile range** – the distance between the 25% value and the 75% value, also called the IQR. ([12. Outliers and Predictions](../insights/12_outliers_predictions.md))
+- **interquartile range** – the distance between the first quartile (Q1) and the third quartile (Q3), also called the IQR. ([12. Outliers and Predictions](../insights/12_outliers_predictions.md))
 - **investigable question** – a question we can answer by collecting and analysing data, because it's specific, measurable and open. ([3. Asking a Question Data Can Answer](../hook/03_asking_questions.md))
 
 ## L
@@ -88,6 +88,10 @@ This glossary lists every technical term introduced on this site, in alphabetica
 - **PowerShell** – the program VS Code uses for its terminal on Windows unless we choose another one. ([Setting Up](../start/setup.md))
 - **Privacy Act 1988** – the Australian law that sets the rules for how organisations and government agencies handle personal information. ([4. Data, Privacy and Ethics](../hook/04_privacy_ethics.md))
 
+## Q
+
+- **quartile** – one of the three values that split sorted data into four equal parts: Q1 (25%), the median (50%) and Q3 (75%). ([12. Outliers and Predictions](../insights/12_outliers_predictions.md))
+
 ## R
 
 - **range slider** – a slider with two handles, used to choose a start value and an end value. ([14. The Aha Moment](../aha/14_aha_moment.md))
@@ -116,4 +120,4 @@ This glossary lists every technical term introduced on this site, in alphabetica
 ## U
 
 - **UI element** – a control, such as a slider or dropdown, that our audience can use to change what a notebook shows. ([14. The Aha Moment](../aha/14_aha_moment.md))
-- **upper fence** – the 75% value plus 1.5 times the interquartile range; values above it count as outliers. ([12. Outliers and Predictions](../insights/12_outliers_predictions.md))
+- **upper fence** – Q3 plus 1.5 times the interquartile range; values above it count as outliers. ([12. Outliers and Predictions](../insights/12_outliers_predictions.md))

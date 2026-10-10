@@ -16,9 +16,11 @@ So far we've compared Indie games with other games across all years at once. But
 
 ## Summarising by two columns
 
-To see the trend, we need the median review score for each group in each year. Start marimo with `marimo edit steam_story.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our earlier cells. Add a new cell at the bottom, type the code below and run it.
+To see the trend, we need the median review score for each group in each year. So we'll `group_by` **two** columns at once, `Release year` and `Group`, which gives one group for every combination, such as 2018 Indie and 2018 Not Indie.
 
-```python linenums="1" title="steam_story.py"
+Before grouping, we'll keep only the games from 2010 to 2024. When we counted games per year, the years before 2010 had very few games, and 2025 wasn't finished. A median from a handful of games could jump around by chance, and we don't want our trend to be thrown off by that. Finally, we sort by year and then group, so the table reads in time order. Start marimo with `marimo edit steam_story.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our earlier cells. Add a new cell at the bottom, type the code below and run it.
+
+```python linenums="1" title="steam_story.py — new cell"
 --8<-- "examples/insights/11_trends_relationships/story12.py"
 ```
 
@@ -39,13 +41,18 @@ To see the trend, we need the median review score for each group in each year. S
 The table has **30** rows: 15 years, with one row for each group in each year.
 
 !!! tip "Why 2010 to 2024?"
-    In Lesson 8 we saw that the years before 2010 have very few games, so their medians could be thrown off by a handful of games. 2025 isn't finished in our data, and has far fewer games than 2024. Leaving these years out means every point on our chart is based on plenty of games.
+    When we counted games per year, we saw that the years before 2010 have very few games, so their medians could be thrown off by a handful of games. 2025 isn't finished in our data, and has far fewer games than 2024. Leaving these years out means every point on our chart is based on plenty of games.
 
 ## Trends over time
 
-A **line chart** joins one point to the next, which shows how something changes over time. Add a new cell, type the code below and run it.
+A **line chart** joins one point to the next, which shows how something changes over time.
 
-```python linenums="1" title="steam_story.py"
+!!! tip "When to use a line chart"
+    Use a line chart when the x-axis is **time**, such as years or months, and we want to show a **trend**: whether something is rising, falling or staying the same. Drawing one line per group lets us see whether the gap between groups has changed over time. Don't use one for groups that don't follow on from each other, like genres.
+
+Our question is whether the gap between Indie and other games has lasted, so we need time on the x-axis and the median review score on the y-axis, with one line for each group. We'll add `markers=True` so there's a dot on each year, which makes it easy to hover over a single year and read its value. Add a new cell, type the code below and run it.
+
+```python linenums="1" title="steam_story.py — new cell"
 --8<-- "examples/insights/11_trends_relationships/story13.py"
 ```
 
@@ -65,24 +72,30 @@ A **line chart** joins one point to the next, which shows how something changes 
     - **line 7** → sets a headline title.
     - **line 8** → closes the brackets.
 
-![Line chart titled "Since 2018, Indie games have reviewed better every year", with a blue Indie line and a red Not Indie line from 2010 to 2024; the lines cross around 2015 and 2016, then the Indie line stays well above the other from 2018](../assets/l11_line.png)
+![Line chart titled "Since 2017, Indie games have reviewed better every year", with a blue Indie line and a red Not Indie line from 2010 to 2024; the lines cross around 2015 and 2016, the Indie line is back on top in 2017, then stays well above the other from 2018](../assets/l11_line.png)
 
 This chart tells us much more than our bar chart did:
 
 1. From 2010 to 2014, Indie games reviewed a little better.
 2. In 2015 and 2016, the two lines cross: other games were slightly ahead.
-3. From 2018, the Indie line jumps up and stays **about 4 to 8 points** above the other line every year.
+3. In 2017, the Indie line moves back in front, and it stays in front every year after that.
+4. From 2018, the gap grows: the Indie line stays **about 4 to 8 points** above the other line every year.
 
-So the gap isn't a lucky average. It has lasted for seven years in a row, and that makes it a much stronger piece of evidence for our story.
+So the gap isn't a lucky average. Indie games have been ahead for eight years in a row, and that makes it a much stronger piece of evidence for our story.
 
 !!! tip "Line charts are for time"
     A line joins each point to the next, which tells our audience "these points follow on from each other". That makes sense for years or months, but not for groups like genres. For groups, use a bar chart or a box plot instead.
 
 ## Looking for a relationship
 
-Do more expensive games get better reviews? A **scatter plot** draws one dot for each row, using one number column for x and another for y. If the dots form a slope, the two columns are related. Add a new cell, type the code below and run it.
+Do more expensive games get better reviews? A **scatter plot** draws one dot for each row, using one number column for x and another for y. If the dots form a slope, the two columns are related.
 
-```python linenums="1" title="steam_story.py"
+!!! tip "When to use a scatter plot"
+    Use a scatter plot when we have **two number columns** and want to know whether they're **related**: when one goes up, does the other tend to go up or down? Each dot is one row, so we see every game, not just a summary. Don't use one when either column is a group or a year; a bar chart or line chart suits those better.
+
+`Price` and `Review score` are both number columns, so a scatter plot suits this question. We use `scored`, not a summary table, because we want one dot per game. We colour the dots by `Group` to see whether Indie games sit in a different place, add `hover_name="Name"` so we can find out which game a dot is, and set `opacity=0.4` because thousands of dots overlap and solid dots would hide each other. Add a new cell, type the code below and run it.
+
+```python linenums="1" title="steam_story.py — new cell"
 --8<-- "examples/insights/11_trends_relationships/story14.py"
 ```
 
@@ -107,12 +120,12 @@ Do more expensive games get better reviews? A **scatter plot** draws one dot for
 The dots don't slope up or down. Games at every price get scores from below 50 to almost 100. So in our data, price and review score aren't related. Hover over the dots on the right to find the most expensive games and their scores.
 
 !!! warning "A relationship isn't a cause"
-    Even when two things **are** related, it doesn't prove one causes the other. Our line chart shows that Indie games have reviewed better since 2018, but it doesn't prove that being Indie **makes** a game better. Maybe Indie players are kinder reviewers, or maybe only the best Indie games reach 500 reviews. In a data story we say "Indie games get better reviews", not "being Indie makes games better", unless we have much stronger evidence.
+    Even when two things **are** related, it doesn't prove one causes the other. Our line chart shows that Indie games have reviewed better since 2017, but it doesn't prove that being Indie **makes** a game better. Maybe Indie players are kinder reviewers, or maybe only the best Indie games reach 500 reviews. In a data story we say "Indie games get better reviews", not "being Indie makes games better", unless we have much stronger evidence.
 
-## Our data story
+## Your data story
 
-Open ***my_data_story.md***, add a new heading `## Lesson 11: Trends and relationships` and record our answers under it.
+Open ***my_data_story.md***, add a new heading `## Trends and relationships` and record your answers under it.
 
-1. If our question involves time, draw a line chart with a headline title. Record what the trend shows.
-2. Choose two number columns our question uses and draw a scatter plot. Are they related?
-3. Write down one other explanation for a pattern we've found, apart from the obvious one.
+1. If your question involves time, draw a line chart with a headline title. Record what the trend shows.
+2. Choose two number columns your question uses and draw a scatter plot. Are they related?
+3. Write down one other explanation for a pattern you've found, apart from the obvious one.

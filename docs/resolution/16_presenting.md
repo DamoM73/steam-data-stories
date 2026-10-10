@@ -31,13 +31,13 @@ For our example story, the Aha Moment might sound like this:
 
 ```text title="Aha Moment (45 seconds)"
 This is the chart that answers our question. The blue line is Indie
-games and the grey line is everything else. Look at 2018: from then on,
-the blue line stays above the grey line every single year, about 4 to 8
-points ahead. And if I drag the slider to start at 2018, the gap is
-still there in every year.
+games and the grey line is everything else. Look at 2017: from then on,
+the blue line stays above the grey line every single year, and from
+2018 it's about 4 to 8 points ahead. And if I drag the slider to start
+at 2017, the gap is still there in every year.
 ```
 
-Open ***my_data_story.md***, add a new heading `## Lesson 16: Presenting`, and write a short plan for each stage, using the table above. Write **dot points**, not a script: one or two points per stage, with the numbers we'll mention.
+Open ***my_data_story.md***, add a new heading `## Presenting`, and write a short plan for each stage, using the table above. Write **dot points**, not a script: one or two points per stage, with the numbers you'll mention.
 
 !!! tip "One number per chart"
     Our audience will only remember a few numbers. For each chart, choose the **one** number that matters most, say it clearly, and point to it on the screen.
@@ -89,14 +89,14 @@ Wish: your scatter plot had no headline title, so I wasn't sure what
 
 After our talk, we'll get feedback from several classmates. Read it all, then look for the points that more than one person made. Those are the ones to fix first.
 
-1. Under our `## Lesson 16: Presenting` heading in ***my_data_story.md***, copy in the feedback we got.
+1. Under the `## Presenting` heading in ***my_data_story.md***, copy in the feedback you got.
 2. Choose up to three changes to make, and write down why.
-3. Make the changes in ***steam_story.py***, check our story again with `marimo run`, then hand in the final version the same way as in Lesson 15.
+3. Make the changes in ***steam_story.py***, check your story again with `marimo run`, then hand in the final version the same way as when you [handed in your story](15_publishing.md#handing-in-our-story).
 
-## Our data story
+## Your data story
 
-Under the `## Lesson 16: Presenting` heading in ***my_data_story.md***, finish our data story with a reflection:
+Under the `## Presenting` heading in ***my_data_story.md***, finish your data story with a reflection:
 
-1. What was the most interesting thing we found in our data, and how did we find it?
-2. Which stage of the data story arc was hardest to get right, and what did we do about it?
-3. If we had another week, what other question would we ask of our data?
+1. What was the most interesting thing you found in your data, and how did you find it?
+2. Which stage of the data story arc was hardest to get right, and what did you do about it?
+3. If you had another week, what other question would you ask of your data?

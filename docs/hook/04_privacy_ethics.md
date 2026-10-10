@@ -46,9 +46,11 @@ Let's look through our 13 columns for anything that could identify a person. Mos
 
 Many Steam games are made by big companies, with support addresses like `support@company.com`. But lots of games are made by one person working alone, and their support address is often their own personal email.
 
+Before we decide what to do with this column, let's find out how much of it there is. First, we'll count how many games **don't** have a support email, because a missing email can't identify anyone.
+
 Start marimo with `marimo edit clean_steam.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our earlier cells. Then add a new cell, type the code below and run it.
 
-```python linenums="1" title="clean_steam.py"
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/04_privacy_ethics/cell10.py"
 ```
 
@@ -62,9 +64,11 @@ Start marimo with `marimo edit clean_steam.py` and press ++ctrl+shift+r++ (++cmd
 
 The output is **2728**. A missing value is called a **null**. So 2,728 games have no support email, which means 7,522 games do have one.
 
-Now let's find out how many of those addresses are personal email accounts. Add a new cell, type the code below and run it.
+Now let's find out how many of those addresses are likely to be personal. Companies usually have their own email domain, like `@teamcherry.com.au`, while a free Gmail address is often one person's own account. So we'll count the addresses that contain `@gmail.com`, using the same `str.contains` and `sum` pattern we used to count Indie games.
 
-```python linenums="1" title="clean_steam.py"
+Add a new cell, type the code below and run it.
+
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/04_privacy_ethics/cell11.py"
 ```
 
@@ -80,17 +84,17 @@ Now let's find out how many of those addresses are personal email accounts. Add 
 The output is **1270**. That's 1,270 games whose support address is a free Gmail account. A company usually has its own email address, so many of these are likely to belong to a person.
 
 !!! tip "Missing values are skipped"
-    Just like in Lesson 3, `sum` counts each `true` as 1. A missing email can't contain anything, so `str.contains` gives a null for it, and `sum` skips it.
+    Just like when we counted Indie games, `sum` counts each `true` as 1. A missing email can't contain anything, so `str.contains` gives a null for it, and `sum` skips it.
 
 ## Removing columns we don't need
 
 These email addresses are already public: anyone can find them on each game's Steam store page. So is it fine to put them in our data story? The APPs give us a useful test: do we **need** them for our purpose?
 
-Our purpose is to tell a story about games and players. No question in our story needs to contact a game's developer, so we don't need `Support email` at all. The safest thing to do with personal information we don't need is to remove it.
+Our purpose is to tell a story about games and players. No question in our story needs to contact a game's developer, so we don't need `Support email` at all. The safest thing to do with personal information we don't need is to remove it. We'll use `drop` to make a copy of our data without that column, and give the copy a new name, `public_games`, so it's clear this is the version that's safe to share.
 
 Add a new cell, type the code below and run it.
 
-```python linenums="1" title="clean_steam.py"
+```python linenums="1" title="clean_steam.py — new cell"
 --8<-- "examples/hook/04_privacy_ethics/cell12.py"
 ```
 
@@ -105,10 +109,10 @@ Add a new cell, type the code below and run it.
 
 The output shows **10250** rows and **12** columns: the same games, without the email column. From now on we'll build on `public_games`, so the contact details never end up in our charts or our finished story.
 
-Remember from Lesson 2: in marimo, each variable can only be created in one cell. That's why we didn't write `games = games.drop(...)`. We gave the new version a new name instead, and the original `games` is still there unchanged.
+Remember from exploring our data: in marimo, each variable can only be created in one cell. That's why we didn't write `games = games.drop(...)`. We gave the new version a new name instead, and the original `games` is still there unchanged.
 
 !!! tip "Depersonalising instead of deleting"
-    Sometimes we need part of the information without the personal details. For example, if our question were "Do games with a support email get more recommendations?", we could replace each email with just `yes` or `no`. This is called **depersonalising** the data. We'll learn how to make new columns like that in Lesson 7.
+    Sometimes we need part of the information without the personal details. For example, if our question were "Do games with a support email get more recommendations?", we could replace each email with just `yes` or `no`. This is called **depersonalising** the data. We'll learn how to make new columns like that when we start finding insights.
 
 ## Licences and attribution
 
@@ -123,10 +127,10 @@ Our Steam games data uses the **MIT licence**. It lets anyone use, copy, change 
 !!! warning "Game names and images belong to their owners"
     The licence covers the data, not the games. Names like Hollow Knight and images from Steam belong to the companies that made the games, so we can mention them in our story, but we shouldn't copy their logos or artwork.
 
-## Our data story
+## Your data story
 
-Open ***my_data_story.md***, add a new heading `## Lesson 4: Privacy and ethics` and record our answers under it.
+Open ***my_data_story.md***, add a new heading `## Privacy and ethics` and record your answers under it.
 
-1. List the columns our own question needs. Does any of them hold personal information? If so, can we answer our question without it?
-2. Write the attribution for our data story, using the example above.
-3. Think about the people our story is about. Could anything in our finished story be unfair to a person or a small developer? Write down one way we could avoid that.
+1. List the columns your question needs. Does any of them hold personal information? If so, can you answer your question without it?
+2. Write the attribution for your data story, using the example above.
+3. Think about the people your story is about. Could anything in your finished story be unfair to a person or a small developer? Write down one way you could avoid that.

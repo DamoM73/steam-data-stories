@@ -3,7 +3,7 @@ mo.md(
     ## What we found
 
     Indie games get a higher share of positive reviews than other games,
-    and they cost less. The review gap has lasted every year since 2018,
+    and they cost less. The review gap has lasted every year since 2017,
     and the price gap has grown since 2020.
 
     ### Limitations

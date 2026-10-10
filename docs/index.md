@@ -37,14 +37,17 @@ Coloured boxes called **callouts** highlight different kinds of information. Eac
 
 We write our code in **marimo notebooks**. A notebook is made of **cells**, and each code block on a lesson page is one cell:
 
-```python linenums="1" hl_lines="3" title="clean_steam.py"
-import polars as pl
-
-games = pl.read_parquet("steam_games.parquet")
+```python linenums="1" hl_lines="2" title="steam_story.py — change existing cell"
+games = pl.read_parquet(mo.notebook_dir() / "data" / "clean_games.parquet")
 games.head()
 ```
 
 - the **notebook name** above the code tells us which notebook the cell belongs to. We use two notebooks: ***clean_steam.py*** for exploring and cleaning the data, and ***steam_story.py*** for telling our story
+- the words after the notebook name tell us **where the code goes**:
+    - **new cell** → add a new cell at the bottom of the notebook, and type the code into it
+    - **change existing cell** → don't add a cell. Find the cell we already made, and change it to match the code
+    - **first cell** → type the code into the empty cell a new notebook starts with
+    - **change first cell** → change the cell at the top of the notebook, the one with our imports
 - **line numbers** match the line numbers in the Code explanation
 - **highlighted lines** are new or changed since the last time we saw the cell, so they're the lines we need to add or change
 - the **copy** button in the top-right corner copies the code to paste into a marimo cell
@@ -53,17 +56,13 @@ Code blocks without colours show commands to type in the terminal, or what appea
 
 ## Error messages
 
-Error messages are shown in red code blocks like this one:
+When a cell has an error, marimo shows the error message in red under the cell, and the lesson pages show a screenshot of it. Errors that appear in the terminal, outside marimo, are shown in red code blocks like this one:
 
 ``` { .text .error linenums="1" }
-polars.exceptions.InvalidOperationError: casting from string to date is not supported.
-It was removed in Polars 2.0. Use `str.to_date()` instead.
-
-This error occurred in the following expression:
-    col("release_date").strict_cast(Date)
+Activate.ps1 cannot be loaded because running scripts is disabled
 ```
 
-Under each error message, the lesson breaks it down line by line, so we learn how to read the error and fix our code. The [Common Errors](reference/common_errors.md) page collects the errors we're most likely to see.
+Under each error message, the lesson breaks it down part by part, so we learn how to read the error and fix our code. The [Common Errors](reference/common_errors.md) page collects the errors we're most likely to see.
 
 ## Tutorial files
 

@@ -25,13 +25,13 @@ A **data story** uses data, charts and words together to explain something and c
 
 Data stories follow the same shape as any good story. There's a hook that makes us want to know more, a build-up of evidence, a moment where it all clicks, and an ending that tells us what it means. We'll use these stages to organise the whole course:
 
-| Stage | What happens | Lessons |
+| Stage | What happens | Pages |
 | :-- | :-- | :-- |
-| **Hook** | we meet our data and ask a question worth answering | 1–4 |
-| **Behind the Scenes** | we clean the data so we can trust it | 5–6 |
-| **Rising Insights** | we explore, summarise and chart the data, then work on our own question | 7–13 |
-| **Aha Moment** | we find the key insight and make it stand out | 14 |
-| **Resolution** | we publish and present our finished data story | 15–16 |
+| **Hook** | we meet our data and ask a question worth answering | What is a Data Story?, Exploring Our Data, Asking a Question Data Can Answer, Data, Privacy and Ethics |
+| **Behind the Scenes** | we clean the data so we can trust it | Choosing Columns and Rows, Fixing Our Data |
+| **Rising Insights** | we explore, summarise and chart the data, then work on our own question | Making New Columns, Summarising Groups, Bar Charts and Histograms, Box Plots and Better Charts, Trends and Relationships, Outliers and Predictions, Our Own Insights |
+| **Aha Moment** | we find the key insight and make it stand out | The Aha Moment |
+| **Resolution** | we publish and present our finished data story | Publishing Our Data Story, Presenting and Feedback |
 
 ## The data
 
@@ -47,7 +47,7 @@ Each lesson works through one example question:
 
 Indie games, like Hollow Knight and Stardew Valley, are made by small, independent teams. Big studios spend far more money on their games, so we might expect players to like them more. Do they? And do Indie games cost less? We'll find out together.
 
-At the end of each lesson there's an **Our data story** task. That's where we use what we've just learnt to work on our own question about the same Steam data, so by the end of the course we'll each have our own data story.
+At the end of each lesson there's a **Your data story** task. That's where you use what you've just learnt to work on your own question about the same Steam data, so by the end of the course you'll have your own data story.
 
 ## The tools
 
@@ -67,7 +67,7 @@ We'll need solid Python skills before we start. We don't need to know anything a
 
 | Skills | Course |
 | :-- | :-- |
-| Basic syntax and structure<br>Control flow<br>Functions<br>Data structures | [A Turtle Introduction to Python](https://damom73.github.io/turtle-introduction-to-python/) |
-| Object-oriented programming | [Deepest Dungeon - Python OOP](https://damom73.github.io/python-oop-with-deepest-dungeon/) |
+| Basic syntax and structure<br>Control flow<br>Functions<br>Data structures | [A Turtle Introduction to Python](https://damom73.github.io/turtle-introduction-to-python/){ target="_blank" rel="noopener" } |
+| Object-oriented programming | [Deepest Dungeon - Python OOP](https://damom73.github.io/python-oop-with-deepest-dungeon/){ target="_blank" rel="noopener" } |
 
 Now that we know where we're heading, the next page sets up our computer for the course.

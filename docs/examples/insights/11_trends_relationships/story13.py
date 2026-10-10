@@ -4,5 +4,5 @@ px.line(
     y="Median review score",
     color="Group",
     markers=True,
-    title="Since 2018, Indie games have reviewed better every year",
+    title="Since 2017, Indie games have reviewed better every year",
 )

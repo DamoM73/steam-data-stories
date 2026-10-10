@@ -5,4 +5,8 @@ years = mo.ui.range_slider(
     label="Years",
     show_value=True,
 )
-years
+measure = mo.ui.dropdown(
+    options=["Review score", "Price"],
+    value="Review score",
+    label="Measure",
+)

@@ -13,13 +13,18 @@
 
 ## Introduction
 
-In Lesson 9 we saw that the right chart can make a difference obvious, and the wrong one can hide it. In this lesson we'll meet one more kind of chart, the box plot, then learn the small changes that turn a first-draft chart into one we can put in front of an audience.
+When we drew our first charts, we saw that the right chart can make a difference obvious, and the wrong one can hide it. In this lesson we'll meet one more kind of chart, the box plot, then learn the small changes that turn a first-draft chart into one we can put in front of an audience.
 
 ## Box plots
 
-A **box plot** squeezes a whole histogram into one box, so we can compare the spread of several groups side by side. Start marimo with `marimo edit steam_story.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our earlier cells. Add a new cell at the bottom, type the code below and run it.
+A **box plot** squeezes a whole histogram into one box, so we can compare the spread of several groups side by side.
 
-```python linenums="1" title="steam_story.py"
+!!! tip "When to use a box plot"
+    Use a box plot when we want to **compare the spread of a number across groups**: not just which group has the higher median, but whether the middle half of one group sits higher than the other, and which group has more unusual values. It's tidier than overlapping histograms, especially with three or more groups. Don't use one for an audience that has never seen a box plot without explaining how to read it first.
+
+Our split histogram was a bit crowded, with two sets of bars on top of each other. A box plot shows the same comparison more simply, with one box per group. So we'll put `Group` on the x-axis and `Review score` on the y-axis. Start marimo with `marimo edit steam_story.py` and press ++ctrl+shift+r++ (++cmd+shift+r++ on a Mac) to run our earlier cells. Add a new cell at the bottom, type the code below and run it.
+
+```python linenums="1" title="steam_story.py — new cell"
 --8<-- "examples/insights/10_better_charts/story10.py"
 ```
 
@@ -43,7 +48,7 @@ Here's how to read each box:
 - the **line inside the box** is the median
 - the **box** holds the middle half of the games, from the 25% value to the 75% value
 - the **whiskers** reach out to the most extreme values that aren't outliers
-- the **dots** are **outliers**: values much further away than the rest. We'll work out how Plotly decides this in Lesson 12
+- the **dots** are **outliers**: values much further away than the rest. We'll work out how Plotly decides this when we look for outliers
 
 Hover over a box to see its numbers. The Indie box runs from **77.6** to **92.7**, and the other box runs from **72.7** to **90.5**. The whole Indie box sits higher, not just its median.
 
@@ -56,8 +61,8 @@ Different charts answer different kinds of questions:
 | how does one number compare across groups? | bar chart | `px.bar` |
 | how are values spread out? | histogram | `px.histogram` |
 | how does the spread compare between groups? | box plot | `px.box` |
-| how does something change over time? | line chart | `px.line` (Lesson 11) |
-| are two number columns related? | scatter plot | `px.scatter` (Lesson 11) |
+| how does something change over time? | line chart | `px.line`, see [Trends and Relationships](11_trends_relationships.md) |
+| are two number columns related? | scatter plot | `px.scatter`, see [Trends and Relationships](11_trends_relationships.md) |
 
 ## Making a chart better
 
@@ -68,9 +73,9 @@ Our box plot works, but it's not ready for an audience yet:
 3. the x-axis label `Group` doesn't add anything
 4. both boxes are the same colour, and `Not Indie` comes first, even though Indie games are the focus of our story
 
-Change the cell to match the code below and run it.
+We'll fix each problem in turn: `color` gives each group its own colour, `category_orders` puts Indie first because it's the focus of our story, `labels` swaps column names for words our audience understands, and `title` states the finding. Change the cell to match the code below and run it.
 
-```python linenums="1" title="steam_story.py" hl_lines="5-8"
+```python linenums="1" title="steam_story.py — change existing cell" hl_lines="5-8"
 --8<-- "examples/insights/10_better_charts/story11.py"
 ```
 
@@ -98,10 +103,10 @@ Look at the new title: **Indie games get a higher share of positive reviews**. I
 !!! warning "A headline must be true"
     A headline title is a claim, so it has to match the data. Before we write one, we check the numbers behind it. "Indie games get a higher share of positive reviews" is true for the medians and for the middle half of each group, but there are still plenty of Indie games with low scores.
 
-## Our data story
+## Your data story
 
-Open ***my_data_story.md***, add a new heading `## Lesson 10: Better charts` and record our answers under it.
+Open ***my_data_story.md***, add a new heading `## Better charts` and record your answers under it.
 
-1. Choose the best chart for our question, using the table above. Write down why it suits our question.
+1. Choose the best chart for your question, using the table above. Write down why it suits your question.
 2. Draw it, then improve it with a headline title, clear labels and colours. Record the title.
-3. Show our chart to someone else for ten seconds, then ask them what it shows. Did they get our finding? Write down what they said.
+3. Show your chart to someone else for ten seconds, then ask them what it shows. Did they get your finding? Write down what they said.

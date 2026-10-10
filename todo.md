@@ -5,47 +5,22 @@
 - Replace the placeholder logo (`docs/assets/logo.png`, `logo_header.png`, `favicon.ico`) if you'd like a designed one.
 - Where the three-week SQL introduction lives (this site or another) and which tool it uses.
 - Which computer hosts the class server (laptop or Raspberry Pi), and check with IT that it can run on the school network. See Reference → Hosting on a Class Server.
-- How students hand in `steam_story.py` and `data/clean_games.parquet` for the class server (Lesson 15 says "our teacher will tell us how to hand them in"). Update Lesson 15 and the Hosting page once decided.
+- How students hand in `steam_story.py` and `data/clean_games.parquet` for the class server (Publishing Our Data Story says "our teacher will tell us how to hand them in"). Update that page and the Hosting page once decided.
 - Test the class server on the chosen computer (it was tested in a Linux sandbox, not yet on Windows or a Pi), including a whole class opening stories at once.
 
 ## Screenshots
 
 Each spot is marked in the page source with an HTML comment starting `<!-- SCREENSHOT:` (search the docs folder for `SCREENSHOT`). Save each image in `docs/assets/` with the file name given, then replace the comment with `![description](../assets/<file>)`.
 
-Setting Up (`docs/start/setup.md`):
+1. `l02_table_viewer.png` — the games table viewer with the sort (column heading), search box and column summaries labelled — Exploring Our Data
+2. `l14_controls.png` — the Years slider and Measure dropdown above the explore chart and explore table, all in one cell's output — The Aha Moment
+3. `l15_drag_cell.png` — a marimo cell with the drag handle (dots) on its left edge highlighted — Publishing Our Data Story
 
-1. `setup_marimo_empty.png` — empty clean_steam.py notebook in the browser
+The chart images (`l09_*.png` to `l14_*.png`), the app view (`l15_app_view.png`) and the class server home page (`class_server_home.png`) are rendered from the real data. Replace them if the data is refreshed. The home page image uses made-up student folder names.
 
-Hook lessons:
+## Housekeeping
 
-2. `l02_marimo_cell.png` — empty marimo cell with run and + buttons labelled — Lesson 2
-3. `l02_games_table.png` — the games DataFrame in marimo's table viewer — Lesson 2
-4. `l02_schema.png` — output of games.schema — Lesson 2
-5. `l02_table_viewer.png` — table viewer sort, search and column summaries labelled — Lesson 2
-6. `l03_describe.png` — output of games.describe() — Lesson 3
-7. `l03_value_counts.png` — value_counts for Metacritic score — Lesson 3
-
-Behind the Scenes lessons:
-
-8. `l05_indie_games.png` — the indie_games table in marimo, 6,243 rows — Lesson 5
-9. `l06_dates.png` — the dated table with Release date shown as dates — Lesson 6
-10. `l06_null_count.png` — null_count output showing 7317 in Metacritic score — Lesson 6
-11. `l06_repeated_names.png` — repeated names sorted, showing the two Alpha Protocol rows — Lesson 6
-
-Rising Insights lessons:
-
-12. `l07_review_score.png` — Name, Positive, Negative and Review score columns — Lesson 7
-13. `l07_scored.png` — scored with Review score, Release year, Genres and Group columns — Lesson 7
-14. `l08_per_year.png` — per_year table scrolled to show 2018 to 2025 — Lesson 8
-
-Chart images for Lessons 9–11 (`l09_*.png`, `l10_*.png`, `l11_*.png`) are already in `docs/assets/`, rendered from the real data. Replace them if the data is refreshed.
-
-Aha Moment and Resolution lessons:
-
-15. `l14_controls.png` — the Years slider and Measure dropdown above the explore chart in marimo — Lesson 14
-16. `l15_drag_cell.png` — a marimo cell with the drag handle (dots) on its left edge highlighted — Lesson 15
-
-The Lesson 14 chart images (`l14_*.png`), the Lesson 15 app view (`l15_app_view.png`) and the class server home page (`class_server_home.png`) are already in `docs/assets/`, made from the real data. The home page image uses made-up student folder names.
+- Delete `docs/examples/aha/14_aha_moment/story22.py`. It is no longer used: the explore chart now goes in the same cell as the controls and table (`story21.py`).
 
 ## Data
 
