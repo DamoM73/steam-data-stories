@@ -26,6 +26,7 @@
 | combining conditions | [Choosing Columns and Rows](../cleaning/05_select_filter.md#combining-conditions) |
 | CSV | [Exploring Our Data](../hook/02_exploring_data.md#load-the-data) |
 | currency (US dollars) | [Asking a Question Data Can Answer](../hook/03_asking_questions.md), [Summarising Groups](../insights/08_summarising_groups.md#mean-or-median) |
+| data story project | [Your Data Story Project](../project/data_story_project.md) |
 | data story arc | [What is a Data Story?](../hook/01_data_story.md#the-data-story-arc), [The Data Story Arc](story_arc.md) |
 | data story | [What is a Data Story?](../hook/01_data_story.md) |
 | data types | [Exploring Our Data](../hook/02_exploring_data.md#what-kind-of-data-is-in-each-column) |

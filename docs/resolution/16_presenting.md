@@ -100,3 +100,7 @@ Under the `## Presenting` heading in ***my_data_story.md***, finish your data st
 1. What was the most interesting thing you found in your data, and how did you find it?
 2. Which stage of the data story arc was hardest to get right, and what did you do about it?
 3. If you had another week, what other question would you ask of your data?
+
+## What's next
+
+We've now told a whole data story, from the Hook to the Resolution. Next, we'll do it again with a dataset we choose ourselves. The [Your Data Story Project](../project/data_story_project.md) page takes us through each step.

@@ -42,6 +42,9 @@ nav = [
     { "15. Publishing Our Data Story" = "resolution/15_publishing.md" },
     { "16. Presenting and Feedback" = "resolution/16_presenting.md" },
   ] },
+  { "Project" = [
+    { "Your Data Story Project" = "project/data_story_project.md" },
+  ] },
   { "Reference" = [
     { "The Data Story Arc" = "reference/story_arc.md" },
     { "Finding Data" = "reference/data_sources.md" },

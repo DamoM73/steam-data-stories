@@ -9,7 +9,7 @@
 !!! terms "Terminology"
     - **open data** – data that anyone can download, use and share for free, as long as we follow its licence.
 
-After the tutorials, we'll tell a new data story with data we find ourselves. Lots of organisations publish **open data**: data that anyone can download, use and share for free, as long as we follow its licence. This page lists good places to start, beginning close to home.
+After the tutorials, we'll tell a new data story with data we find ourselves, in [Your Data Story Project](../project/data_story_project.md). Lots of organisations publish **open data**: data that anyone can download, use and share for free, as long as we follow its licence. This page lists good places to start, beginning close to home.
 
 ## Choosing a dataset
 

@@ -47,7 +47,7 @@ Each lesson works through one example question:
 
 Indie games, like Hollow Knight and Stardew Valley, are made by small, independent teams. Big studios spend far more money on their games, so we might expect players to like them more. Do they? And do Indie games cost less? We'll find out together.
 
-At the end of each lesson there's a **Your data story** task. That's where you use what you've just learnt to work on your own question about the same Steam data, so by the end of the course you'll have your own data story.
+At the end of each lesson there's a **Your data story** task. That's where you use what you've just learnt to work on your own question about the same Steam data, so by the end of the tutorials you'll have practised every step on your own question. Then, in [Your Data Story Project](../project/data_story_project.md), you'll tell a data story with a dataset you choose yourself.
 
 ## The tools
 
