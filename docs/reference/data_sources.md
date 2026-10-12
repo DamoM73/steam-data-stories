@@ -50,6 +50,7 @@ Before we spend time on a dataset, check it against this list. Each check comes 
 | :-- | :-- | :-- |
 | [ABS Data Explorer](https://dataexplorer.abs.gov.au/){ target="_blank" rel="noopener" } | official statistics from the Australian Bureau of Statistics, such as population, jobs and prices. Choose the data, then export it as a CSV file | Which Australian states are growing fastest? |
 | [Bureau of Meteorology Climate Data Online](https://www.bom.gov.au/climate/data/){ target="_blank" rel="noopener" } | daily and monthly rainfall and temperatures from weather stations, including several in Brisbane, going back many years. Downloads come as CSV files | Are Brisbane's summers getting hotter? |
+| [ABS Cultural and creative activities](https://www.abs.gov.au/statistics/people/people-and-communities/cultural-and-creative-activities/2021-22){ target="_blank" rel="noopener" } | how many Australians take part in cultural activities, like singing or playing a musical instrument, by age group, including children aged 5 to 14. Download the tables at the bottom of the page | Are older children less likely to play a musical instrument than younger ones? |
 | [data.gov.au](https://data.gov.au/){ target="_blank" rel="noopener" } | the Australian Government's open data portal, which also lists many state and council datasets | |
 
 ## The world
@@ -57,6 +58,8 @@ Before we spend time on a dataset, check it against this list. Each check comes 
 | Source | What's there | A question we could ask |
 | :-- | :-- | :-- |
 | [Our World in Data](https://ourworldindata.org/){ target="_blank" rel="noopener" } | charts about health, energy, the environment and more for every country. Every chart has a **Download** button with the data as a CSV file | How does Australia's energy use compare with other countries? |
+| [Blood type distribution by country](https://en.wikipedia.org/wiki/Blood_type_distribution_by_country){ target="_blank" rel="noopener" } | the percentage of people with each blood type (A, B, AB and O, positive and negative) in over 100 countries. It's a Wikipedia table, so copy it into Google Sheets, then choose **File** → **Download** → **CSV** | Is O+ the most common blood type in every part of the world? |
+| [Malaysia blood donations](https://data.moh.gov.my/data-catalogue/blood_donations){ target="_blank" rel="noopener" } | the number of blood donations in Malaysia every day, for each blood type, as a CSV file | Do blood donations drop during school holidays or festivals? |
 | [Gapminder](https://www.gapminder.org/data/){ target="_blank" rel="noopener" } | country statistics going back hundreds of years, as CSV or Excel files. Data can be reused freely, as long as we attribute the original source and Gapminder | How has life expectancy in Australia changed compared with the rest of the world? |
 
 ## Sport
@@ -77,6 +80,7 @@ Before we spend time on a dataset, check it against this list. Each check comes 
 | Source | What's there | A question we could ask |
 | :-- | :-- | :-- |
 | [Rebrickable LEGO database](https://rebrickable.com/downloads/){ target="_blank" rel="noopener" } | every LEGO set, theme, part and colour, as CSV files. Each file is compressed (it ends in ***.csv.gz***), so extract it before we load it. ***sets.csv*** has the year and number of parts of every set | Are LEGO sets getting bigger, and which themes have the most parts? |
+| [StatCounter Global Stats](https://gs.statcounter.com/){ target="_blank" rel="noopener" } | the share of web traffic from each operating system, browser, device and screen size, plus how many website visits come from each social media site, for Australia or any country since 2009. Choose a chart, then **Download Data** | How quickly has Android caught up with iOS in Australia? |
 | [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/){ target="_blank" rel="noopener" } | every planet found outside our solar system, including how and when it was discovered. Open the **Planetary Systems** table, then choose **Download Table** and **CSV format** | Which way of finding planets has found the most since 2010? |
 | [FuelEconomy.gov](https://www.fueleconomy.gov/feg/download.shtml){ target="_blank" rel="noopener" } | fuel use, engine size and range for cars sold in the US since 1984, as one CSV file | How far can electric cars go on one charge, and has that improved? |
 
@@ -86,7 +90,7 @@ Before we spend time on a dataset, check it against this list. Each check comes 
 | :-- | :-- | :-- |
 | [What we watched on Netflix](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-07-29){ target="_blank" rel="noopener" } | ***movies.csv*** and ***shows.csv***: how many hours people spent watching every Netflix title from late 2023 to mid 2025, from Netflix's own engagement reports | Do new shows get watched more than older ones? |
 | [Billboard Hot 100 number ones](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-08-26){ target="_blank" rel="noopener" } | every song that reached number one on the US Billboard Hot 100, with how long it stayed there and details about the song | Do number one songs stay at the top for less time than they used to? |
-| [Spotify songs](https://github.com/rfordatascience/tidytuesday/tree/main/data/2020/2020-01-21){ target="_blank" rel="noopener" } | about 30,000 Spotify songs with their genre, popularity, danceability, energy and tempo | Which genre has the most danceable songs? |
+| [Spotify songs](https://github.com/rfordatascience/tidytuesday/tree/main/data/2020/2020-01-21){ target="_blank" rel="noopener" } | about 30,000 Spotify songs with their genre, popularity, danceability, energy, tempo and instrumentalness (how likely a song is to have no singing) | Are instrumental songs less popular than songs with singing? |
 | [Pixar films](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-03-11){ target="_blank" rel="noopener" } | every Pixar film, with ratings from critics and audiences | Have Pixar's films been reviewed better or worse over time? |
 | [goodbooks-10k](https://github.com/zygmuntz/goodbooks-10k){ target="_blank" rel="noopener" } | ***books.csv***: the 10,000 most-rated books on Goodreads, with their authors, year and average rating | Do older books get higher ratings than newer ones? |
 | [Dungeons & Dragons monsters](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-05-27){ target="_blank" rel="noopener" } | ***monsters.csv***: every monster in the free D&D rules (2024), with its type, size, challenge rating, armour class, hit points and ability scores | Which type of monster is toughest for its challenge rating? |
@@ -96,6 +100,13 @@ For each TidyTuesday dataset (the first five above), open the link, click the **
 
 !!! tip "Challenge: loading the IMDb data"
     The IMDb files are much harder to load than our Steam data. They're compressed (they end in ***.tsv.gz***), so extract them first. They're **tab-separated**, not comma-separated, and they use `\N` to mean "missing". Some have millions of rows, so start with ***title.ratings.tsv*** and ***title.basics.tsv***. We can load them with `pl.read_csv("data/title.ratings.tsv", separator="\t", null_values="\\N")`. If we get an error about quotes, add `quote_char=None` inside the brackets too.
+
+## Surveys of students like us
+
+[CensusAtSchool New Zealand](https://new.censusatschool.org.nz/random-sampler/){ target="_blank" rel="noopener" } asks school students to fill in a survey about themselves every two years: things like their eye colour, whether they're left- or right-handed, their height, how they get to school and their reaction time. No names are collected. Its **random sampler** gives us a random sample of up to 1,000 students' answers, chosen by school year, from New Zealand, the USA or the international database (which includes Australian students). We must agree to its conditions of use first: the data is only for teaching and learning. A question we could ask: are left-handed students faster on the reaction-time test?
+
+!!! tip "Data about bodies"
+    Data like eye colour, height and blood type is about people's bodies, so we use it carefully. Every source above shares it without names, or as totals for a whole country. Keep it that way: never try to work out who a row belongs to, and never collect this kind of data from our classmates without our teacher's approval.
 
 ## TidyTuesday
 
@@ -116,6 +127,9 @@ Lots of other datasets about video games, Pokémon, Formula 1, chess, football, 
 - [Spotify podcasts](https://www.kaggle.com/datasets?search=spotify+podcasts){ target="_blank" rel="noopener" }: daily podcast charts from Spotify
 - [Netflix](https://www.kaggle.com/datasets?search=netflix+titles){ target="_blank" rel="noopener" }, [Disney+](https://www.kaggle.com/datasets?search=disney+plus){ target="_blank" rel="noopener" } or [Prime Video](https://www.kaggle.com/datasets?search=amazon+prime+titles){ target="_blank" rel="noopener" }: every movie and show on each streaming service
 - [Spotify tracks](https://www.kaggle.com/datasets?search=spotify+tracks){ target="_blank" rel="noopener" }: songs with their genre, popularity and features
+- [Metacritic games](https://www.kaggle.com/datasets?search=metacritic+games){ target="_blank" rel="noopener" }: critic and player scores for thousands of games, with their platform and release date
+- [game consoles](https://www.kaggle.com/datasets?search=best+selling+game+consoles){ target="_blank" rel="noopener" }: the best-selling game consoles of all time, with their maker, release year and units sold
+- [social media](https://www.kaggle.com/datasets?search=social+media+users){ target="_blank" rel="noopener" }: how many people use each social media platform
 - [EA SPORTS FC](https://www.kaggle.com/datasets?search=ea+fc+player+ratings){ target="_blank" rel="noopener" } or [FIFA](https://www.kaggle.com/datasets?search=fifa+player+ratings){ target="_blank" rel="noopener" }: the ratings of every player in the game
 
 There are two things to know first:
