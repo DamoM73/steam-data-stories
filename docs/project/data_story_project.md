@@ -26,7 +26,7 @@ Our data story starts with a dataset we're curious about. Browse the sources on 
 4. Under a `## Our data source` heading, record where our data came from, as described in [Recording our source](../reference/data_sources.md#recording-our-source).
 
 !!! warning "Choose data about things, not people"
-    Choose data about things, places and events, such as weather, transport, sport results or animals. Data about individual people can hurt or identify them, even when it's published openly. See [Data, Privacy and Ethics](../hook/04_privacy_ethics.md).
+    Choose data about things, places and events, such as sport results, games, weather, transport or animals. Private data about individual people can hurt or identify them, even when it's published openly. See [Data, Privacy and Ethics](../hook/04_privacy_ethics.md).
 
 ## Step 2: Explore our data
 

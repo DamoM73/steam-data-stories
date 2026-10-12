@@ -4,12 +4,13 @@
     - how to choose a dataset for our own data story
     - where to find open data about Brisbane and South East Queensland
     - where to find data about Queensland, Australia and the world
+    - where to find data about sport, games and other things we're into
     - how to record where our data came from
 
 !!! terms "Terminology"
     - **open data** – data that anyone can download, use and share for free, as long as we follow its licence.
 
-After the tutorials, we'll tell a new data story with data we find ourselves, in [Your Data Story Project](../project/data_story_project.md). Lots of organisations publish **open data**: data that anyone can download, use and share for free, as long as we follow its licence. This page lists good places to start, beginning close to home.
+After the tutorials, we'll tell a new data story with data we find ourselves, in [Your Data Story Project](../project/data_story_project.md). Lots of organisations publish **open data**: data that anyone can download, use and share for free, as long as we follow its licence. This page lists good places to start, beginning close to home, then data about sport, games and other things we might be into. We can't use the Steam data for our project, because we've already told a story with it.
 
 ## Choosing a dataset
 
@@ -58,15 +59,46 @@ Before we spend time on a dataset, check it against this list. Each check comes 
 | [Our World in Data](https://ourworldindata.org/){ target="_blank" rel="noopener" } | charts about health, energy, the environment and more for every country. Every chart has a **Download** button with the data as a CSV file | How does Australia's energy use compare with other countries? |
 | [Gapminder](https://www.gapminder.org/data/){ target="_blank" rel="noopener" } | country statistics going back hundreds of years, as CSV or Excel files. Data can be reused freely, as long as we attribute the original source and Gapminder | How has life expectancy in Australia changed compared with the rest of the world? |
 
+## Sport
+
+| Source | What's there | A question we could ask |
+| :-- | :-- | :-- |
+| [Cricsheet](https://cricsheet.org/downloads/){ target="_blank" rel="noopener" } | ball-by-ball data for thousands of cricket matches, including Tests, ODIs, T20 internationals, the Big Bash League and the IPL. Choose a competition, then download it in **CSV** format | Which Big Bash team hits the most sixes, and has that changed over the seasons? |
+| [Basketball Reference](https://www.basketball-reference.com/){ target="_blank" rel="noopener" }, [FBref](https://fbref.com/){ target="_blank" rel="noopener" }, [Pro Football Reference](https://www.pro-football-reference.com/){ target="_blank" rel="noopener" } and [Hockey Reference](https://www.hockey-reference.com/){ target="_blank" rel="noopener" } | team and player statistics for the NBA, soccer leagues around the world (including the A-League), the NFL and the NHL. Above most tables, click **Export Data**, then **Get table as CSV**. Copy the text that appears into a new file in VS Code, and save it as a ***.csv*** file | Have NBA teams been shooting more three-pointers each season? |
+| [Tennis data by Jeff Sackmann](https://github.com/JeffSackmann/tennis_atp){ target="_blank" rel="noopener" } | every men's professional tennis match since 1968, one CSV file per year, including the surface each match was played on. There's a [women's version](https://github.com/JeffSackmann/tennis_wta){ target="_blank" rel="noopener" } too. Click a file, then the download button. Check the page's licence before we use it | Do players serve more aces on grass courts than on clay? |
+| [AFL Tables](https://afltables.com/afl/afl_index.html){ target="_blank" rel="noopener" } | AFL results and statistics going back to 1897. The tables are web pages, not CSV files, so look for an AFL dataset on Kaggle (below) instead, and use AFL Tables to check its numbers | Has home-ground advantage in the AFL changed over time? |
+
+!!! tip "Players are people too"
+    Sport data is about real people. A player's game statistics, like goals, runs or points, are public records of how they played, so they're fine to use. But leave out personal details, like a player's height, weight or date of birth, unless our question really needs them. Focus our story on teams, matches and seasons, and never use data to make fun of a player.
+
+## Games, hobbies and other interests
+
+| Source | What's there | A question we could ask |
+| :-- | :-- | :-- |
+| [Rebrickable LEGO database](https://rebrickable.com/downloads/){ target="_blank" rel="noopener" } | every LEGO set, theme, part and colour, as CSV files. Each file is compressed (it ends in ***.csv.gz***), so extract it before we load it. ***sets.csv*** has the year and number of parts of every set | Are LEGO sets getting bigger, and which themes have the most parts? |
+| [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/){ target="_blank" rel="noopener" } | every planet found outside our solar system, including how and when it was discovered. Open the **Planetary Systems** table, then choose **Download Table** and **CSV format** | Which way of finding planets has found the most since 2010? |
+| [FuelEconomy.gov](https://www.fueleconomy.gov/feg/download.shtml){ target="_blank" rel="noopener" } | fuel use, engine size and range for cars sold in the US since 1984, as one CSV file | How far can electric cars go on one charge, and has that improved? |
+
+Lots of the best datasets about video games, Pokémon, Formula 1, chess and football are on Kaggle. See below.
+
 ## Kaggle
 
-[Kaggle](https://www.kaggle.com/datasets){ target="_blank" rel="noopener" } has thousands of datasets shared by its users, about topics like games, music, sport and films. It's a great place to find a dataset about something we're interested in, but there are two things to know first:
+[Kaggle](https://www.kaggle.com/datasets){ target="_blank" rel="noopener" } has thousands of datasets shared by its users, about topics like games, music, sport and films. It's a great place to find a dataset about something we're interested in. Try searching for:
 
-- **It needs an account.** Students under 16 need a parent or guardian's permission to have one, so check with our teacher before signing up.
+- [Pokémon](https://www.kaggle.com/datasets?search=pokemon){ target="_blank" rel="noopener" }: the stats and types of every Pokémon
+- [video game sales](https://www.kaggle.com/datasets?search=video+game+sales){ target="_blank" rel="noopener" }: sales of games by platform, genre and year
+- [Formula 1](https://www.kaggle.com/datasets?search=formula+1){ target="_blank" rel="noopener" }: every race, driver and result since 1950
+- [AFL](https://www.kaggle.com/datasets?search=afl){ target="_blank" rel="noopener" }, [NRL](https://www.kaggle.com/datasets?search=nrl){ target="_blank" rel="noopener" } or [Big Bash](https://www.kaggle.com/datasets?search=big+bash){ target="_blank" rel="noopener" }: Australian sport results and statistics
+- [chess](https://www.kaggle.com/datasets?search=chess+games){ target="_blank" rel="noopener" }: thousands of online chess games and their results
+- [EA SPORTS FC](https://www.kaggle.com/datasets?search=ea+fc+player+ratings){ target="_blank" rel="noopener" } or [FIFA](https://www.kaggle.com/datasets?search=fifa+player+ratings){ target="_blank" rel="noopener" }: the ratings of every player in the game
+
+There are two things to know first:
+
+- **It needs us to sign in** before we can download a dataset. Choose **Sign in with Google** and use our school Google account.
 - **Anyone can upload a dataset.** Some are excellent, and some are copied, out of date or made up. Check the dataset's page for where the data came from, when it was collected and its licence. If it doesn't say, choose a different dataset.
 
-!!! warning "Avoid data about people"
-    Some open datasets describe individual people, or sensitive topics such as crime or health. Even when they're published openly, they can hurt or identify real people. For our data story, choose data about things, places and events, such as games, weather, transport or animals.
+!!! warning "Avoid private data about people"
+    Some open datasets describe individual people's private lives, or sensitive topics such as crime or health. Even when they're published openly, they can hurt or identify real people. For our data story, choose data about things, places and events, such as sport results, games, weather, transport or animals.
 
 ## Recording our source
 
