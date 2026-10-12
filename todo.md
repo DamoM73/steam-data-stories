@@ -2,7 +2,6 @@
 
 ## Decisions
 
-- Replace the placeholder logo (`docs/assets/logo.png`, `logo_header.png`, `favicon.ico`) if you'd like a designed one.
 - Where the three-week SQL introduction lives (this site or another) and which tool it uses.
 - Which computer hosts the class server (laptop or Raspberry Pi), and check with IT that it can run on the school network. See Reference → Hosting on a Class Server.
 - How students hand in `steam_story.py` and `data/clean_games.parquet` for the class server (Publishing Our Data Story says "our teacher will tell us how to hand them in"). Update that page and the Hosting page once decided.
