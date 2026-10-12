@@ -290,5 +290,19 @@
       "open data",
       "data that anyone can download, use and share for free, as long as we follow its licence."
     ]
+  ],
+  "reference/polars.md": [
+    [
+      "JSON",
+      "a text format for sharing data, which stores each record between `{ }` and each list between `[ ]`."
+    ],
+    [
+      "struct",
+      "a Polars column type where each value is a small record holding several named values."
+    ],
+    [
+      "list column",
+      "a Polars column where each value is a list of items, like the types of a Pokémon."
+    ]
   ]
 }

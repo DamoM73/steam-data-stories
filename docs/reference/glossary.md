@@ -2,7 +2,7 @@
 
 This glossary lists every technical term introduced on this site, in alphabetical order. Each term links to the page where it is first explained, and each page lists its new terms in a Terminology callout at the top.
 
-[A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [H](#h) · [I](#i) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [U](#u)
+[A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [H](#h) · [I](#i) · [J](#j) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [U](#u)
 
 ## A
 
@@ -54,10 +54,15 @@ This glossary lists every technical term introduced on this site, in alphabetica
 - **interquartile range** – the distance between the first quartile (Q1) and the third quartile (Q3), also called the IQR. ([12. Outliers and Predictions](../insights/12_outliers_predictions.md))
 - **investigable question** – a question we can answer by collecting and analysing data, because it's specific, measurable and open. ([3. Asking a Question Data Can Answer](../hook/03_asking_questions.md))
 
+## J
+
+- **JSON** – a text format for sharing data, which stores each record between `{ }` and each list between `[ ]`. ([Polars](../reference/polars.md))
+
 ## L
 
 - **licence** – a set of rules from a work's owner that says how other people can use it. ([4. Data, Privacy and Ethics](../hook/04_privacy_ethics.md))
 - **limitation** – something our data or our decisions can't tell us, which we should mention when we tell our story. ([3. Asking a Question Data Can Answer](../hook/03_asking_questions.md))
+- **list column** – a Polars column where each value is a list of items, like the types of a Pokémon. ([Polars](../reference/polars.md))
 - **literal** – a value written straight into our code, such as `pl.lit("Indie")`, that is the same for every row. ([7. Making New Columns](../insights/07_new_columns.md))
 
 ## M
@@ -111,6 +116,7 @@ This glossary lists every technical term introduced on this site, in alphabetica
 - **skewed** – describes data where a few values are much bigger or smaller than the rest, which pulls the mean away from the median. ([8. Summarising Groups](../insights/08_summarising_groups.md))
 - **standard deviation** – a number that shows how spread out the values are from the mean. ([3. Asking a Question Data Can Answer](../hook/03_asking_questions.md))
 - **story angle** – the part of a topic we choose to focus on when we tell a data story. ([1. What is a Data Story?](../hook/01_data_story.md))
+- **struct** – a Polars column type where each value is a small record holding several named values. ([Polars](../reference/polars.md))
 - **summary statistics** – numbers that describe a whole column at once, such as its mean, median, smallest and largest values. ([3. Asking a Question Data Can Answer](../hook/03_asking_questions.md))
 
 ## T

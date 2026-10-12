@@ -53,6 +53,7 @@
 | interquartile range (IQR) | [Outliers and Predictions](../insights/12_outliers_predictions.md#finding-outliers) |
 | investigable question | [Asking a Question Data Can Answer](../hook/03_asking_questions.md#investigable-questions) |
 | is_between | [Trends and Relationships](../insights/11_trends_relationships.md#summarising-by-two-columns) |
+| JSON files | [Polars](polars.md#loading-json-files) |
 | licences | [Data, Privacy and Ethics](../hook/04_privacy_ethics.md#licences-and-attribution) |
 | limitations | [Outliers and Predictions](../insights/12_outliers_predictions.md#checking-our-prediction), [Publishing Our Data Story](../resolution/15_publishing.md#being-honest-about-limitations) |
 | line chart | [Trends and Relationships](../insights/11_trends_relationships.md#trends-over-time) |

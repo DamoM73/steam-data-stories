@@ -16,7 +16,7 @@ After the tutorials, we'll tell a new data story with data we find ourselves, in
 
 Before we spend time on a dataset, check it against this list. Each check comes from something we did in the tutorials.
 
-1. **We can download it as a CSV file**, without writing code or using an API. Then we can load it with `pl.read_csv`, just like in [Exploring Our Data](../hook/02_exploring_data.md#load-the-data).
+1. **We can download it as a CSV or JSON file**, without writing code or using an API. Then we can load a CSV file with `pl.read_csv`, just like in [Exploring Our Data](../hook/02_exploring_data.md#load-the-data), or a JSON file as shown in [Loading JSON files](polars.md#loading-json-files).
 2. **It has enough rows.** A few hundred rows or more gives us groups big enough to compare. Remember the warning about small groups in [Summarising Groups](../insights/08_summarising_groups.md#games-per-year).
 3. **It has columns we can compare**, such as a group column (like suburb, sport or genre) and a number column (like visitors, rainfall or price). A date column lets us look for trends.
 4. **We know what every column means.** Look for a page that describes the columns, often called a data dictionary.

@@ -3,10 +3,16 @@
 !!! learn "On this page we will learn"
     - the Polars methods and expressions used in this course
     - where each one is explained
+    - how to load JSON files, so we can use more datasets in our project
+
+!!! terms "Terminology"
+    - **JSON** – a text format for sharing data, which stores each record between `{ }` and each list between `[ ]`.
+    - **struct** – a Polars column type where each value is a small record holding several named values.
+    - **list column** – a Polars column where each value is a list of items, like the types of a Pokémon.
 
 **Polars** is a Python library for working with tables of data. We import it with `import polars as pl`. This course uses **Polars 2.0**.
 
-The examples on this page use `games`, a DataFrame of Steam games. Each row links to the lesson where it's explained in full.
+Most examples on this page use `games`, a DataFrame of Steam games, and each row links to the lesson where it's explained in full. The JSON examples use small files about D&D monsters and Pokémon.
 
 ## Key ideas
 
@@ -25,7 +31,74 @@ The examples on this page use `games`, a DataFrame of Steam games. Each row link
 | `pl.read_csv("data/steam_games.csv")` | loads a CSV file | [Exploring Our Data](../hook/02_exploring_data.md#load-the-data) |
 | `games.write_parquet("data/clean_games.parquet")` | saves a Parquet file | [Fixing Our Data](../cleaning/06_fixing_data.md#saving-our-clean-data) |
 | `pl.read_parquet("data/clean_games.parquet")` | loads a Parquet file | [Making New Columns](../insights/07_new_columns.md#a-new-notebook) |
+| `pl.read_json("data/monsters.json")` | loads a JSON file that holds a list of records | [Loading JSON files](#loading-json-files) |
+| `pl.read_ndjson("data/monsters.ndjson")` | loads a JSON file that has one record on each line | [Loading JSON files](#loading-json-files) |
 | `pl.read_parquet(mo.notebook_dir() / "data" / "clean_games.parquet")` | loads a file from the ***data*** folder next to our notebook, so it also works on the class server | [Publishing Our Data Story](../resolution/15_publishing.md#getting-ready-for-the-class-server) |
+
+## Loading JSON files
+
+Lots of datasets, especially ones that come from websites and games, are shared as **JSON** files instead of CSV files. JSON stores data as text, using `{ }` around each record and `[ ]` around lists. Polars can load JSON too, so we're not stuck if the dataset we want for our project isn't a CSV.
+
+### Look at the file first
+
+Before we load a JSON file, open it in VS Code and look at its first character. That tells us which shape it is, and which code to use:
+
+| The file looks like | Shape | Code |
+| :-- | :-- | :-- |
+| `[{"name": "Goblin", …}, {"name": "Owlbear", …}]` | a list of records, one for each row | `pl.read_json("data/monsters.json")` |
+| one `{ … }` record on each line, often in a file ending in ***.ndjson*** or ***.jsonl*** | one record per line | `pl.read_ndjson("data/monsters.ndjson")` |
+| `{"count": 2, "results": [{ … }, { … }]}` | the records are inside another record | `pl.read_json(…)`, then `explode` and `unnest`, as shown below |
+
+!!! tip "Big JSON files"
+    A large JSON file can be too big to open comfortably in VS Code. If it's slow, look at it in a web browser instead: drag the file into a Chrome or Firefox tab, and tick **Pretty-print** if it's offered, to see its structure laid out neatly.
+
+### A list of records
+
+This is the most common shape, and it loads just like a CSV file. Each record becomes a row, and each name in the record becomes a column.
+
+```python title="clean_monsters.py"
+monsters = pl.read_json("data/monsters.json")
+monsters
+```
+
+### Records inside another record
+
+Data from a website often wraps the records inside another record, with the list under a name like `results` or `data`. Polars loads this as **one** row, with all the records squashed into one column. To turn it into a proper table, we keep only that column, give each record its own row with `explode`, then spread its values into columns with `unnest`.
+
+```python title="clean_pokemon.py"
+pokemon = (
+    pl.read_json("data/pokemon.json")
+    .select("results")
+    .explode("results")
+    .unnest("results")
+)
+pokemon
+```
+
+### Values inside values
+
+A JSON record can hold a smaller record, or a list, as one of its values. Polars keeps these in special column types:
+
+- a smaller record, like `"speed": {"walk": 30, "fly": 80}`, becomes a **struct** column, which shows values like `{30,80}`
+- a list, like `"types": ["fire", "flying"]`, becomes a **list** column, which shows values like `["fire", "flying"]`
+
+Things like `group_by` and charts work best with ordinary columns, so we usually turn these into ordinary columns first:
+
+| Code | What it does |
+| :-- | :-- |
+| `monsters.unnest("speed")` | spreads every value in the `speed` struct into its own column, called `walk` and `fly` |
+| `pl.col("speed").struct.field("walk").alias("Walk speed")` | takes one value out of a struct, as a new column |
+| `pl.col("types").list.len().alias("Number of types")` | counts the items in each list |
+| `pl.col("types").list.join(", ")` | joins the items in each list into one piece of text, like `fire, flying`, so we can use `str.contains` |
+| `pokemon.explode("types")` | gives every item in the list its own row, copying the rest of the row. Charizard becomes two rows: one `fire`, one `flying` |
+
+The last three go inside `with_columns`, just like the expressions in [Making New Columns](../insights/07_new_columns.md).
+
+!!! warning "Watch out for repeated names"
+    If a struct has a value with the same name as a column we already have, like a `name` inside a `stats` struct, `unnest` stops with a `DuplicateError`. Use `struct.field` to take out only the values we need, and give each one a new name with `alias`.
+
+!!! warning "Explode changes what a row means"
+    After `explode`, one row is no longer one Pokémon: Charizard is counted twice. That's what we want when we're counting how many Pokémon have each type, but not when we're counting Pokémon. Write down what one row represents before and after, just like we did for the Steam data.
 
 ## Looking at data
 

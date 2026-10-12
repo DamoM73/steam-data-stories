@@ -21,7 +21,7 @@ The steps are the same ones we followed with the Steam data, in the same order a
 Our data story starts with a dataset we're curious about. Browse the sources on the [Finding Data](../reference/data_sources.md) page, starting close to home, until a dataset makes us want to know more.
 
 1. Check the dataset against the list in [Choosing a dataset](../reference/data_sources.md#choosing-a-dataset). If it fails any check, choose a different dataset.
-2. Make a new folder for our project, with a ***data*** folder inside it, and save the CSV file in the ***data*** folder.
+2. Make a new folder for our project, with a ***data*** folder inside it, and save our data file in the ***data*** folder.
 3. Create a new ***my_data_story.md*** in the project folder. This is our record for the whole project, just like the one we kept for the Steam data.
 4. Under a `## Our data source` heading, record where our data came from, as described in [Recording our source](../reference/data_sources.md#recording-our-source).
 
@@ -34,7 +34,7 @@ Our data story starts with a dataset we're curious about. Browse the sources on 
 
 Before we ask a question, we need to know what's in our data. Make a new cleaning notebook in our project folder, just like ***clean_steam.py***, and name it after our data, for example ***clean_dams.py***.
 
-1. Load the CSV file and look at its shape, its schema and the table viewer. See [Exploring Our Data](../hook/02_exploring_data.md).
+1. Load our data file and look at its shape, its schema and the table viewer. See [Exploring Our Data](../hook/02_exploring_data.md). If our data is a JSON file, see [Loading JSON files](../reference/polars.md#loading-json-files).
 2. Work out what one row represents, just like we did in [What one row represents](../hook/01_data_story.md#what-one-row-represents).
 3. Find out what every column means. Look for the data dictionary on the page we downloaded the data from.
 4. Under a `## Exploring the data` heading in ***my_data_story.md***, record what one row represents, what each column means, and anything that looks strange.
