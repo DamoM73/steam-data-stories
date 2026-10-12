@@ -4,13 +4,13 @@
     - how to choose a dataset for our own data story
     - where to find open data about Brisbane and South East Queensland
     - where to find data about Queensland, Australia and the world
-    - where to find data about sport, games and other things we're into
+    - where to find data about sport, games, movies, music, books and other things we're into
     - how to record where our data came from
 
 !!! terms "Terminology"
     - **open data** – data that anyone can download, use and share for free, as long as we follow its licence.
 
-After the tutorials, we'll tell a new data story with data we find ourselves, in [Your Data Story Project](../project/data_story_project.md). Lots of organisations publish **open data**: data that anyone can download, use and share for free, as long as we follow its licence. This page lists good places to start, beginning close to home, then data about sport, games and other things we might be into. We can't use the Steam data for our project, because we've already told a story with it.
+After the tutorials, we'll tell a new data story with data we find ourselves, in [Your Data Story Project](../project/data_story_project.md). Lots of organisations publish **open data**: data that anyone can download, use and share for free, as long as we follow its licence. This page lists good places to start, beginning close to home, then data about sport, games, movies, music, books and other things we might be into. We can't use the Steam data for our project, because we've already told a story with it.
 
 ## Choosing a dataset
 
@@ -66,6 +66,7 @@ Before we spend time on a dataset, check it against this list. Each check comes 
 | [Cricsheet](https://cricsheet.org/downloads/){ target="_blank" rel="noopener" } | ball-by-ball data for thousands of cricket matches, including Tests, ODIs, T20 internationals, the Big Bash League and the IPL. Choose a competition, then download it in **CSV** format | Which Big Bash team hits the most sixes, and has that changed over the seasons? |
 | [Basketball Reference](https://www.basketball-reference.com/){ target="_blank" rel="noopener" }, [FBref](https://fbref.com/){ target="_blank" rel="noopener" }, [Pro Football Reference](https://www.pro-football-reference.com/){ target="_blank" rel="noopener" } and [Hockey Reference](https://www.hockey-reference.com/){ target="_blank" rel="noopener" } | team and player statistics for the NBA, soccer leagues around the world (including the A-League), the NFL and the NHL. Above most tables, click **Export Data**, then **Get table as CSV**. Copy the text that appears into a new file in VS Code, and save it as a ***.csv*** file | Have NBA teams been shooting more three-pointers each season? |
 | [Tennis data by Jeff Sackmann](https://github.com/JeffSackmann/tennis_atp){ target="_blank" rel="noopener" } | every men's professional tennis match since 1968, one CSV file per year, including the surface each match was played on. There's a [women's version](https://github.com/JeffSackmann/tennis_wta){ target="_blank" rel="noopener" } too. Click a file, then the download button. Check the page's licence before we use it | Do players serve more aces on grass courts than on clay? |
+| [Useless NRL Stats](https://github.com/uselessnrlstats/uselessnrlstats){ target="_blank" rel="noopener" } | every NSWRL, ARL and NRL match since 1908 as CSV files, including scores, crowds, ladders and each player's tries and goals. There's NRLW and State of Origin data too. Open the ***cleaned_data*** folder, click a file, then the download button. The data comes from the Rugby League Project, so say that in our attribution | Are NRL games higher-scoring than they were 20 years ago? |
 | [AFL Tables](https://afltables.com/afl/afl_index.html){ target="_blank" rel="noopener" } | AFL results and statistics going back to 1897. The tables are web pages, not CSV files, so look for an AFL dataset on Kaggle (below) instead, and use AFL Tables to check its numbers | Has home-ground advantage in the AFL changed over time? |
 
 !!! tip "Players are people too"
@@ -79,7 +80,28 @@ Before we spend time on a dataset, check it against this list. Each check comes 
 | [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/){ target="_blank" rel="noopener" } | every planet found outside our solar system, including how and when it was discovered. Open the **Planetary Systems** table, then choose **Download Table** and **CSV format** | Which way of finding planets has found the most since 2010? |
 | [FuelEconomy.gov](https://www.fueleconomy.gov/feg/download.shtml){ target="_blank" rel="noopener" } | fuel use, engine size and range for cars sold in the US since 1984, as one CSV file | How far can electric cars go on one charge, and has that improved? |
 
-Lots of the best datasets about video games, Pokémon, Formula 1, chess and football are on Kaggle. See below.
+## Movies, TV, music, books and games
+
+| Source | What's there | A question we could ask |
+| :-- | :-- | :-- |
+| [What we watched on Netflix](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-07-29){ target="_blank" rel="noopener" } | ***movies.csv*** and ***shows.csv***: how many hours people spent watching every Netflix title from late 2023 to mid 2025, from Netflix's own engagement reports | Do new shows get watched more than older ones? |
+| [Billboard Hot 100 number ones](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-08-26){ target="_blank" rel="noopener" } | every song that reached number one on the US Billboard Hot 100, with how long it stayed there and details about the song | Do number one songs stay at the top for less time than they used to? |
+| [Spotify songs](https://github.com/rfordatascience/tidytuesday/tree/main/data/2020/2020-01-21){ target="_blank" rel="noopener" } | about 30,000 Spotify songs with their genre, popularity, danceability, energy and tempo | Which genre has the most danceable songs? |
+| [Pixar films](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-03-11){ target="_blank" rel="noopener" } | every Pixar film, with ratings from critics and audiences | Have Pixar's films been reviewed better or worse over time? |
+| [goodbooks-10k](https://github.com/zygmuntz/goodbooks-10k){ target="_blank" rel="noopener" } | ***books.csv***: the 10,000 most-rated books on Goodreads, with their authors, year and average rating | Do older books get higher ratings than newer ones? |
+| [Dungeons & Dragons monsters](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-05-27){ target="_blank" rel="noopener" } | ***monsters.csv***: every monster in the free D&D rules (2024), with its type, size, challenge rating, armour class, hit points and ability scores | Which type of monster is toughest for its challenge rating? |
+| [IMDb datasets](https://data.imdb.com/non-commercial-datasets){ target="_blank" rel="noopener" } | ratings, votes, genres, years and running times for millions of movies and TV shows. Free for personal and non-commercial use | Have movies been getting longer? |
+
+For each TidyTuesday dataset (the first five above), open the link, click the ***.csv*** file, then the download button.
+
+!!! tip "Challenge: loading the IMDb data"
+    The IMDb files are much harder to load than our Steam data. They're compressed (they end in ***.tsv.gz***), so extract them first. They're **tab-separated**, not comma-separated, and they use `\N` to mean "missing". Some have millions of rows, so start with ***title.ratings.tsv*** and ***title.basics.tsv***. We can load them with `pl.read_csv("data/title.ratings.tsv", separator="\t", null_values="\\N")`. If we get an error about quotes, add `quote_char=None` inside the brackets too.
+
+## TidyTuesday
+
+[TidyTuesday](https://github.com/rfordatascience/tidytuesday){ target="_blank" rel="noopener" } is a weekly data project that has shared a new dataset every week since 2018, over 400 so far. Every dataset is a clean CSV file on GitHub, so we don't need an account. Each week's page describes every column and says where the data came from. Browse the tables of datasets by year to find one that interests us. In 2025 alone there were datasets about Pokémon, chess player ratings, EuroLeague basketball and Australian frogs.
+
+Lots of other datasets about video games, Pokémon, Formula 1, chess, football, streamers and podcasts are on Kaggle. See below.
 
 ## Kaggle
 
@@ -90,6 +112,10 @@ Lots of the best datasets about video games, Pokémon, Formula 1, chess and foot
 - [Formula 1](https://www.kaggle.com/datasets?search=formula+1){ target="_blank" rel="noopener" }: every race, driver and result since 1950
 - [AFL](https://www.kaggle.com/datasets?search=afl){ target="_blank" rel="noopener" }, [NRL](https://www.kaggle.com/datasets?search=nrl){ target="_blank" rel="noopener" } or [Big Bash](https://www.kaggle.com/datasets?search=big+bash){ target="_blank" rel="noopener" }: Australian sport results and statistics
 - [chess](https://www.kaggle.com/datasets?search=chess+games){ target="_blank" rel="noopener" }: thousands of online chess games and their results
+- [Twitch streamers](https://www.kaggle.com/datasets/aayushmishra1512/twitchdata){ target="_blank" rel="noopener" }: the top 1,000 Twitch streamers, with their watch time, followers, viewers and language
+- [Spotify podcasts](https://www.kaggle.com/datasets?search=spotify+podcasts){ target="_blank" rel="noopener" }: daily podcast charts from Spotify
+- [Netflix](https://www.kaggle.com/datasets?search=netflix+titles){ target="_blank" rel="noopener" }, [Disney+](https://www.kaggle.com/datasets?search=disney+plus){ target="_blank" rel="noopener" } or [Prime Video](https://www.kaggle.com/datasets?search=amazon+prime+titles){ target="_blank" rel="noopener" }: every movie and show on each streaming service
+- [Spotify tracks](https://www.kaggle.com/datasets?search=spotify+tracks){ target="_blank" rel="noopener" }: songs with their genre, popularity and features
 - [EA SPORTS FC](https://www.kaggle.com/datasets?search=ea+fc+player+ratings){ target="_blank" rel="noopener" } or [FIFA](https://www.kaggle.com/datasets?search=fifa+player+ratings){ target="_blank" rel="noopener" }: the ratings of every player in the game
 
 There are two things to know first:
