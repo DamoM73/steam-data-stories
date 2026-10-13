@@ -31,7 +31,7 @@ Type these in the VS Code terminal, with `(.venv)` at the start of the prompt.
 
 ## The rules
 
-- **The output appears above the cell.** marimo shows the value of the last line of a cell. See [Exploring Our Data](../hook/02_exploring_data.md#notebooks-and-cells).
+- **The output appears below the cell.** marimo shows the value of the last line of a cell. See [Exploring Our Data](../hook/02_exploring_data.md#notebooks-and-cells).
 - **Each variable can only be created in one cell.** Creating it in a second cell gives a `MultipleDefinitionError`. To change a variable, make a new one with a new name, like `dated = selected.with_columns(…)`. See [Exploring Our Data](../hook/02_exploring_data.md#one-variable-one-cell).
 - **Cells are reactive.** When a cell changes, every cell that uses its variables runs again too. See [Exploring Our Data](../hook/02_exploring_data.md#reactive-cells).
 - **Cell order doesn't matter.** marimo works out the order to run cells from the variables they use, so we can put cells in any order. Drag the dots on a cell's left edge to move it. See [Publishing Our Data Story](../resolution/15_publishing.md#writing-with-momd).
