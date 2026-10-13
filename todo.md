@@ -11,9 +11,10 @@
 
 Each spot is marked in the page source with an HTML comment starting `<!-- SCREENSHOT:` (search the docs folder for `SCREENSHOT`). Save each image in `docs/assets/` with the file name given, then replace the comment with `![description](../assets/<file>)`.
 
-1. `l02_table_viewer.png` — the games table viewer with the sort (column heading), search box and column summaries labelled — Exploring Our Data
-2. `l14_controls.png` — the Years slider and Measure dropdown above the explore chart and explore table, all in one cell's output — The Aha Moment
-3. `l15_drag_cell.png` — a marimo cell with the drag handle (dots) on its left edge highlighted — Publishing Our Data Story
+1. `102_schema.png` — the schema cell with the `for` loop and its printed output, one column per line (AppID Int64 … Support email String) — Exploring Our Data
+2. `l02_table_viewer.png` — the games table viewer with the sort (column heading), search box and column summaries labelled — Exploring Our Data
+3. `l14_controls.png` — the Years slider and Measure dropdown above the explore chart and explore table, all in one cell's output — The Aha Moment
+4. `l15_drag_cell.png` — a marimo cell with the drag handle (dots) on its left edge highlighted — Publishing Our Data Story
 
 The chart images (`l09_*.png` to `l14_*.png`), the app view (`l15_app_view.png`) and the class server home page (`class_server_home.png`) are rendered from the real data. Replace them if the data is refreshed. The home page image uses made-up student folder names.
 

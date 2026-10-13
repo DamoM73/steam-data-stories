@@ -41,7 +41,7 @@ Here's how we work with cells in marimo:
 - **run a cell** by clicking its run button (▶) or pressing ++ctrl+enter++ (++cmd+enter++ on a Mac)
 - **run a cell and start a new one below it** by pressing ++shift+enter++
 - **add a new cell** by clicking the **+** button that appears above or below a cell
-- the **output** of a cell appears **above** its code
+- the **output** of a cell appears **below** its code
 - marimo **saves** our notebook automatically
 
 ![A marimo cell with labels pointing to the Add cell before and Add cell after buttons on its left, and the Run button on its right](../assets/102_marimo_cell.png)
@@ -67,7 +67,7 @@ In the empty cell, type the code below and run it.
 ??? note "Code explanation"
     - **line 1** → imports the Polars library and gives it the short name `pl`, so we can type `pl` instead of `polars` every time we use it.
 
-Nothing appears above the cell, and that's what we want. Importing a library doesn't produce any output; it just makes the library ready to use. If the cell shows a red `ModuleNotFoundError`, Polars isn't installed in our virtual environment, so go back to [Setting Up](../start/setup.md#install-the-libraries).
+Nothing appears below the cell, and that's what we want. Importing a library doesn't produce any output; it just makes the library ready to use. If the cell shows a red `ModuleNotFoundError`, Polars isn't installed in our virtual environment, so go back to [Setting Up](../start/setup.md#install-the-libraries).
 
 ## Load the data
 
@@ -88,7 +88,7 @@ Add a new cell, type the code below and run it.
     - **line 1** → reads every row of ***steam_games.csv*** from our ***data*** folder into a Polars DataFrame and stores it in a variable called `games`.
     - **line 2** → shows `games` as the cell's output, because marimo displays the value of the last line of a cell.
 
-Above the cell, marimo shows the DataFrame as an interactive table.
+Below the cell, marimo shows the DataFrame as an interactive table.
 
 ![marimo's table viewer showing the games DataFrame, with columns AppID, Name, Release date, Price and more, and a summary chart at the top of each column](../assets/102_games_table.png)
 
@@ -135,9 +135,30 @@ Add a new cell, type the code below and run it.
 ??? note "Code explanation"
     - **line 1** → shows the **schema** of `games`: the name and data type of every column.
 
-![The output of games.schema, listing each column name with its data type, such as Int64, String and Float64](../assets/102_scehma.png)
+![The output of games.schema on one long line, cut off at the right edge after the first few columns and their data types](../assets/102_scehma.png)
 
-The schema lists all 13 columns. We'll meet three data types again and again:
+The schema is all on one line, so it runs off the right edge of the cell. We can scroll across to read it, but it's hard to follow. It would be much easier to read with each column on its own line.
+
+The schema works like a dictionary: each column name is a key, and its data type is the value. Just like a dictionary, `items()` gives us each key and value as a pair. So we can loop through the pairs with a `for` loop and `print` each column's name and data type on its own line.
+
+Change the cell to match the code below and run it.
+
+```python linenums="1" title="clean_steam.py — change existing cell"
+--8<-- "examples/hook/02_exploring_data/cell04b.py"
+```
+
+!!! primm "PRIMM"
+    1. **Predict** what you think will happen when we run the cell. Be specific.
+    2. **Run** the cell.
+    3. Time to **investigate** the code. What does each line do?
+
+??? note "Code explanation"
+    - **line 1** → loops through every column in the schema of `games`, using `items()` to get each column's name and data type, and stores them in `name` and `dtype`.
+    - **line 2** → prints the column's name and its data type on one line.
+
+<!-- SCREENSHOT: assets/102_schema.png — the cell with the for loop and its printed output, one column per line from AppID Int64 to Support email String -->
+
+Below the cell, marimo shows each column on its own line, from `AppID Int64` to `Support email String`. The schema lists all 13 columns. We'll meet three data types again and again:
 
 | Data type | What it holds | Example column |
 | :-- | :-- | :-- |
