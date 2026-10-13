@@ -156,7 +156,7 @@ Change the cell to match the code below and run it.
     - **line 1** → loops through every column in the schema of `games`, using `items()` to get each column's name and data type, and stores them in `name` and `dtype`.
     - **line 2** → prints the column's name and its data type on one line.
 
-<!-- SCREENSHOT: assets/102_schema.png — the cell with the for loop and its printed output, one column per line from AppID Int64 to Support email String -->
+![The for loop cell and its output below, with one column per line, from AppID Int64 to Support email String](../assets/102_schema.png)
 
 Below the cell, marimo shows each column on its own line, from `AppID Int64` to `Support email String`. The schema lists all 13 columns. We'll meet three data types again and again:
 
@@ -245,7 +245,7 @@ Below the cell, marimo shows all 10,250 games in the table viewer. The table isn
 - **search** for a value, using the search box above the table
 - **see a summary** of a column, such as its smallest and largest values, at the top of each column
 
-<!-- SCREENSHOT: assets/l02_table_viewer.png — the table viewer with the sort, search and column summary features labelled -->
+![marimo's table viewer under the games cell, with a search box above the table, a summary chart under each column heading, and the page buttons and row count (10,250 rows, 13 columns) at the bottom](../assets/102_table_viewer.png)
 
 !!! primm "PRIMM"
     Time to **modify** how we look at the data, using the table viewer below our new `games` cell:
