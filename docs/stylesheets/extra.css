@@ -227,3 +227,8 @@
   display: table;
   width: 100%;
 }
+
+/* Inline code is bold */
+.md-typeset :not(pre) > code {
+  font-weight: 700;
+}

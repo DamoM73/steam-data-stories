@@ -39,7 +39,7 @@ If Python and VS Code are already on our computer, skip to [Create the project f
 ## Create the project folder
 
 1. Create a new folder called ***steam_data_stories*** somewhere easy to find, such as our ***Documents*** folder. Our data and both of our notebooks will live in this folder.
-2. In VS Code, choose **File** → **Open Folder…** and open the ***steam_data_stories*** folder. If VS Code asks whether we trust the authors of the files, choose **Yes**. The Explorer panel on the left now shows **STEAM_DATA_STORIES** with no files.
+2. In VS Code, choose **File** → **Open Folder…** and open the ***steam_data_stories*** folder. If VS Code asks whether we trust the authors of the files, choose **Yes**. The Explorer panel on the left now shows ***steam_data_stories*** with no files.
 
 ## Create a virtual environment
 
@@ -87,7 +87,7 @@ We don't need to change the computer's settings. Instead, we'll tell VS Code to 
 
 Our notebooks will look for the data in a folder called ***data*** inside our project.
 
-1. In VS Code's Explorer panel, hover over **STEAM_DATA_STORIES**, click the **New Folder** icon and name the folder `data`.
+1. In VS Code's Explorer panel, hover over ***steam_data_stories***, click the **New Folder** icon and name the folder `data`.
 2. Download both data files: [steam_games.csv](../downloads/steam_games.csv){ download="steam_games.csv" } and [README.txt](../downloads/README.txt){ download="README.txt" }. ***steam_games.csv*** is our classroom copy of the Steam data, and ***README.txt*** explains where the data came from and includes its licence.
 3. Open our ***Downloads*** folder in File Explorer (Finder on a Mac), then drag both files onto the ***data*** folder in VS Code's Explorer panel. If VS Code asks whether to copy or move them, choose **Copy**.
 
