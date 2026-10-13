@@ -229,7 +229,16 @@ marimo can't tell which value `sample_size` should have, so it won't run the new
 
 ## Exploring with the table viewer
 
-The table marimo shows for `games` isn't just a picture: it's a tool for exploring. We can:
+The table marimo showed when we loaded `games` is now a long way up our notebook, and `head` only shows a few rows. To explore the whole dataset, we want the full table right here. A cell's output is the value of its last line, so a cell that holds just the name `games` shows the whole DataFrame. This doesn't create a new variable, so marimo is happy for it to be in another cell. Add a new cell, type the code below and run it.
+
+```python linenums="1" title="clean_steam.py — new cell"
+--8<-- "examples/hook/02_exploring_data/cell06b.py"
+```
+
+??? note "Code explanation"
+    - **line 1** → shows `games` as the cell's output, in marimo's table viewer.
+
+Below the cell, marimo shows all 10,250 games in the table viewer. The table isn't just a picture: it's a tool for exploring. We can:
 
 - **scroll** across to see all 13 columns, and use the page buttons at the bottom to move through the rows
 - **sort** by a column, by clicking the column's heading
@@ -239,7 +248,7 @@ The table marimo shows for `games` isn't just a picture: it's a tool for explori
 <!-- SCREENSHOT: assets/l02_table_viewer.png — the table viewer with the sort, search and column summary features labelled -->
 
 !!! primm "PRIMM"
-    Time to **modify** how we look at the data, using the table viewer on the `games` cell:
+    Time to **modify** how we look at the data, using the table viewer below our new `games` cell:
 
     1. Sort the games by `Price` from highest to lowest. What are the most expensive games? Then sort from lowest to highest. What do the games that cost 0 have in common?
     2. Search for `Hollow Knight`. What do its `Positive` and `Negative` columns say? How would we work out what share of its reviews are positive?
