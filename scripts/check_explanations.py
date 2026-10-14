@@ -6,6 +6,11 @@ that is followed by a ??? note "Code explanation" box, report:
 - BAD: a reference to a blank line, a comment or a line past the end
 - MISSING: a code line with no explanation
 
+For an SQL snippet (a .sql file), the box explains keyword by keyword,
+with bullets like - `WHERE price > 50` → ... Every SQL keyword in the
+snippet must appear in a bullet's backticked lead (MISSING otherwise),
+and a lead can't name a keyword the snippet doesn't use (BAD).
+
 Line numbers are the ones shown on the page, so a fence with
 linenums="81" starts counting at 81. When the fence has hl_lines,
 only the highlighted code lines need an explanation, because the
@@ -25,6 +30,27 @@ LINENUMS = re.compile(r'linenums="(\d+)"')
 HL_LINES = re.compile(r'hl_lines="([^"]+)"')
 BOX = re.compile(r'^\?\?\?\+?\s+note\s+"Code explanation"')
 REF = re.compile(r"\*\*lines?\s+(\d+)(?:\s*[–-]\s*(\d+))?\*\*")
+LEAD = re.compile(r"^\s*- `([^`]+)`")
+SQL_KEYWORDS = [
+    "INSERT INTO", "DELETE FROM", "GROUP BY", "ORDER BY", "IS NOT NULL", "IS NULL",
+    "SELECT", "FROM", "WHERE", "HAVING", "LIMIT", "AND", "OR", "IN", "BETWEEN",
+    "LIKE", "AS", "DESC", "COUNT", "AVG", "MIN", "MAX", "ROUND", "VALUES",
+    "UPDATE", "SET", "PRAGMA",
+]
+
+
+def sql_keywords(text):
+    """Return the set of SQL keywords in text, ignoring quoted values."""
+    text = re.sub(r"'[^']*'", "''", text)
+    # the AND in BETWEEN 10 AND 20 belongs to BETWEEN, so remove it first
+    text = re.sub(r"\bBETWEEN\b(.*?)\bAND\b", r"BETWEEN\1", text, flags=re.DOTALL)
+    found = set()
+    for keyword in SQL_KEYWORDS:
+        pattern = re.compile(r"\b" + keyword.replace(" ", r"\s+") + r"\b")
+        if pattern.search(text):
+            found.add(keyword)
+            text = pattern.sub(" ", text)
+    return found
 
 
 def parse_hl(text, first):
@@ -80,6 +106,21 @@ def check_page(page):
         if not source.exists():
             issues.append(f"{page.name}: missing file {snippet}")
             index = look
+            continue
+        if source.suffix == ".sql":
+            used = sql_keywords(source.read_text(encoding="utf-8"))
+            explained = set()
+            body = box_start + 1
+            while body < len(lines) and (lines[body].startswith("    ") or not lines[body].strip()):
+                lead = LEAD.match(lines[body])
+                if lead:
+                    explained |= sql_keywords(lead.group(1))
+                body += 1
+            for keyword in sorted(explained - used):
+                issues.append(f"{page.name}: BAD keyword {keyword} in {snippet}")
+            for keyword in sorted(used - explained):
+                issues.append(f"{page.name}: MISSING keyword {keyword} in {snippet}")
+            index = body
             continue
         shown = shown_lines(source, start, end, first)
         code = set()

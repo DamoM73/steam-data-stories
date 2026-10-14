@@ -4,13 +4,13 @@
     - how to choose a dataset for our own data story
     - where to find open data about Brisbane and South East Queensland
     - where to find data about Queensland, Australia and the world
-    - where to find data about sport, games, movies, music, books and other things we're into
+    - where to find data about sport, games, movies, music, books, technology, transport, space and other things we're into
     - how to record where our data came from
 
 !!! terms "Terminology"
     - **open data** – data that anyone can download, use and share for free, as long as we follow its licence.
 
-After the tutorials, we'll tell a new data story with data we find ourselves, in [Your Data Story Project](../project/data_story_project.md). Lots of organisations publish **open data**: data that anyone can download, use and share for free, as long as we follow its licence. This page lists good places to start, beginning close to home, then data about sport, games, movies, music, books and other things we might be into. We can't use the Steam data for our project, because we've already told a story with it.
+After the tutorials, we'll tell a new data story with data we find ourselves, in [Your Data Story Project](../project/data_story_project.md). Lots of organisations publish **open data**: data that anyone can download, use and share for free, as long as we follow its licence. This page lists good places to start, beginning close to home, then data about sport, games, movies, music, books, technology, transport, space and other things we might be into. We can't use the Steam data for our project, because we've already told a story with it.
 
 ## Choosing a dataset
 
@@ -94,12 +94,63 @@ Before we spend time on a dataset, check it against this list. Each check comes 
 | [Pixar films](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-03-11){ target="_blank" rel="noopener" } | every Pixar film, with ratings from critics and audiences | Have Pixar's films been reviewed better or worse over time? |
 | [goodbooks-10k](https://github.com/zygmuntz/goodbooks-10k){ target="_blank" rel="noopener" } | ***books.csv***: the 10,000 most-rated books on Goodreads, with their authors, year and average rating | Do older books get higher ratings than newer ones? |
 | [Dungeons & Dragons monsters](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-05-27){ target="_blank" rel="noopener" } | ***monsters.csv***: every monster in the free D&D rules (2024), with its type, size, challenge rating, armour class, hit points and ability scores | Which type of monster is toughest for its challenge rating? |
+| [Chess games on Lichess](https://www.kaggle.com/datasets/datasnaek/chess){ target="_blank" rel="noopener" } | ***games.csv***: over 20,000 online chess games from Lichess, with both players' ratings, the number of turns, how the game ended, the winner, the opening and the time control. Needs a Kaggle sign-in (see below). It includes players' usernames, so remove those columns | Does the higher-rated player win more often in fast games than in slow ones? |
+| [Mario Kart 64 world records](https://github.com/rfordatascience/tidytuesday/tree/main/data/2021/2021-05-25){ target="_blank" rel="noopener" } | ***records.csv***: every world record time on every Mario Kart 64 track since 1997, with whether a shortcut was used and how long each record lasted | Which track's world record has dropped the most since 1997? |
 | [IMDb datasets](https://data.imdb.com/non-commercial-datasets){ target="_blank" rel="noopener" } | ratings, votes, genres, years and running times for millions of movies and TV shows. Free for personal and non-commercial use | Have movies been getting longer? |
 
-For each TidyTuesday dataset (the first five above), open the link, click the ***.csv*** file, then the download button.
+For each TidyTuesday dataset (the Netflix, Billboard, Spotify, Pixar, D&D and Mario Kart links above), open the link, click the ***.csv*** file, then the download button.
 
 !!! tip "Challenge: loading the IMDb data"
     The IMDb files are much harder to load than our Steam data. They're compressed (they end in ***.tsv.gz***), so extract them first. They're **tab-separated**, not comma-separated, and they use `\N` to mean "missing". Some have millions of rows, so start with ***title.ratings.tsv*** and ***title.basics.tsv***. We can load them with `pl.read_csv("data/title.ratings.tsv", separator="\t", null_values="\\N")`. If we get an error about quotes, add `quote_char=None` inside the brackets too.
+
+!!! tip "Mario and Call of Duty games"
+    For data about a whole game series, like Mario or Call of Duty, search Kaggle for [video game sales](https://www.kaggle.com/datasets?search=video+game+sales){ target="_blank" rel="noopener" } or [Metacritic games](https://www.kaggle.com/datasets?search=metacritic+games){ target="_blank" rel="noopener" } (see below). Then keep just the series we want with `str.contains`, the same way we kept the Indie games in [Choosing Columns and Rows](../cleaning/05_select_filter.md#finding-the-indie-games), for example `pl.col("Name").str.contains("Mario")`.
+
+!!! tip "Collecting our own data"
+    Some topics, like Call of Duty Zombies, don't have a good open dataset. Instead, we can collect our own. Over a few weeks, record every game we play in a spreadsheet: the date, the map, the round we reached, our kills and how many times we went down. Then save it as a CSV file. Data about our own games is fine to use, but don't record anyone else's gamertag or results without asking them first.
+
+## Technology, AI and computers
+
+| Source | What's there | A question we could ask |
+| :-- | :-- | :-- |
+| [Epoch AI notable AI models](https://epoch.ai/data/notable-ai-models){ target="_blank" rel="noopener" } | over 3,000 AI models since 1950, with when they were published, who made them, their country, what they do, and how big they are and how much computing they took to train. Choose a CSV file from the **Download** section. Licence CC BY 4.0 | Which countries have made the most notable AI models since 2015? |
+| [Epoch AI machine learning hardware](https://epoch.ai/data/machine-learning-hardware){ target="_blank" rel="noopener" } | over 170 chips used to train AI, including GPUs, with their release date, release price, speed, power use and number of transistors, as a CSV file. Licence CC BY 4.0 | Do newer GPUs give more computing power for each dollar? |
+| [Historical cost of computer memory and storage](https://ourworldindata.org/grapher/historical-cost-of-computer-memory-and-storage){ target="_blank" rel="noopener" } | the price of a terabyte of RAM, hard disk, flash memory and SSD storage, in US dollars adjusted for inflation, going back decades. Click **Download** under the chart | How much cheaper has a terabyte of storage become since 2000? |
+| [Moore's law: transistors per microprocessor](https://ourworldindata.org/grapher/transistors-per-microprocessor){ target="_blank" rel="noopener" } | the number of transistors on computer chips, year by year, from the early 1970s. Click **Download** under the chart | Has the number of transistors on a chip really doubled every two years? |
+| [Supercomputer power](https://ourworldindata.org/grapher/supercomputer-power-flops){ target="_blank" rel="noopener" } | the computing power of the world's fastest supercomputers each year, from the TOP500 list. Click **Download** under the chart | How many times more powerful is today's fastest supercomputer than the fastest in 1993? |
+
+AI and computer data often has very large numbers, like 10,000,000,000,000,000,000,000 calculations to train one AI model. Polars may show them in scientific notation, such as `1e22`, which means 1 followed by 22 zeros. A log scale on our charts helps when the numbers grow this fast: add `log_y=True` inside the brackets of a Plotly chart.
+
+## Planes, trains and submarines
+
+| Source | What's there | A question we could ask |
+| :-- | :-- | :-- |
+| [BITRE airport traffic data](https://www.bitre.gov.au/publications/ongoing/airport_traffic_data){ target="_blank" rel="noopener" } | how many passengers and aircraft flights went through Australia's major airports, including Brisbane, each month since 2009 and each year since 1985. The files are Excel files (see the tip below) | How long did it take Brisbane Airport's passenger numbers to recover after 2020? |
+| [Citytrain punctuality and reliability](https://www.data.qld.gov.au/dataset/translink-monthly-performance-data/resource/d6b9ce31-dd07-4ea2-ac1a-848fa638cd90){ target="_blank" rel="noopener" } | how many Citytrain services in South East Queensland ran on time each month, from the Translink performance data | Are Citytrain services less punctual in some months of the year? |
+| [Translink origin-destination trips](https://www.data.qld.gov.au/dataset/translink-origin-destination-trips-2022-onwards){ target="_blank" rel="noopener" } | how many public transport trips were made from each place to each other place in South East Queensland, with one file for each month since 2022. Read the data dictionary on the page first | Which train stations are the busiest starting points for trips? |
+| [List of submarine classes in service](https://en.wikipedia.org/wiki/List_of_submarine_classes_in_service){ target="_blank" rel="noopener" } | every class of submarine in service around the world, with its builder, size (displacement in tonnes), the navy that uses it and how many are in service. It's a Wikipedia table, so copy one table into Google Sheets, then choose **File** → **Download** → **CSV** | Are nuclear-powered submarines much bigger than other submarines? |
+
+!!! tip "Converting an Excel file"
+    Some sources share their data as Excel files (ending in ***.xlsx***). Open the file in Excel, and go to the sheet with the data we want. Delete any title rows above the column headings, so the headings are in row 1. Then choose **File** → **Save As**, and pick **CSV UTF-8** as the file type. Now we can load it with `pl.read_csv`.
+
+## Military and surveillance
+
+| Source | What's there | A question we could ask |
+| :-- | :-- | :-- |
+| [SIPRI Military Expenditure Database](https://www.sipri.org/databases/milex){ target="_blank" rel="noopener" } | how much every country has spent on its military each year since 1949, in US dollars, per person and as a share of the country's economy (GDP). It's an Excel file (see the tip above). For one simple CSV file, use the [Our World in Data version](https://ourworldindata.org/grapher/military-expenditure-share-gdp-sipri){ target="_blank" rel="noopener" } instead | How has Australia's military spending as a share of GDP changed since 1990? |
+| [Atlas of Surveillance](https://atlasofsurveillance.org/data-library){ target="_blank" rel="noopener" } | thousands of US police agencies and the surveillance technology they use, such as drones, body-worn cameras and licence plate readers, with each agency's city and state. Download the complete dataset as a CSV file. From the Electronic Frontier Foundation | Which surveillance technologies are most common in US police agencies? |
+
+!!! warning "Choosing our angle"
+    Data about the military and surveillance is about serious topics. Tell our story about countries, agencies, money and technology, never about individual people, and don't use data about wars or deaths. Choose words that are accurate and fair, rather than words that make a topic sound exciting or scary.
+
+## Space
+
+| Source | What's there | A question we could ask |
+| :-- | :-- | :-- |
+| [Objects launched into space](https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space){ target="_blank" rel="noopener" } | the number of satellites, probes and other objects each country has launched into space each year since 1957, from the United Nations. Click **Download** under the chart | Which countries have launched the most objects into space since 2015? |
+| [Astronauts](https://think.cs.vt.edu/corgis/csv/astronauts/){ target="_blank" rel="noopener" } | every astronaut who flew in space before 2020, with their nationality, the year they were selected, and each mission's year, length and spacewalk (EVA) time, as a CSV file from the CORGIS Dataset Project | Are space missions getting longer? |
+
+The NASA Exoplanet Archive, in the Games, hobbies and other interests table above, has data about planets outside our solar system.
 
 ## Surveys of students like us
 
@@ -130,6 +181,8 @@ Lots of other datasets about video games, Pokémon, Formula 1, chess, football, 
 - [Metacritic games](https://www.kaggle.com/datasets?search=metacritic+games){ target="_blank" rel="noopener" }: critic and player scores for thousands of games, with their platform and release date
 - [game consoles](https://www.kaggle.com/datasets?search=best+selling+game+consoles){ target="_blank" rel="noopener" }: the best-selling game consoles of all time, with their maker, release year and units sold
 - [social media](https://www.kaggle.com/datasets?search=social+media+users){ target="_blank" rel="noopener" }: how many people use each social media platform
+- [Call of Duty](https://www.kaggle.com/datasets?search=call+of+duty){ target="_blank" rel="noopener" }, [Valorant](https://www.kaggle.com/datasets?search=valorant){ target="_blank" rel="noopener" }, [Counter-Strike](https://www.kaggle.com/datasets?search=counter+strike){ target="_blank" rel="noopener" } or [Overwatch](https://www.kaggle.com/datasets?search=overwatch){ target="_blank" rel="noopener" }: first-person shooter match results, weapon stats and esports earnings
+- [GPU specs](https://www.kaggle.com/datasets?search=gpu+specs){ target="_blank" rel="noopener" } or [CPU specs](https://www.kaggle.com/datasets?search=cpu+specs){ target="_blank" rel="noopener" }: computer parts with their release date, speed and launch price
 - [EA SPORTS FC](https://www.kaggle.com/datasets?search=ea+fc+player+ratings){ target="_blank" rel="noopener" } or [FIFA](https://www.kaggle.com/datasets?search=fifa+player+ratings){ target="_blank" rel="noopener" }: the ratings of every player in the game
 
 There are two things to know first:

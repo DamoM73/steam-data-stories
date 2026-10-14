@@ -1,6 +1,6 @@
 # Steam Data Stories
 
-Tutorials for telling data stories about Steam games with Python, [Polars](https://pola.rs/), [Plotly Express](https://plotly.com/python/plotly-express/) and [marimo](https://marimo.io/). Written for Year 9 Digital Technologies students using VS Code.
+Tutorials for telling data stories about Steam games with Python, [Polars](https://pola.rs/), [Plotly Express](https://plotly.com/python/plotly-express/) and [marimo](https://marimo.io/), followed by an introduction to SQL with SQLite. Written for Year 9 Digital Technologies students using VS Code.
 
 Live site: <https://damom73.github.io/steam-data-stories/> (once published)
 
@@ -15,7 +15,7 @@ Then open <http://localhost:8000>. To build the site: `zensical build --clean` (
 
 ## Scripts
 
-- `python scripts/build_data.py` downloads the Steam Games Dataset and builds the classroom data, `docs/downloads/steam_games.csv` and `README.txt`, which the site serves for students to download (needs `rich`).
+- `python scripts/build_data.py` downloads the Steam Games Dataset and builds the classroom data, `docs/downloads/steam_games.csv`, `README.txt` and the SQLite database `steam.db`, which the site serves for students to download (needs `rich`).
 - `python scripts/build_glossary.py` adds the Terminology callouts from `scripts/terms.json` to each page and rebuilds the Glossary page.
 - `python scripts/check_explanations.py` checks every Code explanation box against the code it explains (expect `0 issue(s) found`).
 
@@ -31,9 +31,11 @@ docs/
   insights/                   lessons 7–13: rising insights
   aha/                        lesson 14: the aha moment
   resolution/                 lessons 15–16: publishing and presenting
-  reference/                  story arc, Polars, Plotly, marimo, errors, licence
+  project/                    the data story project
+  sql/                        SQL introduction, pages 1–6 (weeks 17–19)
+  reference/                  story arc, Polars, Plotly, marimo, SQL, errors, finding data, licence
   assets/                     images
-  downloads/                  classroom data: steam_games.csv and README.txt
+  downloads/                  classroom data: steam_games.csv, README.txt and steam.db
   stylesheets/extra.css       colours, callouts and code block styles
 scripts/                      build_data.py, check_explanations.py
 ```

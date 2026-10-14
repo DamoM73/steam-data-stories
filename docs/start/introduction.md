@@ -49,6 +49,10 @@ Indie games, like Hollow Knight and Stardew Valley, are made by small, independe
 
 At the end of each lesson there's a **Your data story** task. That's where you use what you've just learnt to work on your own question about the same Steam data, so by the end of the tutorials you'll have practised every step on your own question. Then, in [Your Data Story Project](../project/data_story_project.md), you'll tell a data story with a dataset you choose yourself.
 
+## After our data story: SQL
+
+Most websites and apps keep their data in a database, not a CSV file. In the last part of the course, the [SQL](../sql/01_why_databases.md) section, we'll ask the same questions about Steam games in SQL, the language databases use, and check our answers against the ones we found with Polars. We'll use SQL again next year, when we build our own website.
+
 ## The tools
 
 | Tool | What it does |
@@ -58,6 +62,7 @@ At the end of each lesson there's a **Your data story** task. That's where you u
 | **Plotly Express** | a Python library for making interactive charts |
 | **marimo** | a notebook where we write code in small blocks called cells and see the results straight away |
 | **VS Code** | the editor we use to manage our files and run commands |
+| **SQLite** | a database program built into Python, which we use when we learn SQL |
 
 That's a lot of new tools, but we don't need to learn them all at once. We'll learn each one when our story needs it, and the **Reference** section has a summary of each tool we can come back to.
 

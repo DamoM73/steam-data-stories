@@ -11,6 +11,8 @@ Run this once, just before the unit starts. It runs these steps in order:
 4. package   Copy steam_games.csv and write README.txt into
              docs/downloads/, where the site serves them for students to
              download.
+5. sqlite    Build docs/downloads/steam.db, the SQLite database for the
+             SQL introduction, from docs/downloads/steam_games.csv.
 
 Games CSV
     The published games.csv merges "Discount" and "DLC count" into one
@@ -32,13 +34,24 @@ Games CSV
     data/adult_overrides.csv (AppID,Decision with "keep" or "exclude")
     win over the rules.
 
+SQLite database
+    steam.db holds the data as it is at the end of the cleaning lessons,
+    so SQL answers match the Polars answers in the example story. Its
+    games table has release dates as YYYY-MM-DD text, NULL for a
+    Metacritic score of 0, the review score (positive reviews as a
+    percentage, rounded to 1 decimal place, as in Making New Columns) and
+    indie (1 when "Indie" is in the genres, otherwise 0). Support email,
+    Recommendations, Achievements and Publishers are left out. Its
+    wishlist table is a small practice table for INSERT, UPDATE and
+    DELETE, so the games table never needs to change.
+
 Everything in data/raw/ is git-ignored. The package step puts the
 classroom copy in docs/downloads/, which is published with the site.
 
 Needs the rich library for progress bars:  pip install rich
 
 Run from the repo root:
-    python scripts/build_data.py                     all four steps
+    python scripts/build_data.py                     all five steps
     python scripts/build_data.py games audit         only the steps named
     python scripts/build_data.py --show 3065800      print one game's raw record
 """
@@ -50,8 +63,9 @@ import re
 import sys
 import urllib.request
 import shutil
+import sqlite3
 from collections import Counter
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 try:
@@ -88,7 +102,7 @@ OVERRIDES = DATA / "adult_overrides.csv"
 TODAY = date.today().isoformat()
 DOWNLOADS = ROOT / "docs" / "downloads"
 DATASET_URL = "https://huggingface.co/datasets/FronkonGames/steam-games-dataset/resolve/main/games.json"
-STEPS = ["download", "games", "audit", "package"]
+STEPS = ["download", "games", "audit", "package", "sqlite"]
 MIN_REVIEWS = 500
 
 EXPLICIT_NAME = re.compile(
@@ -387,9 +401,13 @@ README = """Steam Data Stories: classroom data ({today})
 Files
   steam_games.csv   one row per Steam game ({games} games with at least
                     {min_reviews:,} reviews)
+  steam.db          the same games in an SQLite database, already cleaned,
+                    for the SQL introduction. Its games table has 11
+                    columns; its wishlist table is a small practice table
+                    we can change.
 
-The data is real and has NOT been cleaned. Cleaning it is part of the
-course: https://damom73.github.io/steam-data-stories/
+The data in steam_games.csv is real and has NOT been cleaned. Cleaning
+it is part of the course: https://damom73.github.io/steam-data-stories/
 
 Sources
   steam_games.csv is built from the Steam Games Dataset by Fronkon Games
@@ -448,6 +466,97 @@ def step_package():
     print("To publish them: commit and push. The site serves both files from /downloads/.")
 
 
+# ----------------------------------------------------------------- sqlite
+
+# the practice table for INSERT, UPDATE and DELETE: (name, price, priority)
+WISHLIST = [
+    ("Hollow Knight", 14.99, 1),
+    ("Stardew Valley", 14.99, 2),
+    ("Celeste", 19.99, 3),
+    ("Terraria", 9.99, 4),
+    ("Hades", 24.99, 5),
+]
+
+
+def review_score(positive, negative):
+    """Positive reviews as a percentage, rounded to 1 decimal place.
+
+    round() rounds halves to the even digit (31.25 -> 31.2), the same as
+    Polars' round(1) in Making New Columns.
+    """
+    return round(positive / (positive + negative) * 100, 1)
+
+
+def step_sqlite():
+    console.rule("sqlite: building docs/downloads/steam.db")
+    source = DOWNLOADS / "steam_games.csv"
+    if not source.exists():
+        console.print("[red]Missing docs/downloads/steam_games.csv: run the package step first")
+        sys.exit(1)
+    rows = []
+    with source.open(encoding="utf-8", newline="") as file:
+        for game in csv.DictReader(file):
+            positive, negative = int(game["Positive"]), int(game["Negative"])
+            metacritic = int(game["Metacritic score"])
+            rows.append((
+                int(game["AppID"]),
+                game["Name"],
+                datetime.strptime(game["Release date"], "%b %d, %Y").date().isoformat(),
+                float(game["Price"]),
+                positive,
+                negative,
+                review_score(positive, negative),
+                metacritic if metacritic else None,
+                1 if "Indie" in game["Genres"] else 0,
+                game["Developers"],
+                game["Genres"],
+            ))
+    database = DOWNLOADS / "steam.db"
+    database.unlink(missing_ok=True)
+    conn = sqlite3.connect(database)
+    conn.executescript("""
+        CREATE TABLE games (
+            app_id INTEGER PRIMARY KEY,
+            name TEXT,
+            release_date TEXT,
+            price REAL,
+            positive INTEGER,
+            negative INTEGER,
+            review_score REAL,
+            metacritic INTEGER,
+            indie INTEGER,
+            developers TEXT,
+            genres TEXT
+        );
+        CREATE TABLE wishlist (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            price REAL,
+            priority INTEGER
+        );
+    """)
+    conn.executemany("INSERT INTO games VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", rows)
+    conn.executemany("INSERT INTO wishlist (name, price, priority) VALUES (?, ?, ?)", WISHLIST)
+    conn.commit()
+    # the numbers the SQL pages rely on, so a new snapshot shows what changed
+    checks = {
+        "games": "SELECT COUNT(*) FROM games",
+        "Indie games": "SELECT COUNT(*) FROM games WHERE indie = 1",
+        "not Indie games": "SELECT COUNT(*) FROM games WHERE indie = 0",
+        "Indie mean price": "SELECT ROUND(AVG(price), 2) FROM games WHERE indie = 1",
+        "not Indie mean price": "SELECT ROUND(AVG(price), 2) FROM games WHERE indie = 0",
+        "no Metacritic score": "SELECT COUNT(*) FROM games WHERE metacritic IS NULL",
+        "developers with 5+ games": "SELECT COUNT(*) FROM (SELECT developers FROM games "
+                                    "GROUP BY developers HAVING COUNT(*) >= 5)",
+    }
+    for label, query in checks.items():
+        print(f"{label}: {conn.execute(query).fetchone()[0]}")
+    conn.close()
+    size = database.stat().st_size // 1024
+    print(f"Wrote docs/downloads/steam.db ({size} KB)")
+    print("Check the SQL pages still match these numbers, then commit and push.")
+
+
 # ------------------------------------------------------------------- show
 
 def show(app_ids):
@@ -471,7 +580,7 @@ def show(app_ids):
 def main():
     parser = argparse.ArgumentParser(description="Collect and build the Steam Data Stories data.")
     parser.add_argument("steps", nargs="*", choices=STEPS,
-                        help="steps to run (default: all four, in order)")
+                        help="steps to run (default: all five, in order)")
     parser.add_argument("--show", nargs="+", metavar="APP_ID", help="print raw games.json records and stop")
     args = parser.parse_args()
     if args.show:
@@ -479,7 +588,7 @@ def main():
         return
     steps = args.steps or STEPS
     actions = {"download": step_download, "games": step_games,
-               "audit": step_audit, "package": step_package}
+               "audit": step_audit, "package": step_package, "sqlite": step_sqlite}
     for step in STEPS:
         if step in steps:
             actions[step]()

@@ -2,14 +2,17 @@
 
 This glossary lists every technical term introduced on this site, in alphabetical order. Each term links to the page where it is first explained, and each page lists its new terms in a Terminology callout at the top.
 
-[A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [H](#h) · [I](#i) · [J](#j) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [U](#u)
+[A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [H](#h) · [I](#i) · [J](#j) · [K](#k) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [U](#u) · [W](#w)
 
 ## A
 
 - **aggregate** – to combine the values in a group into one number, such as a count, mean or median. ([8. Summarising Groups](../insights/08_summarising_groups.md))
+- **aggregate function** – a function, like COUNT or AVG, that turns the values in many records into one value. ([4. Sorting and Summarising](../sql/04_sorting_summarising.md))
 - **aha moment** – the stage of a data story that shows the key insight so clearly no one can miss it. ([Introduction](../start/introduction.md))
+- **alias** – a new name for a column or field in an answer, given with AS in SQL or alias in Polars. ([4. Sorting and Summarising](../sql/04_sorting_summarising.md))
 - **app view** – a way of showing a marimo notebook with the code hidden, so only the outputs and controls appear. ([15. Publishing Our Data Story](../resolution/15_publishing.md))
 - **AppID** – the number Steam uses to identify each game; no two games share an AppID. ([1. What is a Data Story?](../hook/01_data_story.md))
+- **ascending** – sorted from the smallest value to the biggest. ([4. Sorting and Summarising](../sql/04_sorting_summarising.md))
 - **attribution** – saying where our data came from, so readers can check our work. ([4. Data, Privacy and Ethics](../hook/04_privacy_ethics.md))
 - **Australian Privacy Principles** – the 13 rules in the Privacy Act about collecting, using, sharing and protecting personal information. ([4. Data, Privacy and Ethics](../hook/04_privacy_ethics.md))
 
@@ -23,7 +26,11 @@ This glossary lists every technical term introduced on this site, in alphabetica
 
 - **cell** – one block of code in a notebook, which we can run on its own. ([2. Exploring Our Data](../hook/02_exploring_data.md))
 - **class server** – a computer at school that runs everyone's notebooks so anyone on the school network can open them in a web browser. ([15. Publishing Our Data Story](../resolution/15_publishing.md))
+- **clause** – a part of an SQL query that starts with a keyword and does one job, like FROM games. ([2. Choosing Columns and Rows in SQL](../sql/02_columns_rows.md))
 - **Command Prompt** – an older Windows terminal program that can switch on a virtual environment without running a PowerShell script. ([Setting Up](../start/setup.md))
+- **comparison operator** – a symbol, like = or >, that compares two values and gives true or false. ([2. Choosing Columns and Rows in SQL](../sql/02_columns_rows.md))
+- **connection** – a link between a program and a database file, which carries SQL to the database and brings the answers back. ([1. Why Databases?](../sql/01_why_databases.md))
+- **CRUD** – create, read, update and delete: the four jobs a program does with the data in a database. ([6. Changing Data](../sql/06_changing_data.md))
 - **CSV** – comma-separated values: a plain text file where each line is one row and the values are separated by commas. ([2. Exploring Our Data](../hook/02_exploring_data.md))
 
 ## D
@@ -31,8 +38,10 @@ This glossary lists every technical term introduced on this site, in alphabetica
 - **data cleaning** – finding and fixing problems in data so we can trust the results. ([5. Choosing Columns and Rows](../cleaning/05_select_filter.md))
 - **data story** – a way of using data, charts and words together to explain something and convince people it's true. ([Introduction](../start/introduction.md))
 - **data story arc** – the five stages of a data story: Hook, Behind the Scenes, Rising Insights, Aha Moment and Resolution. ([1. What is a Data Story?](../hook/01_data_story.md))
+- **database** – an organised collection of data, stored so that programs can find it, add to it and change it quickly and safely. ([1. Why Databases?](../sql/01_why_databases.md))
 - **DataFrame** – a table of data with rows and columns, stored in our code. ([2. Exploring Our Data](../hook/02_exploring_data.md))
 - **depersonalising** – removing or replacing the personal details in data, while keeping the part we need. ([4. Data, Privacy and Ethics](../hook/04_privacy_ethics.md))
+- **descending** – sorted from the biggest value to the smallest. ([4. Sorting and Summarising](../sql/04_sorting_summarising.md))
 
 ## E
 
@@ -40,6 +49,7 @@ This glossary lists every technical term introduced on this site, in alphabetica
 
 ## F
 
+- **field** – one column of a table, holding one piece of data that every record has, such as a game's price. ([1. Why Databases?](../sql/01_why_databases.md))
 - **format code** – a pattern such as `%b %d, %Y` that tells Polars how dates are written in text. ([6. Fixing Our Data](../cleaning/06_fixing_data.md))
 
 ## H
@@ -58,12 +68,17 @@ This glossary lists every technical term introduced on this site, in alphabetica
 
 - **JSON** – a text format for sharing data, which stores each record between `{ }` and each list between `[ ]`. ([Polars](../reference/polars.md))
 
+## K
+
+- **keyword** – a word with a special meaning in SQL, like SELECT or WHERE, usually written in capitals. ([1. Why Databases?](../sql/01_why_databases.md))
+
 ## L
 
 - **licence** – a set of rules from a work's owner that says how other people can use it. ([4. Data, Privacy and Ethics](../hook/04_privacy_ethics.md))
 - **limitation** – something our data or our decisions can't tell us, which we should mention when we tell our story. ([3. Asking a Question Data Can Answer](../hook/03_asking_questions.md))
 - **list column** – a Polars column where each value is a list of items, like the types of a Pokémon. ([Polars](../reference/polars.md))
 - **literal** – a value written straight into our code, such as `pl.lit("Indie")`, that is the same for every row. ([7. Making New Columns](../insights/07_new_columns.md))
+- **logical operator** – a word, like AND or OR, that joins conditions together into one bigger condition. ([3. Combining Conditions](../sql/03_combining_conditions.md))
 
 ## M
 
@@ -91,17 +106,21 @@ This glossary lists every technical term introduced on this site, in alphabetica
 - **Plotly Express** – a Python library for making interactive charts. ([Introduction](../start/introduction.md))
 - **Polars** – a Python library for loading, cleaning and analysing tables of data. ([Introduction](../start/introduction.md))
 - **PowerShell** – the program VS Code uses for its terminal on Windows unless we choose another one. ([Setting Up](../start/setup.md))
+- **primary key** – a field whose value is different for every record, so it can pick out exactly one record. ([1. Why Databases?](../sql/01_why_databases.md))
 - **Privacy Act 1988** – the Australian law that sets the rules for how organisations and government agencies handle personal information. ([4. Data, Privacy and Ethics](../hook/04_privacy_ethics.md))
 
 ## Q
 
 - **quartile** – one of the three values that split sorted data into four equal parts: Q1 (25%), the median (50%) and Q3 (75%). ([12. Outliers and Predictions](../insights/12_outliers_predictions.md))
+- **query** – a question we ask a database, written in SQL. ([1. Why Databases?](../sql/01_why_databases.md))
 
 ## R
 
 - **range slider** – a slider with two handles, used to choose a start value and an end value. ([14. The Aha Moment](../aha/14_aha_moment.md))
 - **reactive** – describes a notebook where changing a cell automatically re-runs every cell that uses its variables. ([2. Exploring Our Data](../hook/02_exploring_data.md))
+- **record** – one row of a table, holding all the data about one thing, such as one game. ([1. Why Databases?](../sql/01_why_databases.md))
 - **refine** – to change a question so the data can answer it, for example by narrowing it down or defining its words. ([3. Asking a Question Data Can Answer](../hook/03_asking_questions.md))
+- **relational database** – a database that stores its data in tables, which can be linked to each other. ([1. Why Databases?](../sql/01_why_databases.md))
 - **release candidate** – a version of a program that's almost finished and being tested before its official release. ([Setting Up](../start/setup.md))
 - **resolution** – the final stage of a data story, which explains what the finding means and what should happen next. ([Introduction](../start/introduction.md))
 - **review score** – the percentage of a game's reviews that are positive. ([3. Asking a Question Data Can Answer](../hook/03_asking_questions.md))
@@ -114,6 +133,9 @@ This glossary lists every technical term introduced on this site, in alphabetica
 - **Series** – a single column of a DataFrame. ([3. Asking a Question Data Can Answer](../hook/03_asking_questions.md))
 - **shape** – the number of rows and the number of columns in a DataFrame. ([2. Exploring Our Data](../hook/02_exploring_data.md))
 - **skewed** – describes data where a few values are much bigger or smaller than the rest, which pulls the mean away from the median. ([8. Summarising Groups](../insights/08_summarising_groups.md))
+- **SQL** – Structured Query Language: a language for asking a database questions and changing its data. ([1. Why Databases?](../sql/01_why_databases.md))
+- **SQL cell** – a marimo cell where we write SQL instead of Python, and see the answer in the table viewer. ([1. Why Databases?](../sql/01_why_databases.md))
+- **SQLite** – a small database program that keeps a whole database in a single file, and is built into Python. ([1. Why Databases?](../sql/01_why_databases.md))
 - **standard deviation** – a number that shows how spread out the values are from the mean. ([3. Asking a Question Data Can Answer](../hook/03_asking_questions.md))
 - **story angle** – the part of a topic we choose to focus on when we tell a data story. ([1. What is a Data Story?](../hook/01_data_story.md))
 - **struct** – a Polars column type where each value is a small record holding several named values. ([Polars](../reference/polars.md))
@@ -121,9 +143,14 @@ This glossary lists every technical term introduced on this site, in alphabetica
 
 ## T
 
+- **table** – a set of data about one kind of thing, stored in rows and columns, like the games table. ([1. Why Databases?](../sql/01_why_databases.md))
 - **trend** – a change over time, such as review scores rising year after year. ([11. Trends and Relationships](../insights/11_trends_relationships.md))
 
 ## U
 
 - **UI element** – a control, such as a slider or dropdown, that our audience can use to change what a notebook shows. ([14. The Aha Moment](../aha/14_aha_moment.md))
 - **upper fence** – Q3 plus 1.5 times the interquartile range; values above it count as outliers. ([12. Outliers and Predictions](../insights/12_outliers_predictions.md))
+
+## W
+
+- **wildcard** – a symbol that stands for any characters when we search text, like % in LIKE. ([3. Combining Conditions](../sql/03_combining_conditions.md))

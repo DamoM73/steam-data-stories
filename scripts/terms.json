@@ -304,5 +304,99 @@
       "list column",
       "a Polars column where each value is a list of items, like the types of a Pokémon."
     ]
+  ],
+  "sql/01_why_databases.md": [
+    [
+      "database",
+      "an organised collection of data, stored so that programs can find it, add to it and change it quickly and safely."
+    ],
+    [
+      "SQL",
+      "Structured Query Language: a language for asking a database questions and changing its data."
+    ],
+    [
+      "relational database",
+      "a database that stores its data in tables, which can be linked to each other."
+    ],
+    [
+      "SQLite",
+      "a small database program that keeps a whole database in a single file, and is built into Python."
+    ],
+    [
+      "table",
+      "a set of data about one kind of thing, stored in rows and columns, like the games table."
+    ],
+    [
+      "record",
+      "one row of a table, holding all the data about one thing, such as one game."
+    ],
+    [
+      "field",
+      "one column of a table, holding one piece of data that every record has, such as a game's price."
+    ],
+    [
+      "primary key",
+      "a field whose value is different for every record, so it can pick out exactly one record."
+    ],
+    [
+      "connection",
+      "a link between a program and a database file, which carries SQL to the database and brings the answers back."
+    ],
+    [
+      "query",
+      "a question we ask a database, written in SQL."
+    ],
+    [
+      "SQL cell",
+      "a marimo cell where we write SQL instead of Python, and see the answer in the table viewer."
+    ],
+    [
+      "keyword",
+      "a word with a special meaning in SQL, like SELECT or WHERE, usually written in capitals."
+    ]
+  ],
+  "sql/02_columns_rows.md": [
+    [
+      "clause",
+      "a part of an SQL query that starts with a keyword and does one job, like FROM games."
+    ],
+    [
+      "comparison operator",
+      "a symbol, like = or >, that compares two values and gives true or false."
+    ]
+  ],
+  "sql/03_combining_conditions.md": [
+    [
+      "logical operator",
+      "a word, like AND or OR, that joins conditions together into one bigger condition."
+    ],
+    [
+      "wildcard",
+      "a symbol that stands for any characters when we search text, like % in LIKE."
+    ]
+  ],
+  "sql/04_sorting_summarising.md": [
+    [
+      "descending",
+      "sorted from the biggest value to the smallest."
+    ],
+    [
+      "ascending",
+      "sorted from the smallest value to the biggest."
+    ],
+    [
+      "alias",
+      "a new name for a column or field in an answer, given with AS in SQL or alias in Polars."
+    ],
+    [
+      "aggregate function",
+      "a function, like COUNT or AVG, that turns the values in many records into one value."
+    ]
+  ],
+  "sql/06_changing_data.md": [
+    [
+      "CRUD",
+      "create, read, update and delete: the four jobs a program does with the data in a database."
+    ]
   ]
 }

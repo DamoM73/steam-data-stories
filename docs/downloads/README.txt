@@ -3,9 +3,13 @@ Steam Data Stories: classroom data (2026-10-07)
 Files
   steam_games.csv   one row per Steam game (10250 games with at least
                     500 reviews)
+  steam.db          the same games in an SQLite database, already cleaned,
+                    for the SQL introduction. Its games table has 11
+                    columns; its wishlist table is a small practice table
+                    we can change.
 
-The data is real and has NOT been cleaned. Cleaning it is part of the
-course: https://damom73.github.io/steam-data-stories/
+The data in steam_games.csv is real and has NOT been cleaned. Cleaning
+it is part of the course: https://damom73.github.io/steam-data-stories/
 
 Sources
   steam_games.csv is built from the Steam Games Dataset by Fronkon Games

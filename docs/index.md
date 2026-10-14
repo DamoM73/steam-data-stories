@@ -9,7 +9,9 @@ Tell data stories about Steam games with Python, Polars, Plotly and marimo.
 - Work through the **Start** pages first. They explain what a data story is, introduce the Steam dataset and set up Python, VS Code and marimo.
 - The lessons are grouped by the stages of a data story: **Hook**, **Behind the Scenes**, **Rising Insights**, **Aha Moment** and **Resolution**. Each lesson continues from the one before, so we do them in order.
 - Each lesson works through one example question about Steam games. At the end of each lesson we apply what we've learnt to our own question about the same data, so our own data story grows as we go.
-- **Reference** has a summary of the data story arc, Polars, Plotly Express and marimo, plus the errors we're most likely to see.
+- **Project** guides us through telling a data story with a dataset we find ourselves, and lists places to find data.
+- **SQL** introduces databases. We ask questions about the same Steam games in SQL, and check the answers against the ones we found with Polars.
+- **Reference** has a summary of the data story arc, Polars, Plotly Express, marimo and SQL, plus the errors we're most likely to see.
 
 ## Callouts
 
@@ -42,15 +44,29 @@ games = pl.read_parquet(mo.notebook_dir() / "data" / "clean_games.parquet")
 games.head()
 ```
 
-- the **notebook name** above the code tells us which notebook the cell belongs to. We use two notebooks: ***clean_steam.py*** for exploring and cleaning the data, and ***steam_story.py*** for telling our story
+- the **notebook name** above the code tells us which notebook the cell belongs to. We use ***clean_steam.py*** for exploring and cleaning the data, ***steam_story.py*** for telling our story, and ***sql_intro.py*** for learning SQL
 - the words after the notebook name tell us **where the code goes**:
     - **new cell** → add a new cell at the bottom of the notebook, and type the code into it
     - **change existing cell** → don't add a cell. Find the cell we already made, and change it to match the code
     - **first cell** → type the code into the empty cell a new notebook starts with
     - **change first cell** → change the cell at the top of the notebook, the one with our imports
+    - **new SQL cell** → add a new SQL cell at the bottom of the notebook with the **SQL** button, choose `conn` as its connection, and type the query into it
 - **line numbers** match the line numbers in the Code explanation
 - **highlighted lines** are new or changed since the last time we saw the cell, so they're the lines we need to add or change
 - the **copy** button in the top-right corner copies the code to paste into a marimo cell
+
+SQL queries have no line numbers. Their Code explanation goes through the query keyword by keyword:
+
+```sql title="sql_intro.py — new SQL cell"
+SELECT name, price
+FROM games
+WHERE price > 50
+```
+
+!!! note "Code explanation"
+    - `SELECT name, price` → chooses the name and price fields.
+    - `FROM games` → gets the records from the `games` table.
+    - `WHERE price > 50` → keeps only the records where the price is more than 50.
 
 Code blocks without colours show commands to type in the terminal, or what appears when we run a cell.
 
@@ -66,4 +82,4 @@ Under each error message, the lesson breaks it down part by part, so we learn ho
 
 ## Tutorial files
 
-The tutorial files are our classroom copy of the Steam data: the 10,250 Steam games with at least 500 reviews. Everyone uses the same copy, so our results match the lessons. Download [steam_games.csv](downloads/steam_games.csv){ download="steam_games.csv" } and [README.txt](downloads/README.txt){ download="README.txt" }, and follow [Setting Up](start/setup.md#download-the-data) to put them in the right place.
+The tutorial files are our classroom copy of the Steam data: the 10,250 Steam games with at least 500 reviews. Everyone uses the same copy, so our results match the lessons. Download [steam_games.csv](downloads/steam_games.csv){ download="steam_games.csv" } and [README.txt](downloads/README.txt){ download="README.txt" }, and follow [Setting Up](start/setup.md#download-the-data) to put them in the right place. For the SQL section, we also download [steam.db](downloads/steam.db){ download="steam.db" }, a database made from the cleaned data, as shown in [Why Databases?](sql/01_why_databases.md#getting-the-database).

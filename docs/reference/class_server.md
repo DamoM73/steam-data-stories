@@ -50,7 +50,7 @@ On a class server, Python runs on one computer at school, so each story opens in
 3. Install the same libraries the students use.
 
     ```text
-    pip install marimo polars==2.0.0rc2 plotly numpy
+    pip install marimo==0.25.1 polars==2.0.0rc2 plotly numpy
     ```
 
     - **Why:** the class server runs the students' code, so it needs every library the notebooks import.

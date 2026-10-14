@@ -71,17 +71,17 @@ We don't need to change the computer's settings. Instead, we'll tell VS Code to 
 1. In the terminal, type the command below and press ++enter++. It installs marimo (our notebook), Polars (for working with tables of data), Plotly (for charts) and NumPy (which Plotly needs to draw charts from Polars data). When it finishes, the last line starts with `Successfully installed`.
 
     ```text
-    pip install marimo polars==2.0.0rc2 plotly numpy
+    pip install marimo==0.25.1 polars==2.0.0rc2 plotly numpy
     ```
 
-2. Check marimo installed correctly by typing the command below. It shows a version number such as `0.25.1`. Ours might be a little different.
+2. Check marimo installed correctly by typing the command below. It shows the version number `0.25.1`.
 
     ```text
     marimo --version
     ```
 
-!!! tip "Why polars==2.0.0rc2?"
-    The `==2.0.0rc2` part asks for one exact version of Polars. **rc** stands for **release candidate**: a version that's almost finished and being tested before its official release. Polars 2.0 changes a few commands, and this course uses the new versions, so we all need the same one.
+!!! tip "Why polars==2.0.0rc2 and marimo==0.25.1?"
+    The `==2.0.0rc2` part asks for one exact version of Polars. **rc** stands for **release candidate**: a version that's almost finished and being tested before its official release. Polars 2.0 changes a few commands, and this course uses the new versions, so we all need the same one. We ask for one exact version of marimo too, `0.25.1`, so our notebooks look the same as the screenshots on these pages.
 
 ## Download the data
 

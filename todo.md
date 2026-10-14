@@ -2,7 +2,6 @@
 
 ## Decisions
 
-- Where the three-week SQL introduction lives (this site or another) and which tool it uses.
 - Which computer hosts the class server (laptop or Raspberry Pi), and check with IT that it can run on the school network. See Reference → Hosting on a Class Server.
 - How students hand in `steam_story.py` and `data/clean_games.parquet` for the class server (Publishing Our Data Story says "our teacher will tell us how to hand them in"). Update that page and the Hosting page once decided.
 - Test the class server on the chosen computer (it was tested in a Linux sandbox, not yet on Windows or a Pi), including a whole class opening stories at once.
@@ -13,8 +12,26 @@ Each spot is marked in the page source with an HTML comment starting `<!-- SCREE
 
 1. `l14_controls.png` — the Years slider and Measure dropdown above the explore chart and explore table, all in one cell's output — The Aha Moment
 2. `l15_drag_cell.png` — a marimo cell with the drag handle (dots) on its left edge highlighted — Publishing Our Data Story
+3. `s01_sql_button.png` — the buttons under a marimo cell, with the SQL button labelled — Why Databases?
+4. `s01_connection.png` — the top of an SQL cell with the connection dropdown open and `conn` selected, with the output variable name `_df` beside it — Why Databases?
+5. `s01_first_query.png` — the SQL cell with `SELECT * FROM games LIMIT 5` and its result, five rows starting with Counter-Strike — Why Databases?
+6. `s01_table_info.png` — the result of `PRAGMA table_info(games)`: 11 rows, with the name, type and pk columns visible — Why Databases?
+7. `s02_no_such_column.png` — the SQL cell with `WHERE developers = Valve` and its red error, `no such column: Valve` — Choosing Columns and Rows in SQL
+8. `s05_output_variable.png` — the top of the SQL cell with the output variable changed from `_df` to `top_indie` and `conn` chosen — Summarising Groups in SQL
+9. `s06_update_all.png` — the check cell after `UPDATE wishlist SET priority = 1`, all five records with priority 1 — Changing Data
+10. `s_duckdb_error.png` — an SQL cell left on the default DuckDB connection, and what it shows when we run `SELECT * FROM games` — Common Errors
+
+All SQL screenshots should be taken in marimo 0.25.1 (now pinned in Setting Up). `s05_top_indie.png` is a chart rendered from the real data.
 
 The chart images (`l09_*.png` to `l14_*.png`), the app view (`l15_app_view.png`) and the class server home page (`class_server_home.png`) are rendered from the real data. Replace them if the data is refreshed. The home page image uses made-up student folder names.
+
+## SQL section checks (in a fresh .venv with only the Setting Up packages)
+
+- The SQL button works, and SQL cells run with `conn`, without installing DuckDB or any other package. Note what happens when the default DuckDB connection is left selected (for Common Errors).
+- marimo shows SQLite errors as `OperationalError: …` (Choosing Columns and Rows in SQL, Common Errors). Adjust the page text if the wording differs.
+- After an `INSERT INTO`, the check cell (`SELECT * FROM wishlist`) doesn't rerun by itself (Changing Data says to run it again).
+- Ctrl+Shift+R after reopening sql_intro.py reruns the change cell (the reason for the "One cell for changes" warning).
+- Windows won't let us replace steam.db while marimo has it open (Changing Data → Starting again says to stop marimo first).
 
 ## Housekeeping
 

@@ -4,6 +4,7 @@
     - the marimo commands and shortcuts used in this course
     - the rules marimo notebooks follow
     - how to write text and add UI elements
+    - how to write SQL in SQL cells
 
 **marimo** is a notebook for Python. We write code in small blocks called **cells**, and each cell's result appears straight away. marimo notebooks are saved as ordinary Python files. We import it with `import marimo as mo`.
 
@@ -15,6 +16,7 @@ Type these in the VS Code terminal, with `(.venv)` at the start of the prompt.
 | :-- | :-- | :-- |
 | `marimo edit clean_steam.py` | opens a notebook to edit, creating it if it doesn't exist | [Setting Up](../start/setup.md#open-our-first-notebook) |
 | `marimo edit steam_story.py` | opens our second notebook | [Making New Columns](../insights/07_new_columns.md#a-new-notebook) |
+| `marimo edit sql_intro.py` | opens our SQL notebook | [Why Databases?](../sql/01_why_databases.md#connecting-to-the-database) |
 | `marimo run steam_story.py` | opens a notebook in app view: outputs only, no code | [Publishing Our Data Story](../resolution/15_publishing.md#checking-the-app-view) |
 | ++ctrl+c++, then `y` | stops marimo (++ctrl+c++ on a Mac too) | [Setting Up](../start/setup.md#open-our-first-notebook) |
 
@@ -75,12 +77,23 @@ UI elements live in `mo.ui`. Store each one in a variable, then use its `value` 
 !!! tip "Not covered in the lessons"
     `mo.ui.slider` and `mo.ui.checkbox` aren't used in our example story, but they work the same way as the UI elements in [The Aha Moment](../aha/14_aha_moment.md#creating-the-controls). They're here in case our own story needs them.
 
+## SQL cells
+
+An SQL cell runs SQL instead of Python. In ***sql_intro.py***, every SQL cell uses the connection `conn` made in our first cell. See [Why Databases?](../sql/01_why_databases.md#our-first-query) and the [SQL](sql.md) reference page.
+
+- **Add one** with the **SQL** button under a cell.
+- **Choose `conn`** in the connection dropdown at the top of every SQL cell. The default is DuckDB, which can't see ***steam.db***.
+- **The answer** appears in the table viewer, and is stored as a Polars DataFrame in the cell's output variable, shown at the top of the cell.
+- **Rename the output variable** (for example from `_df` to `top_indie`) to use the answer in another cell. Names starting with `_` are private to their cell. See [Summarising Groups in SQL](../sql/05_summarising_groups.md#charting-a-querys-answer).
+- **marimo doesn't know when a table changes.** After `INSERT INTO`, `UPDATE` or `DELETE FROM`, run the cells that read the table again. See [Changing Data](../sql/06_changing_data.md#adding-records).
+
 ## Notebook files and folders
 
 | Code | What it does | Where we learned it |
 | :-- | :-- | :-- |
 | `mo.notebook_dir()` | the folder our notebook is saved in | [Publishing Our Data Story](../resolution/15_publishing.md#getting-ready-for-the-class-server) |
 | `mo.notebook_dir() / "data" / "clean_games.parquet"` | the path to a file in the ***data*** folder next to our notebook | [Publishing Our Data Story](../resolution/15_publishing.md#getting-ready-for-the-class-server) |
+| `sqlite3.connect(mo.notebook_dir() / "data" / "steam.db")` | connects to ***steam.db*** in the ***data*** folder | [Why Databases?](../sql/01_why_databases.md#connecting-to-the-database) |
 
 !!! tip "The official documentation"
     The [marimo documentation](https://docs.marimo.io/){ target="_blank" rel="noopener" } explains every feature, with examples.

@@ -200,6 +200,56 @@ ValueError: Value of 'x' is not the name of a column in 'data_frame'. Expected o
 
 To fix it, check the spelling and capital letters: `"Group"`, not `"group"`. If the column isn't in the list, check that we're charting the right DataFrame.
 
+## SQL
+
+In an SQL cell, SQLite's errors start with `OperationalError`, which means SQLite couldn't run our query. The message after the colon says why.
+
+### OperationalError: no such column
+
+``` { .text .error linenums="1" }
+OperationalError: no such column: Valve
+```
+
+- **line 1** → SQLite looked for a field called `Valve` and couldn't find one.
+
+There are two common causes. If the word is a value we're looking for, like a developer's name, we've left out the single quotes: write `'Valve'`, not `Valve`. If the word is meant to be a field, check its spelling against `PRAGMA table_info(games)`: our fields are lower case with underscores, like `review_score`. See [Choosing Columns and Rows in SQL](../sql/02_columns_rows.md#text-values).
+
+### OperationalError: no such table
+
+``` { .text .error linenums="1" }
+OperationalError: no such table: game
+```
+
+- **line 1** → there's no table called `game` in the database.
+
+Check the spelling: our tables are `games` and `wishlist`. If every query says there's no `games` table, our connection may have made a new, empty ***steam.db***, because the real one isn't in the ***data*** folder. See [Why Databases?](../sql/01_why_databases.md#connecting-to-the-database).
+
+### OperationalError: syntax error
+
+``` { .text .error linenums="1" }
+OperationalError: near "FROM": syntax error
+```
+
+- **line 1** → SQLite got confused just before the word `FROM`.
+
+The mistake is usually just before the word in the message. Here, the query was `SELECT name, FROM games`: the comma after the last field tells SQLite another field is coming. Also check that the clauses are in the right order: `SELECT`, `FROM`, `WHERE`, `GROUP BY`, `HAVING`, `ORDER BY`, `LIMIT`.
+
+### OperationalError: incomplete input
+
+``` { .text .error linenums="1" }
+OperationalError: incomplete input
+```
+
+- **line 1** → the query stopped before it was finished.
+
+Look at the end of the query. It might end with a keyword that needs something after it, like `ORDER BY`, or a quote or bracket that's never closed, like `WHERE name = 'Celeste`.
+
+### The SQL cell isn't using conn
+
+<!-- SCREENSHOT: assets/s_duckdb_error.png — an SQL cell with the default DuckDB connection still selected, and the error or install message it shows when we run SELECT * FROM games -->
+
+If we forget to choose `conn` in an SQL cell's connection dropdown, marimo uses DuckDB, a different database program that can't see ***steam.db***. Open the dropdown at the top of the cell and choose `conn`. See [Why Databases?](../sql/01_why_databases.md#our-first-query).
+
 ## Results that look wrong
 
 Some problems don't cause an error, but give us the wrong result.
@@ -214,3 +264,8 @@ Some problems don't cause an error, but give us the wrong result.
 | a working table appears in app view | the cell still ends with a line that shows it | delete that last line ([Publishing Our Data Story](../resolution/15_publishing.md#tidying-for-our-audience)) |
 | a slider or dropdown does nothing | no other cell uses its `value` yet | use `.value` in another cell ([The Aha Moment](../aha/14_aha_moment.md#connecting-the-controls)) |
 | our story is an empty page on the class server | the notebook can't find its data | use `mo.notebook_dir()` ([Publishing Our Data Story](../resolution/15_publishing.md#getting-ready-for-the-class-server)) |
+| a query finds no records with `= NULL` | nothing is ever equal to "no value" | use `IS NULL` or `IS NOT NULL` ([Choosing Columns and Rows in SQL](../sql/02_columns_rows.md#missing-values)) |
+| a query with `AND` and `OR` keeps records it shouldn't | `AND` is worked out before `OR` | put brackets around the `OR` ([Combining Conditions](../sql/03_combining_conditions.md#brackets)) |
+| a check cell still shows the old records after a change | marimo doesn't know the table changed | run the check cell again ([Changing Data](../sql/06_changing_data.md#adding-records)) |
+| the same record appears twice in the wishlist | a cell with `INSERT INTO` ran again | use one change cell, delete it when we're done, and download ***steam.db*** again to start over ([Changing Data](../sql/06_changing_data.md#starting-again)) |
+| every record changed | `UPDATE` or `DELETE FROM` without `WHERE` | download ***steam.db*** again, and check the `WHERE` with a `SELECT` first ([Changing Data](../sql/06_changing_data.md#forgetting-where)) |
